@@ -85,7 +85,7 @@ entity Rate {
     * created : string
     * updated : string
     --
-    CountAverage() : float
+    
 }
 
 Athlete }o--o| Coach
