@@ -50,15 +50,30 @@ Athlete -down-> UC6
 
 ```plantuml
 entity Coach {
+    * idCoach : int
     * fullName : string
     * telNumber : string
     --
     
 }
-entity Athlete 
-entity WOD 
+entity Athlete {
+    * idAthlete : int
+    * fullName : string
+    * telNumber : string
+    --
+}
+entity WOD {
+    * idWod : int
+    * movementName : string
+    * repsCount : int
+    * roundCount : int
+    * level : float
+    * date : string
+    --
+    
+}
 Athlete }o--o| Coach
-WOD }o--o| Athlete
+WOD }o-left-o| Athlete
 
 
 ```
