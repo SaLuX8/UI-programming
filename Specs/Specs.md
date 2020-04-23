@@ -77,6 +77,7 @@ entity WOD {
     * created : string
     * updated : string
     --
+}
 entity Rating {
     * athlete_id : int
     * wod_id : int
@@ -86,10 +87,10 @@ entity Rating {
     * updated : string
 }
 
-}
+
 Athlete }o--o| Coach
 WOD }o---left--o| Athlete
-
+WOD |o--o{ Rating
 
 ```
 

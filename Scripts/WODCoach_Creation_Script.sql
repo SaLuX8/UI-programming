@@ -68,15 +68,13 @@ CREATE TABLE IF NOT EXISTS `WODCoach`.`Rating` (
   `comment` varchar(200),
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  primary key (wod_id, athlete_id),
-  constraint fk_athlete foreign key (athlete_id)
+  primary key (`wod_id`, `athlete_id`),
+  constraint fk_athlete_id foreign key (athlete_id)
   references Athlete (idAthlete),
-  constraint fk_wod foreign key (wod_id)
+  constraint fk_wod_id foreign key (wod_id)
   references Wod (idWod)
 )
 ENGINE = InnoDB;
-
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
