@@ -90,7 +90,7 @@ entity Rate {
 
 Athlete }o--o| Coach
 WOD }o-left-o| Athlete
-WOD ||--o{ Rating
+WOD ||-right-o{ Rate
 
 ```
 Valmentaja (Coach) voi luoda useita valmennettavia (Athlete), joille valmentaja voi luoda kullekin useita päivän treenejä (WOD), mukaan lukien toisto ja kierrosmäärät. Valmennettava voi asettaa kommentteja ja haastavuustason kullekin treenille. Hän myös merkitsee onko tehnyt treenin. Lisäksi valmennettava voi antaa arvosteluita treeneille.
