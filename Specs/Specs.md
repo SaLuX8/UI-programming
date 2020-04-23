@@ -26,10 +26,11 @@ Käyttöliittymän ulkoasun muokkaamiseen käytetään apuna XAML Material Desig
 - Tässä vaiheessa ei selvyyden vuoksi todennäköisesti toteuteta useamman valmentajan ohjelmistoa.
 
 
+
 ```plantuml
 
-Coach 
-Athlete
+actor Coach 
+actor Athlete
 usecase (Last\nusecase) as UC1
 usecase (Last\nusecase) as UC2
 usecase (Last\nusecase) as UC3
