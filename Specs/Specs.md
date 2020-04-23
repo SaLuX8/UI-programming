@@ -47,7 +47,22 @@ Athlete -down-> UC2
 Athlete -down-> UC6
 
 ```
-- Toiminnoista piiretään UML:n Käyttötapaus-kaavio, kaaviossa esitetään eri roolit ja käyttötapaukset=toiminnot
+
+```plantuml
+entity Coach {
+    * fullName : string
+    * telNumber : string
+    --
+    
+}
+entity Athlete {}
+entity WOD {}
+Athlete }o--o| Coach
+WOD }o--o| Athlete
+
+
+```
+
 - Sovelluksen keskeiset käsitteet listataan ja luodaan Käsitemalli, jossa esitetään käsitteet ja niiden väliset suhteet; tästä jalostetaan sitten luokkamalli sovelluksesta, mitä luokkia sovelluksessa on ja niiden tärkeimmät tehtävät ja ominaisuudet sekä luokkien väliset suhteet UML:tä käyttäen. Suunnitelmassa alustava ajatus, loppuraportissa lopullinen rakenne ja perustelut muutoksille PS Muista kertoa ajatuksista, pelkkä kaaviokuvio ei ole riittävä.
 
 - Työnjako, kuinka työnjako aiotaan hoitaa eli vastuut eri tehtäville
