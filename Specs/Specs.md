@@ -1,0 +1,64 @@
+# Specs 
+
+### Tietoa tekijästä
+- Nimi: Sami Luoma-aho
+- Jyväskylän ammattikorkeakoulu
+- Ohjelmistotekniikan muuntokoulutusopiskelija
+  
+### Sovelluksen yleiskuvaus
+Tehdään oma ohjelmisto valmentajalle ja valmennettavalle etävalmennuksen avuksi. Ohjelmalla valmentaja voi antaa valmennettaville treenejä suoritettavaksi. Valmennettava kuittaa tehdyksi ja voi kommentoida.
+
+### Kenelle sovellus on suunnattu, kohdeyleisö
+Suunnattu henkilökohtaisille valmentajille ja heidän valmennettavilleen. 
+
+### Käyttöympäristö ja käytetyt teknologiat
+Ohjelma toteutetaan C# -kielellä käyttäen WPF-kirjastoa. Tietokanta luodaan MySQL:llä ulkoiseen tietokantaan. Mahdollisuuksien mukaan käytetään apuna ADO.NET Entity Framework:iä.  
+Käyttöliittymän ulkoasun muokkaamiseen käytetään apuna XAML Material Design -teemakirjastoa.  
+
+### Tunnistetaan eri käyttäjäroolit, jos niitä on
+
+- Käyttäjärooleja on tässä vaiheessa kaksi, valmentaja ja valmennettava. 
+- *Valmentaja* voi lisätä, poistaa, listata ja päivittää valmennettavia.
+- *Valmentaja* voi lisätä, poistaa tai päivittää treenejä valmennettaville.
+- *Valmennettava* voi listata eri päivien treenejä, merkitä tehdyksi ja kommentoida päivän treeniä. Myös muut muuttujat ovat mahdollisia.  
+- *Valmentaja* voi lukea valmennettavan kommentit ja katsoa onko hän suorittanut treenin. 
+
+- Tässä vaiheessa ei selvyyden vuoksi todennäköisesti toteuteta useamman valmentajan ohjelmistoa.
+
+```mermaid
+sequenceDiagram
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+Alice -> Bob:Another authentication Response
+Bob --> Alice: Another authentication Response
+```
+
+```puml
+@startuml
+Coach 
+Athlete
+usecase (Last\nusecase) as UC1
+usecase (Last\nusecase) as UC2
+usecase (Last\nusecase) as UC3
+
+Coach -> Althlete : Add, delete, modify, list
+Coach -> Add, delete, modify training programs
+Athlete -> List daily programs, mark as done, comment
+Coach -> Follow what athlete has done
+@enduml
+```
+- Toiminnoista piiretään UML:n Käyttötapaus-kaavio, kaaviossa esitetään eri roolit ja käyttötapaukset=toiminnot
+- Sovelluksen keskeiset käsitteet listataan ja luodaan Käsitemalli, jossa esitetään käsitteet ja niiden väliset suhteet; tästä jalostetaan sitten luokkamalli sovelluksesta, mitä luokkia sovelluksessa on ja niiden tärkeimmät tehtävät ja ominaisuudet sekä luokkien väliset suhteet UML:tä käyttäen. Suunnitelmassa alustava ajatus, loppuraportissa lopullinen rakenne ja perustelut muutoksille PS Muista kertoa ajatuksista, pelkkä kaaviokuvio ei ole riittävä.
+
+- Työnjako, kuinka työnjako aiotaan hoitaa eli vastuut eri tehtäville
+
+## Työaikasuunnitelma
+|   vko    |Aika | Kum. aika |            Selite                 |
+|:----------|:---:|:--------:|:-----------------------------------|
+| 17 | 12 | 12   | Suunnitelma, tietokantaserveri, tietokannan suunnittelu ja luonti |
+| 18 | 17 | 29 | Käyttöliittymän suunnittelu, pohja käyttöliittymälle, tietokantayhteys,  |
+| 19 | 15 | 40   | Käyttöliittymän rakentamista, perustoiminnot käyttöliittymään |
+| 20 | 15 | 55   | Käyttöliittymän ulkoasu, testaus, raportointia|
+| 21 | 10 | 65   | Raportointia |
+
+
