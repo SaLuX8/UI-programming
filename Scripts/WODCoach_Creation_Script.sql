@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `WODCoach`.`Wod` (
   `roundCount` INT(4) NULL,
   `level` FLOAT NULL,
   `date` DATE NULL,
+  `done` BOOL DEFAULT false,
   `comment` varchar(200),
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -61,7 +62,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Rating
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `WODCoach`.`Rating` (
+CREATE TABLE IF NOT EXISTS `WODCoach`.`Rate` (
   `athlete_id` INT NOT NULL,
   `wod_id` INT NOT NULL,
   `rating` FLOAT,

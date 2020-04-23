@@ -77,13 +77,15 @@ entity WOD {
     * updated : string
     --
 }
-entity Rating {
+entity Rate {
     * athlete_id : int
     * wod_id : int
     rating : float
     comment : string
     * created : string
     * updated : string
+    --
+    CountAverage() : float
 }
 
 Athlete }o--o| Coach
