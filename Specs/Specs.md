@@ -36,11 +36,11 @@ usecase (List daily programs, mark as done, comment) as UC2
 usecase (Follow what athlete has done) as UC3
 usecase (Add, delete, modify, list althletes) as UC4
 
-Coach -down-> UC4
-Coach -right-> UC1
+Coach -left-> UC4
+Coach -down-> UC1
 Coach -down-> UC3
 
-Athlete -> UC2
+Athlete -down-> UC2
 
 
 ```
