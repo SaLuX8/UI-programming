@@ -35,8 +35,8 @@ usecase (Add, delete, modify\ntraining programs) as UC1
 usecase (List daily programs,\nmark as done, comment) as UC2
 usecase (List what\nathlete has done\n+comments) as UC3
 usecase (Add, delete, modify, list\nalthletes) as UC4
-usecase (Optional: Add link to videos) as UC5
-usecase (Optional: Add own feelings, bodyweight etc.) as UC6
+usecase (Optional:\nAdd link to videos) as UC5
+usecase (Optional:\nAdd own feelings,\nbodyweight etc.) as UC6
 
 Coach -left-> UC4
 Coach -down-> UC1
