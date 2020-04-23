@@ -17,11 +17,11 @@ Käyttöliittymän ulkoasun muokkaamiseen käytetään apuna XAML Material Desig
 
 ### Tunnistetaan eri käyttäjäroolit, jos niitä on
 
-- Käyttäjärooleja on tässä vaiheessa kaksi, valmentaja ja valmennettava. 
-- *Valmentaja* voi lisätä, poistaa, listata ja päivittää valmennettavia.
-- *Valmentaja* voi lisätä, poistaa tai päivittää treenejä valmennettaville.
-- *Valmennettava* voi listata eri päivien treenejä, merkitä tehdyksi ja kommentoida päivän treeniä. Myös muut muuttujat ovat mahdollisia.  
-- *Valmentaja* voi lukea valmennettavan kommentit ja katsoa onko hän suorittanut treenin. 
+- Käyttäjärooleja on tässä vaiheessa kaksi, **valmentaja** ja **valmennettava**. 
+- **Valmentaja** voi lisätä, poistaa, listata ja päivittää valmennettavia.
+- **Valmentaja** voi lisätä, poistaa tai päivittää treenejä valmennettaville.
+- **Valmennettava** voi listata eri päivien treenejä, merkitä tehdyksi ja kommentoida päivän treeniä. Myös muut muuttujat ovat mahdollisia.  
+- **Valmentaja** voi lukea valmennettavan kommentit ja katsoa onko hän suorittanut treenin. 
 
 - Tässä vaiheessa ei selvyyden vuoksi todennäköisesti toteuteta useamman valmentajan ohjelmistoa.
 
@@ -33,12 +33,14 @@ actor Coach
 actor Athlete
 usecase (Add, delete, modify\ntraining programs) as UC1
 usecase (List daily programs,\nmark as done, comment) as UC2
-usecase (Follow what\nathlete has done) as UC3
+usecase (List what\nathlete has done\n+comments) as UC3
 usecase (Add, delete, modify, list\nalthletes) as UC4
+usecase (Optional: Add link to videos) as UC5
 
 Coach -left-> UC4
 Coach -down-> UC1
 Coach -down-> UC3
+Coach -down--> UC5
 
 Athlete -down-> UC2
 
