@@ -31,14 +31,17 @@ Käyttöliittymän ulkoasun muokkaamiseen käytetään apuna XAML Material Desig
 
 actor Coach 
 actor Athlete
-usecase (Last\nusecase) as UC1
-usecase (Last\nusecase) as UC2
-usecase (Last\nusecase) as UC3
+usecase (Add, delete, modify training programs) as UC1
+usecase (List daily programs, mark as done, comment) as UC2
+usecase (Follow what athlete has done) as UC3
+usecase (Add, delete, modify, list althletes) as UC4
 
+Coach -down-> UC4
+Coach -right-> UC1
+Coach -down-> UC3
 
-Coach -> (Add, delete, modify training programs)
-Athlete -> (List daily programs, mark as done, comment)
-Coach -> (Follow what athlete has done)
+Athlete -> UC2
+
 
 ```
 - Toiminnoista piiretään UML:n Käyttötapaus-kaavio, kaaviossa esitetään eri roolit ja käyttötapaukset=toiminnot
