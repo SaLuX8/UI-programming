@@ -36,6 +36,7 @@ usecase (List daily programs,\nmark as done, comment) as UC2
 usecase (List what\nathlete has done\n+comments) as UC3
 usecase (Add, delete, modify, list\nalthletes) as UC4
 usecase (Optional: Add link to videos) as UC5
+usecase (Optional: Add own feelings, bodyweight etc.) as UC6
 
 Coach -left-> UC4
 Coach -down-> UC1
@@ -43,7 +44,7 @@ Coach -down-> UC3
 Coach -down--> UC5
 
 Athlete -down-> UC2
-
+Athlete -down-> UC6
 
 ```
 - Toiminnoista piiretään UML:n Käyttötapaus-kaavio, kaaviossa esitetään eri roolit ja käyttötapaukset=toiminnot
