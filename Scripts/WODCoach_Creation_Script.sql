@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `WODCoach`.`Wod` (
   `roundCount` INT(4) NULL,
   `level` FLOAT NULL,
   `date` DATE NULL,
+  `comment` varchar(200),
   `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `idAthlete` INT,
@@ -56,6 +57,25 @@ CREATE TABLE IF NOT EXISTS `WODCoach`.`Wod` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Rating
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `WODCoach`.`Rating` (
+  `athlete_id` INT NOT NULL,
+  `wod_id` INT NOT NULL,
+  `rating` FLOAT,
+  `comment` varchar(200),
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  primary key (wod_id, athlete_id),
+  constraint fk_athlete foreign key (athlete_id)
+  references Athlete (idAthlete),
+  constraint fk_wod foreign key (wod_id)
+  references Wod (idWod)
+)
+ENGINE = InnoDB;
+
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

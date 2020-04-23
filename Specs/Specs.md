@@ -52,28 +52,43 @@ Athlete -down-> UC6
 entity Coach {
     * idCoach : int
     * fullName : string
-    * telNumber : string
+    telNumber : string
+    * created : string
+    * updated : string
     --
     
 }
 entity Athlete {
     * idAthlete : int
     * fullName : string
-    * telNumber : string
+    telNumber : string
+    * created : string
+    * updated : string
     --
 }
 entity WOD {
     * idWod : int
     * movementName : string
-    * repsCount : int
-    * roundCount : int
-    * level : float
-    * date : string
+    repsCount : int
+    roundCount : int
+    level : float
+    date : string
+    comment : string
+    * created : string
+    * updated : string
     --
+entity Rating {
+    * athlete_id : int
+    * wod_id : int
+    rating : float
+    comment : string
+    * created : string
+    * updated : string
+}
 
 }
 Athlete }o--o| Coach
-WOD }o--left--o| Athlete
+WOD }o---left--o| Athlete
 
 
 ```
