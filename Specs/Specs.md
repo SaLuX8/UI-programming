@@ -35,10 +35,10 @@ usecase (Last\nusecase) as UC1
 usecase (Last\nusecase) as UC2
 usecase (Last\nusecase) as UC3
 
-Coach -> Althlete : Add, delete, modify, list
-Coach -> Add, delete, modify training programs
-Athlete -> List daily programs, mark as done, comment
-Coach -> Follow what athlete has done
+
+Coach -> (Add, delete, modify training programs)
+Athlete -> (List daily programs, mark as done, comment)
+Coach -> (Follow what athlete has done)
 
 ```
 - Toiminnoista piiretään UML:n Käyttötapaus-kaavio, kaaviossa esitetään eri roolit ja käyttötapaukset=toiminnot
