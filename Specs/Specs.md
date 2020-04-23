@@ -19,12 +19,10 @@ Käyttöliittymän ulkoasun muokkaamiseen käytetään apuna XAML Material Desig
 
 - Käyttäjärooleja on tässä vaiheessa kaksi, **valmentaja** ja **valmennettava**. 
 - **Valmentaja** voi lisätä, poistaa, listata ja päivittää valmennettavia.
-- **Valmentaja** voi lisätä, poistaa tai päivittää treenejä valmennettaville.
+- **Valmentaja** voi lisätä, poistaa tai päivittää treenejä (WOD) valmennettaville.
 - **Valmennettava** voi listata eri päivien treenejä, merkitä tehdyksi ja kommentoida päivän treeniä. Myös muut muuttujat ovat mahdollisia.  
+- **Valmennettava** voi arvostella päivän treenin.
 - **Valmentaja** voi lukea valmennettavan kommentit ja katsoa onko hän suorittanut treenin. 
-
-- Tässä vaiheessa ei selvyyden vuoksi todennäköisesti toteuteta useamman valmentajan ohjelmistoa.
-
 
 
 ```plantuml
@@ -87,16 +85,13 @@ entity Rating {
     * updated : string
 }
 
-
 Athlete }o--o| Coach
-WOD }o---left--o| Athlete
-WOD |o--o{ Rating
+WOD }o-left-o| Athlete
+WOD ||--o{ Rating
 
 ```
 
-- Sovelluksen keskeiset käsitteet listataan ja luodaan Käsitemalli, jossa esitetään käsitteet ja niiden väliset suhteet; tästä jalostetaan sitten luokkamalli sovelluksesta, mitä luokkia sovelluksessa on ja niiden tärkeimmät tehtävät ja ominaisuudet sekä luokkien väliset suhteet UML:tä käyttäen. Suunnitelmassa alustava ajatus, loppuraportissa lopullinen rakenne ja perustelut muutoksille PS Muista kertoa ajatuksista, pelkkä kaaviokuvio ei ole riittävä.
 
-- Työnjako, kuinka työnjako aiotaan hoitaa eli vastuut eri tehtäville
 
 ## Työaikasuunnitelma
 |   vko    |Aika | Kum. aika |            Selite                 |
