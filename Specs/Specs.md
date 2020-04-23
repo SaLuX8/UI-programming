@@ -70,10 +70,10 @@ entity WOD {
     * level : float
     * date : string
     --
-    
+
 }
 Athlete }o--o| Coach
-WOD }o-left-o| Athlete
+WOD }o--left--o| Athlete
 
 
 ```
