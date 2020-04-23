@@ -55,8 +55,8 @@ entity Coach {
     --
     
 }
-entity Athlete {}
-entity WOD {}
+entity Athlete 
+entity WOD 
 Athlete }o--o| Coach
 WOD }o--o| Athlete
 
