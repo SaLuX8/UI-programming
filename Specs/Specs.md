@@ -25,16 +25,9 @@ Käyttöliittymän ulkoasun muokkaamiseen käytetään apuna XAML Material Desig
 
 - Tässä vaiheessa ei selvyyden vuoksi todennäköisesti toteuteta useamman valmentajan ohjelmistoa.
 
-```mermaid
-sequenceDiagram
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice -> Bob:Another authentication Response
-Bob --> Alice: Another authentication Response
-```
 
-```puml
-@startuml
+```plantuml
+
 Coach 
 Athlete
 usecase (Last\nusecase) as UC1
@@ -45,7 +38,7 @@ Coach -> Althlete : Add, delete, modify, list
 Coach -> Add, delete, modify training programs
 Athlete -> List daily programs, mark as done, comment
 Coach -> Follow what athlete has done
-@enduml
+
 ```
 - Toiminnoista piiretään UML:n Käyttötapaus-kaavio, kaaviossa esitetään eri roolit ja käyttötapaukset=toiminnot
 - Sovelluksen keskeiset käsitteet listataan ja luodaan Käsitemalli, jossa esitetään käsitteet ja niiden väliset suhteet; tästä jalostetaan sitten luokkamalli sovelluksesta, mitä luokkia sovelluksessa on ja niiden tärkeimmät tehtävät ja ominaisuudet sekä luokkien väliset suhteet UML:tä käyttäen. Suunnitelmassa alustava ajatus, loppuraportissa lopullinen rakenne ja perustelut muutoksille PS Muista kertoa ajatuksista, pelkkä kaaviokuvio ei ole riittävä.
