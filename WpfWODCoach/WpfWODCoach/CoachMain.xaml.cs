@@ -94,6 +94,9 @@ namespace WpfWODCoach
 
         }
 
+        private void dgCoachGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

@@ -7,54 +7,54 @@
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="800"
       Title="CoachMain">
- 
+
     <Grid>
         <DockPanel LastChildFill="True">
-            <DockPanel.Background>
-               <ImageBrush ImageSource="" Opacity="0.5"/>
-            </DockPanel.Background>
-            <StackPanel Orientation="Vertical" Background="AliceBlue" DockPanel.Dock="Top">
+            
+            <StackPanel Orientation="Vertical" Background="AliceBlue" DockPanel.Dock="Top" Height="107">
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Athlete" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" FontSize="15" FontWeight="Bold" Margin="20,15,5,15" Padding="0"/>
-                    <ComboBox x:Name="cbAthleteName" Text="Athlete" Height="25" Width="170" VerticalAlignment="Center" 
+                    <Label Content="Athlete" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" FontSize="12" FontWeight="Bold" Margin="20,0,5,0" Padding="0"/>
+                    <ComboBox x:Name="cbAthleteName" Text="Athlete" Height="25" Width="170" VerticalAlignment="Center" Margin="7"
                   ItemsSource="{Binding SelectedItem}" DisplayMemberPath="fullName" SelectionChanged="cbAthleteName_SelectionChanged"/>
                     <DatePicker x:Name="dpWod" Margin="20,0,0,0" Background="WhiteSmoke" VerticalAlignment="Center" Height="25" Width="110" SelectedDateChanged="dpWod_SelectedDateChanged"/>
+                    <Button Content="Button" Width="90" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
 
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Margin="0" Height="17">
                     <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,0,0,0" Padding="0"/>
                     <Label Content="Reps" VerticalAlignment="Bottom" Margin="220,0,0,0" Padding="0"/>
                     <Label Content="Rounds" VerticalAlignment="Bottom" Margin="13,0,0,0" Padding="0"/>
                     <Label Content="Comments" VerticalAlignment="Bottom" Margin="7,0,0,0" Padding="0"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Margin="0">
-                    <TextBox x:Name="tbMovement" Background="Yellow" TextAlignment="Left" Width="270" Height="25" Margin="20,0,0,0"/>
+                <StackPanel Orientation="Horizontal" Height="45" Margin="0">
+                    <TextBox x:Name="tbMovement" Background="Yellow" TextAlignment="Left" Width="270" Height="25" Margin="20,8,0,8"/>
                     <TextBox x:Name="tbReps" Background="Yellow" TextAlignment="Left" Width="35" Height="25" Margin="7,0,0,0"/>
                     <TextBox x:Name="tbRounds" Background="Yellow" TextAlignment="Left" Width="35" Height="25" Margin="7,0,0,0"/>
                     <TextBox x:Name="tbComment" Background="Yellow" TextAlignment="Left" Width="300" Height="25" Margin="7,0,0,0"/>
-                    <Button x:Name="btnAddWod" Content="Add movement" Width="95" Height="25" Margin="20,0,0,0" FontWeight="Bold" Click="btnAddWod_Click"/>
+                    <Button x:Name="btnAddWod" Content="Add movement" Width="90" Height="25" Margin="20,0,0,0" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
                 </StackPanel>
             </StackPanel>
-            
 
-                <StackPanel MinWidth="800" MinHeight="350">
-                    <DataGrid x:Name="dgCoachGrid" MinHeight="350" Margin="0" VerticalAlignment="Top" Background="Gray" AutoGenerateColumns="False">
 
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
-                            <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
-                            <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
-                            <DataGridTextColumn Header="Comment" Binding="{Binding comment}" MinWidth="350"/>
-                            <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </StackPanel>
-            <StackPanel DockPanel.Dock="Bottom">
+            <StackPanel MinWidth="800" MinHeight="450" Margin="0,0,0,40" DockPanel.Dock="Top">
+                <DataGrid x:Name="dgCoachGrid" MinHeight="350" Margin="0" VerticalAlignment="Top" Background="Gray" AutoGenerateColumns="False" Height="413" SelectionChanged="dgCoachGrid_SelectionChanged">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
+                        <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
+                        <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
+                        <DataGridTextColumn Header="Comment" Binding="{Binding comment}" MinWidth="350"/>
+                        <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
                 
             </StackPanel>
-         
+            <StackPanel Height="25" Width="800" DockPanel.Dock="Bottom">
+                <TextBlock x:Name="txtbBottom" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" Width="0"><Run Text="Tähän vähän tekstiä"/></TextBlock>
+            </StackPanel>
         </DockPanel>
-        
+
 
     </Grid>
 </Page>
