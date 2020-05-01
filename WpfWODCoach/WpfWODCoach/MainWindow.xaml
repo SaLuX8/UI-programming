@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfWODCoach"
         mc:Ignorable="d"
-        Title="WODCoach" Height="450" Width="800">
+        Title="WODCoach" Height="600" Width="800">
     <Grid>
-        <Button x:Name="btnGoToCoachMain" Content="Coach" HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" VerticalAlignment="Top" Width="106" Click="btnGoToCoachMain_Click"/>
-        <Button x:Name="btnGoToAthleteMain" Content="Athlete" HorizontalAlignment="Left" Height="20" Margin="121,10,0,0" VerticalAlignment="Top" Width="107" Click="btnGoToAthleteMain_Click"/>
-        <Frame x:Name="Main" Margin="10,35,0,0" NavigationUIVisibility="Hidden" />
+        <Button x:Name="btnGoToCoachMain" Content="Coach" HorizontalAlignment="Left" Height="20" Margin="20,10,0,0" VerticalAlignment="Top" Width="100" Click="btnGoToCoachMain_Click"/>
+        <Button x:Name="btnGoToAthleteMain" Content="Athlete" HorizontalAlignment="Left" Height="20" Margin="140,10,0,0" VerticalAlignment="Top" Width="100" Click="btnGoToAthleteMain_Click"/>
+        <Frame x:Name="Main" Margin="0,40,0,0" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

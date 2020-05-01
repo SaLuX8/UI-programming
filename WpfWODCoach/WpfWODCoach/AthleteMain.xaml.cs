@@ -21,10 +21,10 @@ namespace WpfWODCoach
     /// </summary>
     public partial class AthleteMain : Page
     {
-        WODCoachEntities ctx;
+        
 
         private int selected = 0;
-        private int sel;
+      
 
         public AthleteMain()
         {
@@ -50,26 +50,20 @@ namespace WpfWODCoach
 
                 MessageBox.Show(ex.ToString());
             }
-            
-            
-            
-            
-            
 
 
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            dgCoachGrid.ItemsSource = ViewModel.LoadAthletesByCoach(selected);
-        }
 
+    
+
+        //Comboboc Coach selection to view athletes by coach
         private void cbCoachName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Object selectedItem = cbCoachName.SelectedItem;
-            var fee = sender as Coach;
-            selected = fee.idCoach;
+            Coach selectedItem = (Coach)cbCoachName.SelectedItem;
+            selected = selectedItem.idCoach;
+            
             
             dgCoachGrid.ItemsSource = ViewModel.LoadAthletesByCoach(selected);
             

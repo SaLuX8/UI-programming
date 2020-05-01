@@ -29,6 +29,22 @@ namespace WpfWODCoach
             return athletes;
         }
 
+        public static List<Wod> LoadWodsByAthlete(int athleteId, DateTime dateTime)
+        {
+            WODCoachEntities ctx = new WODCoachEntities();
+            ctx.Wod.Load();
+            var wod = ctx.Wod.ToList(); 
+            if (dateTime == null)
+            {
+                wod = ctx.Wod.Where(x => x.idAthlete == athleteId).ToList();
+            }
+            else
+            {
+                wod = ctx.Wod.Where(x => (x.idAthlete == athleteId & x.date==dateTime)).ToList();
+            }
+            return wod;
+        }
+
         public static List<Coach> LoadCoaches()
         {
             WODCoachEntities ctx = new WODCoachEntities();
@@ -41,6 +57,17 @@ namespace WpfWODCoach
             WODCoachEntities ctx = new WODCoachEntities();
             ctx.Wod.Load();
             return ctx.Wod.ToList();
+        }
+
+        // Method adds WOD to athlete to certain date
+        public static void AddWodToAthlete(int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comments)
+        {
+            WODCoachEntities ctx = new WODCoachEntities();
+            var wod = new Wod() { movementName = movement, date = dateTime, idAthlete = athleteId, repsCount = reps, roundCount = rounds, comment= comments};
+            ctx.Wod.Add(wod);
+            ctx.SaveChanges();
+            
+
         }
 
 
