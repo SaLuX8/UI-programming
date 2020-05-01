@@ -90,6 +90,7 @@ namespace WpfWODCoach
             ViewModel.AddWodToAthlete(id, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
             // athId = athlete.idAthlete;
             dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
+            tbMessage.Text = $"Movement saved to athlete {athlete.fullname} on date {dateTime}";
 
 
         }

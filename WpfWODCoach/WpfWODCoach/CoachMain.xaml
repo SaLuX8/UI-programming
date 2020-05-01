@@ -5,40 +5,59 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfWODCoach"
       mc:Ignorable="d" 
-      d:DesignHeight="560" d:DesignWidth="800"
+      d:DesignHeight="560" d:DesignWidth="1200"
       Title="CoachMain">
 
     <Grid>
-        <DockPanel LastChildFill="True">
-            
-            <StackPanel Orientation="Vertical" Background="AliceBlue" DockPanel.Dock="Top" Height="107">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Athlete" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20" FontSize="12" FontWeight="Bold" Margin="20,0,5,0" Padding="0"/>
-                    <ComboBox x:Name="cbAthleteName" Text="Athlete" Height="25" Width="170" VerticalAlignment="Center" Margin="7"
-                  ItemsSource="{Binding SelectedItem}" DisplayMemberPath="fullName" SelectionChanged="cbAthleteName_SelectionChanged"/>
-                    <DatePicker x:Name="dpWod" Margin="20,0,0,0" Background="WhiteSmoke" VerticalAlignment="Center" Height="25" Width="110" SelectedDateChanged="dpWod_SelectedDateChanged"/>
-                    <Button Content="Button" Width="90" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+        <DockPanel>
+            <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+                <StatusBarItem>
+                    <TextBlock x:Name="tbMessage" Text="..."/>
+                </StatusBarItem>
+            </StatusBar>
 
+            <StackPanel Orientation="Vertical" Background="LightSteelBlue" DockPanel.Dock="Left" Margin="0" Width="400">
 
+                <StackPanel Orientation="Horizontal" Height="50">
+                    <Label Content="Athlete" FontSize="12" FontWeight="Bold" Margin="20,15,5,10" Padding="0" />
+                    <ComboBox x:Name="cbAthleteName" Text="Athlete" Height="25" Width="150" VerticalAlignment="Center" Margin="7,10,0,10"
+                              ItemsSource="{Binding SelectedItem}" 
+                              DisplayMemberPath="fullName" 
+                              SelectionChanged="cbAthleteName_SelectionChanged" 
+                              Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
+                    
+                    <Label Content="Date" Height="20" FontSize="12" FontWeight="Bold" Margin="20,0,0,0" Padding="0" />
+                    <DatePicker x:Name="dpWod" Margin="7,12,10,12" VerticalAlignment="Center" Height="26" Width="112" 
+                                SelectedDateChanged="dpWod_SelectedDateChanged" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0" Height="17">
-                    <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,0,0,0" Padding="0"/>
-                    <Label Content="Reps" VerticalAlignment="Bottom" Margin="220,0,0,0" Padding="0"/>
-                    <Label Content="Rounds" VerticalAlignment="Bottom" Margin="13,0,0,0" Padding="0"/>
-                    <Label Content="Comments" VerticalAlignment="Bottom" Margin="7,0,0,0" Padding="0"/>
+
+                <StackPanel Orientation="Horizontal" Height="40" Margin="0">
+                    <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="300" Height="25" Margin="7,8,10,7"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="45" Margin="0">
-                    <TextBox x:Name="tbMovement" Background="Yellow" TextAlignment="Left" Width="270" Height="25" Margin="20,8,0,8"/>
-                    <TextBox x:Name="tbReps" Background="Yellow" TextAlignment="Left" Width="35" Height="25" Margin="7,0,0,0"/>
-                    <TextBox x:Name="tbRounds" Background="Yellow" TextAlignment="Left" Width="35" Height="25" Margin="7,0,0,0"/>
-                    <TextBox x:Name="tbComment" Background="Yellow" TextAlignment="Left" Width="300" Height="25" Margin="7,0,0,0"/>
-                    <Button x:Name="btnAddWod" Content="Add movement" Width="90" Height="25" Margin="20,0,0,0" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
+
+                <StackPanel Orientation="Horizontal"  Height="40" Margin="0">
+                    <Label Content="Reps" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbReps" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
+                    <Label Content="Rounds" VerticalAlignment="Bottom" Margin="40,0,0,7" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbRounds" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Height="60" Margin="0">
+                    <Label Content="Comments" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbComment" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"  Height="80" Margin="0">
+                    <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
                 </StackPanel>
             </StackPanel>
 
-
-            <StackPanel MinWidth="800" MinHeight="450" Margin="0,0,0,40" DockPanel.Dock="Top">
-                <DataGrid x:Name="dgCoachGrid" MinHeight="350" Margin="0" VerticalAlignment="Top" Background="Gray" AutoGenerateColumns="False" Height="413" SelectionChanged="dgCoachGrid_SelectionChanged">
+            <StackPanel MinWidth="800" MinHeight="250" Margin="0" DockPanel.Dock="Left" Height="560">
+                <DataGrid x:Name="dgCoachGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" 
+                          SelectionChanged="dgCoachGrid_SelectionChanged" 
+                          Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
+                          Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
@@ -48,11 +67,10 @@
                         <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                
             </StackPanel>
-            <StackPanel Height="25" Width="800" DockPanel.Dock="Bottom">
-                <TextBlock x:Name="txtbBottom" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" Width="0"><Run Text="Tähän vähän tekstiä"/></TextBlock>
-            </StackPanel>
+
+           
+
         </DockPanel>
 
 

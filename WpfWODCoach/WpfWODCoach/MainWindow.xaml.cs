@@ -28,18 +28,21 @@ namespace WpfWODCoach
         public MainWindow()
         {
             InitializeComponent();
-           
-            
+            Main.Content = new StartPage();
+
         }
 
-
-
-        private void btnGoToCoachMain_Click(object sender, RoutedEventArgs e)
+        public void OpenCoach()
         {
             Main.Content = new CoachMain();
         }
 
-        private void btnGoToAthleteMain_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new CoachMain();
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
             Main.Content = new AthleteMain();
         }

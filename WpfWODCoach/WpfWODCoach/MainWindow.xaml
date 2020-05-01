@@ -13,10 +13,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfWODCoach"
         mc:Ignorable="d"
-        Title="WODCoach" Height="600" Width="800">
+        Title="WODCoach" Height="600" Width="1200">
     <Grid>
-        <Button x:Name="btnGoToCoachMain" Content="Coach" HorizontalAlignment="Left" Height="25" Margin="20,10,0,0" VerticalAlignment="Top" Width="100" Click="btnGoToCoachMain_Click"/>
-        <Button x:Name="btnGoToAthleteMain" Content="Athlete" HorizontalAlignment="Left" Height="25" Margin="140,10,0,0" VerticalAlignment="Top" Width="100" Click="btnGoToAthleteMain_Click"/>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem>
+                <MenuItem.Icon>
+                    <materialDesign:PackIcon Kind="Menu"/>
+                </MenuItem.Icon>
+                <MenuItem Header="_Coach Menu" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ClipboardList" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Athlete Menu" Click="MenuItem_Click_1">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ClipboardList" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Copy" Command="Copy">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentCopy" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Paste" Command="Paste">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="ContentPaste" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        
         <Frame x:Name="Main" Margin="0,40,0,0" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>
