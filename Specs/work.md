@@ -7,7 +7,7 @@
 | 17 | 25.4.2020 | 1  | 11,0   |  Tietokantayhteyden luomista  |
 |  17  | 26.4.2020   | 8   | 19,0 | Tietokantayhteyden ja Entity Framework -taistelua ja pari ensimmäistä sivua |
 |   18  | 1.5.2020 |  9  | 28 | Sovelluksen rakennetta ja rakentamista |
-|        |       |         |
+|   19   |  6.5.2020  |  2   | 30  | Datagrid checkboxia Athlete sivulle |
 |        |       |         |
 |        |       |         |
 |        |       |         |

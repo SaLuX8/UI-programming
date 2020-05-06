@@ -37,7 +37,7 @@ namespace WpfWODCoach
         {
             try
             {
-                dgCoachGrid.ItemsSource = ViewModel.LoadAthletes();
+                dgAthleteGrid.ItemsSource = ViewModel.LoadAthletes();
 
                 var coaches = ViewModel.LoadCoaches();
                 cbCoachName.ItemsSource = coaches;
@@ -55,6 +55,8 @@ namespace WpfWODCoach
 
         }
 
+       
+
 
     
 
@@ -65,10 +67,15 @@ namespace WpfWODCoach
             selected = selectedItem.idCoach;
             
             
-            dgCoachGrid.ItemsSource = ViewModel.LoadAthletesByCoach(selected);
+            dgAthleteGrid.ItemsSource = ViewModel.LoadAthletesByCoach(selected);
             
             
            
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

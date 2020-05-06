@@ -3,26 +3,90 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfWODCoach"
+      xmlns:local="clr-namespace:WpfWODCoach" xmlns:x1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
       mc:Ignorable="d" 
-      d:DesignHeight="410" d:DesignWidth="800"
+      d:DesignHeight="560" d:DesignWidth="1200"
       Title="AthleteMain">
 
     <Grid>
         <DockPanel>
-            <StackPanel Width="250" Orientation="Vertical" Background="AliceBlue">
-                <Label Content="Athletes" HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" FontSize="40" FontWeight="Bold" Margin="10,10"/>
-                <ComboBox x:Name="cbCoachName" Text="Coach" Height="25" Width="200" Margin="10,10" VerticalAlignment="Top" 
-                  ItemsSource="{Binding Path=SelectedItem}" DisplayMemberPath="fullName" SelectionChanged="cbCoachName_SelectionChanged"/>
+            <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+                <StatusBarItem>
+                    <TextBlock x:Name="tbMessage" Text="..."/>
+                </StatusBarItem>
+            </StatusBar>
+
+            <StackPanel Orientation="Vertical" Background="LightSteelBlue" DockPanel.Dock="Left" Margin="0" Width="400">
+
+                <StackPanel Orientation="Horizontal" Height="50">
+                    <Label Content="Athlete" FontSize="12" FontWeight="Bold" Margin="20,15,5,10" Padding="0" />
+                    <ComboBox x:Name="cbAthleteName" Text="Athlete" Height="25" Width="150" VerticalAlignment="Center" Margin="7,10,0,10"
+                              ItemsSource="{Binding SelectedItem}" 
+                              DisplayMemberPath="fullName" 
+                              Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
+
+                    <Label Content="Date" Height="20" FontSize="12" FontWeight="Bold" Margin="20,0,0,0" Padding="0" />
+                    <DatePicker x:Name="dpWod" Margin="7,12,10,12" VerticalAlignment="Center" Height="26" Width="112" 
+                                Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Height="40" Margin="0">
+                    <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="300" Height="25" Margin="7,8,10,7"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"  Height="40" Margin="0">
+                    <Label Content="Reps" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbReps" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
+                    <Label Content="Rounds" VerticalAlignment="Bottom" Margin="40,0,0,7" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbRounds" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Height="60" Margin="0">
+                    <Label Content="Comments" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
+                    <TextBox x:Name="tbComment" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
+                </StackPanel>
+
+                <!-- tämä täytyy siirtää tästä -->
+                <ComboBox x:Name="cbCoachName" Text="Coach" Height="25" Width="200" Margin="20,20,0,0" VerticalAlignment="Top" 
+                  ItemsSource="{Binding Path=SelectedItem}" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" 
+                          DisplayMemberPath="fullName" SelectionChanged="cbCoachName_SelectionChanged"/> 
                 
+
+                <StackPanel Orientation="Horizontal"  Height="80" Margin="0">
+                    <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold"  Padding="0"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Width="550">
-                <DataGrid x:Name="dgCoachGrid" Height="410" Margin="2" VerticalAlignment="Top" Background="Gray"/>
+
+            <StackPanel MinWidth="800" MinHeight="250" Margin="0" DockPanel.Dock="Left" Height="560">
+                <DataGrid x:Name="dgAthleteGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" 
+                          
+                          Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
+                          Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
+                          ItemsSource="{Binding}">
+
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
+                        <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
+                        <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
+                        <DataGridTextColumn Header="Comment" Binding="{Binding comment}" MinWidth="350"/>
+                        <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
+                        <x1:DataGridTemplateColumn Header="Done" >
+                            <x1:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox Checked="CheckBox_Checked" IsChecked="False" x:Name="cbDone"/>
+                                </DataTemplate>
+                            </x1:DataGridTemplateColumn.CellTemplate>
+                        
+                        </x1:DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
             </StackPanel>
-            
+
+
+
         </DockPanel>
-        
-        
+
 
     </Grid>
 </Page>
