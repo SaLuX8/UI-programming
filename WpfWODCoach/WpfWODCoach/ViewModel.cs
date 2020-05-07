@@ -62,13 +62,30 @@ namespace WpfWODCoach
         // Method adds WOD to athlete to certain date
         public static void AddWodToAthlete(int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comments)
         {
-            WODCoachEntities ctx = new WODCoachEntities();
-            var wod = new Wod() { movementName = movement, date = dateTime, idAthlete = athleteId, repsCount = reps, roundCount = rounds, comment= comments};
-            ctx.Wod.Add(wod);
-            ctx.SaveChanges();
             
+            WODCoachEntities ctx = new WODCoachEntities();
+            
+            var wod = new Wod() { movementName = movement, date = dateTime, idAthlete = athleteId, repsCount = reps, roundCount = rounds, comment= comments};
+
+            if (wod.idWod == 0) // insert
+            {
+                ctx.Wod.Add(wod);
+                
+
+            }
+            else // update
+            {
+                ctx.Entry(ctx).State = EntityState.Modified;
+                
+            }
+            ctx.SaveChanges();
 
         }
+
+
+
+
+
 
 
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,8 @@ namespace WpfWODCoach
         private int selected = 0;
         private Athlete selectedAthlete;
         private DateTime dateTime;
+        private Wod selectedWod;
+        
 
         public CoachMain()
         {
@@ -84,6 +88,14 @@ namespace WpfWODCoach
             Athlete athlete = selectedAthlete;
             int id = athlete.idAthlete;
             
+           
+             
+            
+                
+            
+
+
+
             int.TryParse(tbReps.Text, out int reps);
             int.TryParse(tbRounds.Text, out int rounds);
 
@@ -95,9 +107,17 @@ namespace WpfWODCoach
 
         }
 
+        // Updates values in textboxes when selection is changed
         private void dgCoachGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            selectedWod = dgCoachGrid.SelectedItem as Wod;
+            tbMovement.Text = Convert.ToString(selectedWod.movementName);
+            tbComment.Text = Convert.ToString(selectedWod.comment);
+            tbReps.Text = Convert.ToString(selectedWod.repsCount);
+            tbRounds.Text = Convert.ToString(selectedWod.roundCount);
+            string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
+            tbMessage.Text = message;
+            selectedAthlete = selectedWod.Athlete;
         }
     }
 }
