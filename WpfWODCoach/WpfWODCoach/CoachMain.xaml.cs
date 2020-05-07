@@ -84,22 +84,23 @@ namespace WpfWODCoach
         // eventhandler add Wod to athlete
         private void btnAddWod_Click(object sender, RoutedEventArgs e)
         {
-           
+            
             Athlete athlete = selectedAthlete;
-            int id = athlete.idAthlete;
+            int idAthlete = athlete.idAthlete;
             
-           
-             
-            
-                
-            
-
-
-
             int.TryParse(tbReps.Text, out int reps);
             int.TryParse(tbRounds.Text, out int rounds);
 
-            ViewModel.AddWodToAthlete(id, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
+            if (selectedWod == null)
+            {
+
+                ViewModel.AddWodToAthlete(0, idAthlete, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
+            }
+            else
+            {
+                ViewModel.AddWodToAthlete(selectedWod.idWod, idAthlete, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
+            }
+            
             // athId = athlete.idAthlete;
             dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
             tbMessage.Text = $"Movement saved to athlete {athlete.fullname} on date {dateTime}";
@@ -110,14 +111,19 @@ namespace WpfWODCoach
         // Updates values in textboxes when selection is changed
         private void dgCoachGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedWod = dgCoachGrid.SelectedItem as Wod;
-            tbMovement.Text = Convert.ToString(selectedWod.movementName);
-            tbComment.Text = Convert.ToString(selectedWod.comment);
-            tbReps.Text = Convert.ToString(selectedWod.repsCount);
-            tbRounds.Text = Convert.ToString(selectedWod.roundCount);
-            string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
-            tbMessage.Text = message;
-            selectedAthlete = selectedWod.Athlete;
+            if (dgCoachGrid.SelectedIndex>-1)
+            {
+                selectedWod = dgCoachGrid.SelectedItem as Wod;                  // WOD selection
+                tbMovement.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
+                tbComment.Text = Convert.ToString(selectedWod.comment);
+                tbReps.Text = Convert.ToString(selectedWod.repsCount);
+                tbRounds.Text = Convert.ToString(selectedWod.roundCount);
+                string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
+                tbMessage.Text = message;                                       // Update bottom message row
+                selectedAthlete = selectedWod.Athlete;                          // update selected Athlete
+            }
+           
+            
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace WpfWODCoach
 {
@@ -60,26 +61,38 @@ namespace WpfWODCoach
         }
 
         // Method adds WOD to athlete to certain date
-        public static void AddWodToAthlete(int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comments)
+        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comments)
         {
-            
-            WODCoachEntities ctx = new WODCoachEntities();
-            
-            var wod = new Wod() { movementName = movement, date = dateTime, idAthlete = athleteId, repsCount = reps, roundCount = rounds, comment= comments};
-
-            if (wod.idWod == 0) // insert
+            using (var ctx = new WODCoachEntities())
             {
-                ctx.Wod.Add(wod);
-                
 
-            }
-            else // update
-            {
-                ctx.Entry(ctx).State = EntityState.Modified;
-                
-            }
-            ctx.SaveChanges();
+               
 
+                if (WodId == 0) // insert
+                {
+                    var wod = new Wod();
+                    wod.movementName = movement;
+                    wod.date = dateTime;
+                    wod.idAthlete = athleteId;
+                    wod.repsCount = reps;
+                    wod.roundCount = rounds;
+                    wod.comment = comments;
+                    ctx.Wod.Add(wod);
+                }
+                else
+                {
+                    Wod wod = ctx.Wod.First(i => i.idWod == WodId);
+                    //var wod = ctx.Wod.Where(x => x.idWod == WodId) as Wod;
+
+                    wod.movementName = movement;
+                    wod.date = dateTime;
+                    wod.idAthlete = athleteId;
+                    wod.repsCount = reps;
+                    wod.roundCount = rounds;
+                    wod.comment = comments;
+                }
+                ctx.SaveChanges();
+            }
         }
 
 
