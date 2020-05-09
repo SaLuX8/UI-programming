@@ -9,5 +9,5 @@
 |   18  | 1.5.2020 |  9  | 28 | Sovelluksen rakennetta ja rakentamista |
 |   19   |  6.5.2020  |  1   | 29  | Datagrid checkboxia Athlete sivulle |
 |    19  | 7.5.2020 |  4  | 33| Wod Add ja Update Coach sivuille kuntoon| 
-|        |       |         |
+|   19   |  9.5.2020 | 4  | 37 | Athlete sivua ja checkboaxia sekä ongelman ratkomista Coach sivulla |
 |        |       |         |

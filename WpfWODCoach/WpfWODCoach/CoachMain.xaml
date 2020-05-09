@@ -55,7 +55,7 @@
 
             <StackPanel MinWidth="800" MinHeight="250" Margin="0" DockPanel.Dock="Left" Height="560">
                 <DataGrid x:Name="dgCoachGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" 
-                          SelectionChanged="dgCoachGrid_SelectionChanged" 
+                          SelectionChanged="dgCoachGrid_SelectionChanged" CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
                           Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}">
 

@@ -23,24 +23,16 @@
                     <ComboBox x:Name="cbAthleteName" Text="Athlete" Height="25" Width="150" VerticalAlignment="Center" Margin="7,10,0,10"
                               ItemsSource="{Binding SelectedItem}" 
                               DisplayMemberPath="fullName" 
-                              Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
+                              Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" SelectionChanged="cbAthleteName_SelectionChanged"/>
 
                     <Label Content="Date" Height="20" FontSize="12" FontWeight="Bold" Margin="20,0,0,0" Padding="0" />
                     <DatePicker x:Name="dpWod" Margin="7,12,10,12" VerticalAlignment="Center" Height="26" Width="112" 
-                                Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
+                                Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" SelectedDateChanged="dpWod_SelectedDateChanged"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Height="40" Margin="0">
-                    <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
-                    <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="300" Height="25" Margin="7,8,10,7"/>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="40" Margin="0"/>
 
-                <StackPanel Orientation="Horizontal"  Height="40" Margin="0">
-                    <Label Content="Reps" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
-                    <TextBox x:Name="tbReps" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
-                    <Label Content="Rounds" VerticalAlignment="Bottom" Margin="40,0,0,7" Padding="0" FontWeight="Bold"/>
-                    <TextBox x:Name="tbRounds" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
-                </StackPanel>
+                <StackPanel Orientation="Horizontal"  Height="40" Margin="0"/>
 
                 <StackPanel Orientation="Vertical" Height="60" Margin="0">
                     <Label Content="Comments" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
@@ -63,18 +55,17 @@
                           
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
                           Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
-                          ItemsSource="{Binding}">
+                          ItemsSource="{Binding}" SelectionChanged="dgAthleteGrid_SelectionChanged">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
                         <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
                         <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
-                        <DataGridTextColumn Header="Comment" Binding="{Binding comment}" MinWidth="350"/>
-                        <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
-                        <x1:DataGridTemplateColumn Header="Done" >
+                        <DataGridTextColumn Header="Comment" Binding="{Binding comment}" MinWidth="300"/>
+                        <x1:DataGridTemplateColumn Header="Done">
                             <x1:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox Checked="CheckBox_Checked" IsChecked="False" x:Name="cbDone"/>
+                                    <CheckBox Checked="CheckBox_Checked" Unchecked="cbDone_Unchecked" />
                                 </DataTemplate>
                             </x1:DataGridTemplateColumn.CellTemplate>
                         

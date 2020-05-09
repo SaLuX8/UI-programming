@@ -65,9 +65,7 @@ namespace WpfWODCoach
         {
             using (var ctx = new WODCoachEntities())
             {
-
-               
-
+                // if value sent to property wodId is 0 it means its new WOD
                 if (WodId == 0) // insert
                 {
                     var wod = new Wod();
@@ -77,6 +75,7 @@ namespace WpfWODCoach
                     wod.repsCount = reps;
                     wod.roundCount = rounds;
                     wod.comment = comments;
+                    wod.done = false;
                     ctx.Wod.Add(wod);
                 }
                 else
@@ -90,7 +89,19 @@ namespace WpfWODCoach
                     wod.repsCount = reps;
                     wod.roundCount = rounds;
                     wod.comment = comments;
+                    
                 }
+                ctx.SaveChanges();
+            }
+        }
+        // Saves the state of wod, done (true) or not done (false).
+        public static void SaveDoneWod(int WodId, bool state)
+        {
+            using (var ctx = new WODCoachEntities())
+            {
+                Wod wod = ctx.Wod.First(i => i.idWod == WodId);
+                if (state == false) wod.done = null;
+                else wod.done = state;
                 ctx.SaveChanges();
             }
         }
