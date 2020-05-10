@@ -17,7 +17,8 @@
       Title="StartPage">
 
     <Grid>
-        <Label Content="WODCoach" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="90" FontFamily="Magneto" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+        <Label Content="WODCoach" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="90" 
+               FontFamily="Magneto" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFACABFF" Offset="1"/>

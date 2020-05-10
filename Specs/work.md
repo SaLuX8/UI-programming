@@ -10,4 +10,4 @@
 |   19   |  6.5.2020  |  1   | 29  | Datagrid checkboxia Athlete sivulle |
 |    19  | 7.5.2020 |  4  | 33| Wod Add ja Update Coach sivuille kuntoon| 
 |   19   |  9.5.2020 | 4  | 37 | Athlete sivua ja checkboaxia sekä ongelman ratkomista Coach sivulla |
-|        |       |         |
+|     19 | 10.5.2020   |3  | 40 | Athlete sivun rating ominaisuutta |

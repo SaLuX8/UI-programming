@@ -27,6 +27,7 @@ namespace WpfWODCoach
         private Athlete selectedAthlete;
         private DateTime dateTime;
         private Wod selectedWod;
+        private Rate selectedRate;
 
         public AthleteMain()
         {
@@ -41,9 +42,7 @@ namespace WpfWODCoach
             {
                 dgAthleteGrid.ItemsSource = ViewModel.LoadAthletes();
 
-                var coaches = ViewModel.LoadCoaches();
-                cbCoachName.ItemsSource = coaches;
-                cbCoachName.DisplayMemberPath = "fullName";
+               
 
 
             }
@@ -76,13 +75,7 @@ namespace WpfWODCoach
         }
 
 
-        //Comboboc Coach selection to view athletes by coach
-        private void cbCoachName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Coach selectedItem = (Coach)cbCoachName.SelectedItem;
-            selected = selectedItem.idCoach;
-            dgAthleteGrid.ItemsSource = ViewModel.LoadAthletesByCoach(selected);
-        }
+
 
        
  
@@ -111,36 +104,71 @@ namespace WpfWODCoach
             cbAthleteName_SelectionChanged(sender, e);
         }
 
+        /*
+        // if Done checkbox is unchecked  
         private void cbDone_Unchecked(object sender, RoutedEventArgs e)
         {
             int id = selectedWod.idWod;
-
             ViewModel.SaveDoneWod(id, false);
+            
+            string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} marked UNDONE";
+            tbMessage.Text = message;                           // Update bottom message row
         }
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+
+
+        // if DONE checkbox is checked
+        private void cbDone_Checked(object sender, RoutedEventArgs e)
         {
             int id = selectedWod.idWod;
-            
             ViewModel.SaveDoneWod(id, true);
+            
+            string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} marked as DONE";
+            tbMessage.Text = message;                           // Update bottom message row
         }
+        */
 
-       
-
+        // Athlete Datagrid  
         private void dgAthleteGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                if(dgAthleteGrid.SelectedIndex > -1)
+                if(dgAthleteGrid.SelectedIndex > -1)                    // selected index is in datagrid
                 {
-                    selectedWod = dgAthleteGrid.SelectedItem as Wod;
+                    selectedWod = dgAthleteGrid.SelectedItem as Wod;    // casting selected item from datagrid as Wod
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
-                    tbMessage.Text = message;                                       // Update bottom message row
-                    selectedAthlete = selectedWod.Athlete;                          // update selected Athlete
+                    tbMessage.Text = message;                           // Update bottom message row
+                    selectedAthlete = selectedWod.Athlete;              // update selected Athlete
+                    tbRatedMovement.Text = selectedWod.movementName;
+                    // selectedRate = (Rate)dgAthleteGrid.SelectedItem;
                 }
-
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            tbratingValue.Text = slider.Value.ToString("0.#");
+        }
+
+
+        // tämä pitää vielä viewmodeliin jossa tehdään tallennus? 
+
+        private void btnRating_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                selectedRate.rating = (float)slider.Value;
+                selectedRate.wod_id = selectedWod.idWod;
+                selectedRate.athlete_id = selectedWod.Athlete.idAthlete;
+                selectedRate.comment = tbRatingComment.Text;
+            }
+            catch (Exception ex)
+            {
+
                 MessageBox.Show(ex.Message);
             }
         }

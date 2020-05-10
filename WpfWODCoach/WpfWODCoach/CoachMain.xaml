@@ -63,8 +63,9 @@
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
                         <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
                         <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
-                        <DataGridTextColumn Header="Comment" Binding="{Binding comment}" MinWidth="350"/>
+                        <DataGridTextColumn Header="Info" Binding="{Binding comment}" MinWidth="200"/>
                         <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
+                        <DataGridTextColumn Header="Rating" Binding="{Binding raing}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
