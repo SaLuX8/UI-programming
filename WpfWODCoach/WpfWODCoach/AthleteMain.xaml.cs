@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
+using System.Data;
+using System.Runtime.Remoting.Contexts;
 
 namespace WpfWODCoach
 {
@@ -21,13 +23,12 @@ namespace WpfWODCoach
     /// </summary>
     public partial class AthleteMain : Page
     {
-
-
         private int selected = 0;
         private Athlete selectedAthlete;
         private DateTime dateTime;
         private Wod selectedWod;
-        private Rate selectedRate;
+        private Rate rating;
+       
 
         public AthleteMain()
         {
@@ -35,25 +36,16 @@ namespace WpfWODCoach
             InitCoach();
         }
 
-
         private void InitGrid()
         {
             try
             {
                 dgAthleteGrid.ItemsSource = ViewModel.LoadAthletes();
-
-               
-
-
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.ToString());
             }
-
-
-
         }
 
         private void InitCoach()
@@ -61,23 +53,24 @@ namespace WpfWODCoach
             try
             {
                 dgAthleteGrid.ItemsSource = ViewModel.LoadWods();
-
                 var athletes = ViewModel.LoadAthletes();
+                
+                
                 cbAthleteName.ItemsSource = athletes;
                 cbAthleteName.DisplayMemberPath = "fullname";
                 dpWod.SelectedDate = DateTime.Today;
                 dpWod.DisplayDate = DateTime.Today;
+
+                
+                
+
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
-
-
-
-
-       
  
         // Combobox Printing to datagrid wods by athlete and date
         private void cbAthleteName_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -115,7 +108,6 @@ namespace WpfWODCoach
             tbMessage.Text = message;                           // Update bottom message row
         }
 
-
         // if DONE checkbox is checked
         private void cbDone_Checked(object sender, RoutedEventArgs e)
         {
@@ -139,7 +131,21 @@ namespace WpfWODCoach
                     tbMessage.Text = message;                           // Update bottom message row
                     selectedAthlete = selectedWod.Athlete;              // update selected Athlete
                     tbRatedMovement.Text = selectedWod.movementName;
-                    // selectedRate = (Rate)dgAthleteGrid.SelectedItem;
+
+
+                    //  tästäkö se tulee???!"! 
+                    if (selectedWod.Rate.First() == null)
+                    {
+                        tbRatingComment.Text = "";
+                        slider.Value = 0;
+                    }
+                    else
+                    {
+                        rating = selectedWod.Rate.First();
+                        tbRatingComment.Text = rating.comment;
+                        slider.Value = (float)rating.rating;
+                    }
+                    
                 }
             }
             catch (Exception ex)
@@ -148,27 +154,33 @@ namespace WpfWODCoach
             }
         }
 
-
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             tbratingValue.Text = slider.Value.ToString("0.#");
         }
 
-
         // tämä pitää vielä viewmodeliin jossa tehdään tallennus? 
-
         private void btnRating_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                selectedRate.rating = (float)slider.Value;
-                selectedRate.wod_id = selectedWod.idWod;
-                selectedRate.athlete_id = selectedWod.Athlete.idAthlete;
-                selectedRate.comment = tbRatingComment.Text;
+                int idWod = selectedWod.idWod;
+                
+                
+
+                if(selectedWod.Rate.First().Athlete == null)
+                {
+                    ViewModel.SaveRating(0, selectedWod.idWod, selectedWod.Athlete.idAthlete, (float)slider.Value, tbRatingComment.Text);
+                }
+                else
+                {
+                    
+                    ViewModel.SaveRating(selectedWod.idWod, selectedWod.idWod, selectedWod.Athlete.idAthlete, (float)slider.Value, tbRatingComment.Text);
+                }
+                tbMessage.Text = $"Rating for movement {selectedWod.idWod} is saved";
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }

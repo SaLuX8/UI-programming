@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Windows.Controls;
 using System.Windows;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace WpfWODCoach
 {
     public class ViewModel
     {
-       
+
 
         // public static DataGrid dataGrid; // tsekkaa tämä 8:53 "www.youtube.com/watch?v=VGRvi4-1VhA"
         public static List<Athlete> LoadAthletes()
@@ -34,14 +35,14 @@ namespace WpfWODCoach
         {
             WODCoachEntities ctx = new WODCoachEntities();
             ctx.Wod.Load();
-            var wod = ctx.Wod.ToList(); 
+            var wod = ctx.Wod.ToList();
             if (dateTime == null)
             {
                 wod = ctx.Wod.Where(x => x.idAthlete == athleteId).ToList();
             }
             else
             {
-                wod = ctx.Wod.Where(x => (x.idAthlete == athleteId & x.date==dateTime)).ToList();
+                wod = ctx.Wod.Where(x => (x.idAthlete == athleteId & x.date == dateTime)).ToList();
             }
             return wod;
         }
@@ -59,6 +60,17 @@ namespace WpfWODCoach
             ctx.Wod.Load();
             return ctx.Wod.ToList();
         }
+
+        public static List<Rate> LoadRating()
+        {
+            WODCoachEntities ctx = new WODCoachEntities();
+            ctx.Rate.Load();
+            return ctx.Rate.ToList();
+        }
+
+        
+       
+
 
         // Method adds WOD to athlete to certain date
         public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comments)
@@ -89,21 +101,54 @@ namespace WpfWODCoach
                     wod.repsCount = reps;
                     wod.roundCount = rounds;
                     wod.comment = comments;
-                    
+
                 }
                 ctx.SaveChanges();
             }
         }
         // Saves the state of wod, done (true) or not done (false).
-        public static void SaveDoneWod(int WodId, bool state)
+        public static void SaveDoneWod(int wodId, bool state)
         {
             using (var ctx = new WODCoachEntities())
             {
-                Wod wod = ctx.Wod.First(i => i.idWod == WodId);
+                Wod wod = ctx.Wod.First(i => i.idWod == wodId);
                 if (state == false) wod.done = null;
                 else wod.done = state;
                 ctx.SaveChanges();
             }
+        }
+
+        // Adds new Rate for wod
+        public static void SaveRating(int number, int wodId, int athleteId, float rating, string comment)
+        {
+
+            using (var ctx = new WODCoachEntities())
+            {
+                if (number == 0)
+                {
+                    Rate rate = new Rate();
+                    rate.athlete_id = athleteId;
+                    rate.wod_id = wodId;
+                    rate.rating = rating;
+                    rate.comment = comment;
+                    ctx.Rate.Add(rate);
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    Rate rate = ctx.Rate.First();
+                    rate.rating = rating;
+                    rate.comment = comment;
+                    
+                    ctx.SaveChanges();
+
+                }
+
+
+            }
+
+
+
         }
 
 
