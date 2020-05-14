@@ -68,8 +68,8 @@ namespace WpfWODCoach
             return ctx.Rate.ToList();
         }
 
-        
-       
+
+
 
 
         // Method adds WOD to athlete to certain date
@@ -101,7 +101,6 @@ namespace WpfWODCoach
                     wod.repsCount = reps;
                     wod.roundCount = rounds;
                     wod.comment = comments;
-
                 }
                 ctx.SaveChanges();
             }
@@ -126,6 +125,7 @@ namespace WpfWODCoach
             {
                 if (number == 0)
                 {
+                    // Rate rate = ctx.Rate.First(i=>i.wod_id==wodId);
                     Rate rate = new Rate();
                     rate.athlete_id = athleteId;
                     rate.wod_id = wodId;
@@ -136,11 +136,12 @@ namespace WpfWODCoach
                 }
                 else
                 {
-                    Rate rate = ctx.Rate.First();
+                    Rate rate = ctx.Rate.First(i => i.wod_id == wodId);
                     rate.rating = rating;
                     rate.comment = comment;
                     
                     ctx.SaveChanges();
+
 
                 }
 

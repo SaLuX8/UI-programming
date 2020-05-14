@@ -28,7 +28,7 @@ namespace WpfWODCoach
         private DateTime dateTime;
         private Wod selectedWod;
         private Rate rating;
-       
+
 
         public AthleteMain()
         {
@@ -54,24 +54,24 @@ namespace WpfWODCoach
             {
                 dgAthleteGrid.ItemsSource = ViewModel.LoadWods();
                 var athletes = ViewModel.LoadAthletes();
-                
-                
+
+
                 cbAthleteName.ItemsSource = athletes;
                 cbAthleteName.DisplayMemberPath = "fullname";
                 dpWod.SelectedDate = DateTime.Today;
                 dpWod.DisplayDate = DateTime.Today;
 
-                
-                
 
-                
+
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
         }
- 
+
         // Combobox Printing to datagrid wods by athlete and date
         private void cbAthleteName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -124,7 +124,7 @@ namespace WpfWODCoach
         {
             try
             {
-                if(dgAthleteGrid.SelectedIndex > -1)                    // selected index is in datagrid
+                if (dgAthleteGrid.SelectedIndex > -1)                    // selected index is in datagrid
                 {
                     selectedWod = dgAthleteGrid.SelectedItem as Wod;    // casting selected item from datagrid as Wod
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
@@ -134,18 +134,18 @@ namespace WpfWODCoach
 
 
                     //  tästäkö se tulee???!"! 
-                    if (selectedWod.Rate.First() == null)
+                    if (selectedWod.Rate.FirstOrDefault() == null)
                     {
                         tbRatingComment.Text = "";
                         slider.Value = 0;
                     }
                     else
                     {
-                        rating = selectedWod.Rate.First();
+                        rating = selectedWod.Rate.FirstOrDefault();
                         tbRatingComment.Text = rating.comment;
                         slider.Value = (float)rating.rating;
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -165,19 +165,21 @@ namespace WpfWODCoach
             try
             {
                 int idWod = selectedWod.idWod;
-                
-                
 
-                if(selectedWod.Rate.First().Athlete == null)
+
+
+                if (selectedWod.Rate.FirstOrDefault() == null)
                 {
                     ViewModel.SaveRating(0, selectedWod.idWod, selectedWod.Athlete.idAthlete, (float)slider.Value, tbRatingComment.Text);
                 }
                 else
                 {
-                    
+
                     ViewModel.SaveRating(selectedWod.idWod, selectedWod.idWod, selectedWod.Athlete.idAthlete, (float)slider.Value, tbRatingComment.Text);
                 }
                 tbMessage.Text = $"Rating for movement {selectedWod.idWod} is saved";
+                dgAthleteGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
+
             }
             catch (Exception ex)
             {

@@ -12,6 +12,4 @@
 |   19   |  9.5.2020 | 4  | 37 | Athlete sivua ja checkboaxia sekä ongelman ratkomista Coach sivulla |
 |     19 | 10.5.2020   |3  | 40 | Athlete sivun rating ominaisuutta |
 |  19 | 13.5.2020 | 3 | 43 | Athlete sivun rating vääntöä ym, lähes kunnossa |
-| 20 | 14.5.2020 | 3 | 46 | iso ongelma ratingin lisäämisessä korjattu | 
-
 
