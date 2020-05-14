@@ -33,14 +33,14 @@ namespace WpfWODCoach
         public AthleteMain()
         {
             InitializeComponent();
-            InitCoach();
+            InitAthleteGrid();
         }
 
         private void InitGrid()
         {
             try
             {
-                dgAthleteGrid.ItemsSource = ViewModel.LoadAthletes();
+                dgAthleteGrid.DataContext = ViewModel.LoadAthletes();
             }
             catch (Exception ex)
             {
@@ -48,23 +48,20 @@ namespace WpfWODCoach
             }
         }
 
-        private void InitCoach()
+        private void InitAthleteGrid()
         {
             try
             {
-                dgAthleteGrid.ItemsSource = ViewModel.LoadWods();
+                var wods = ViewModel.LoadWods();    // ladataan wodit muuttujaan
+                dgAthleteGrid.DataContext = wods;   // asetetaan datagridin datacontextiksi Wod olio
+
+
                 var athletes = ViewModel.LoadAthletes();
-
-
                 cbAthleteName.ItemsSource = athletes;
                 cbAthleteName.DisplayMemberPath = "fullname";
+                
                 dpWod.SelectedDate = DateTime.Today;
                 dpWod.DisplayDate = DateTime.Today;
-
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -131,7 +128,9 @@ namespace WpfWODCoach
                     tbMessage.Text = message;                           // Update bottom message row
                     selectedAthlete = selectedWod.Athlete;              // update selected Athlete
                     tbRatedMovement.Text = selectedWod.movementName;
-
+                    
+                    //bool done = selectedWod.done.Value;
+                    //ViewModel.SaveDoneWod(selectedWod.idWod, done);
 
                     //  tästäkö se tulee???!"! 
                     if (selectedWod.Rate.FirstOrDefault() == null)

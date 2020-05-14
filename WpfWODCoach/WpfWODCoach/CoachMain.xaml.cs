@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf.WellKnownTypes;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,6 +30,8 @@ namespace WpfWODCoach
         private Wod selectedWod;
 
 
+        
+
         public CoachMain()
         {
             InitializeComponent();
@@ -40,13 +43,46 @@ namespace WpfWODCoach
         {
             try
             {
-                dgCoachGrid.ItemsSource = ViewModel.LoadWods();
+                // dgCoachGrid.ItemsSource = ViewModel.LoadWods();
+                
+                
+
+                var wods = ViewModel.LoadWods(); // ladataan datagridin datacontextiksi Wod olio
+                dgCoachGrid.DataContext = wods; 
 
                 var athletes = ViewModel.LoadAthletes();
                 cbAthleteName.ItemsSource = athletes;
                 cbAthleteName.DisplayMemberPath = "fullname";
+
                 dpWod.SelectedDate = DateTime.Today;
                 dpWod.DisplayDate = DateTime.Today;
+
+                var rates = ViewModel.LoadRating();
+               
+                float i;
+                Binding binding = new Binding();
+                binding.Source = rates;
+                ratingColumn.Binding = binding;
+
+                
+                foreach (var item in rates)
+                {
+                    i = (float)item.rating;
+                    
+                    
+                }
+                /*string c;
+                foreach (var item in rates)
+                {
+                    c = item.comment;
+                    binding.Source = c;
+                    ratingComment.Binding = binding;
+                }*/
+                
+
+                
+               
+                
 
             }
             catch (Exception ex)
@@ -89,18 +125,24 @@ namespace WpfWODCoach
             int.TryParse(tbReps.Text, out int reps);
             int.TryParse(tbRounds.Text, out int rounds);
 
-            if (selectedWod == null)
+            if (selectedWod == null)        // if wod (movement) is not selected  => new wod
             {
                 ViewModel.AddWodToAthlete(0, idAthlete, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
             }
-            else
+            else                            // if not new then selected wod (movement) is modified
             {
                 ViewModel.AddWodToAthlete(selectedWod.idWod, idAthlete, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
             }
 
-            // athId = athlete.idAthlete;
+            tbMovement.Text = "";       // empty textboxes after create / modify
+            tbReps.Text = "";
+            tbRounds.Text = "";
+            tbComment.Text = "";
+            
             dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
             tbMessage.Text = $"Movement saved to athlete {athlete.fullname} on date {dateTime}";
+
+
         }
 
         // Updates values in textboxes when selection is changed
@@ -111,13 +153,16 @@ namespace WpfWODCoach
                 if (dgCoachGrid.SelectedIndex > -1)
                 {
                     selectedWod = dgCoachGrid.SelectedItem as Wod;                  // WOD selection
+                    
                     tbMovement.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
                     tbComment.Text = Convert.ToString(selectedWod.comment);
                     tbReps.Text = Convert.ToString(selectedWod.repsCount);
                     tbRounds.Text = Convert.ToString(selectedWod.roundCount);
+                    
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
                     tbMessage.Text = message;                                       // Update bottom message row
                     selectedAthlete = selectedWod.Athlete;                          // update selected Athlete
+
                 }
             }
             catch (Exception ex)
@@ -128,5 +173,9 @@ namespace WpfWODCoach
 
 
         }
+
+       
+
+        
     }
 }

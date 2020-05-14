@@ -44,7 +44,7 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Height="60" Margin="0">
-                    <Label Content="Comments" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
+                    <Label Content="Info" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
                     <TextBox x:Name="tbComment" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
                 </StackPanel>
 
@@ -57,7 +57,8 @@
                 <DataGrid x:Name="dgCoachGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" 
                           SelectionChanged="dgCoachGrid_SelectionChanged" CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
-                          Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}">
+                          Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
+                          >
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
@@ -65,7 +66,8 @@
                         <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
                         <DataGridTextColumn Header="Info" Binding="{Binding comment}" MinWidth="200"/>
                         <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
-                        <DataGridTextColumn Header="Rating" Binding="{Binding raing}"/>
+                        <DataGridTextColumn Header="Rating" Binding="{Binding rating}" x:Name="ratingColumn"/>
+                        <DataGridTextColumn Header="Comment" Binding="{Binding Path=Rate.comment}" x:Name="ratingComment"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

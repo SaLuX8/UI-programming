@@ -11,7 +11,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:WpfWODCoach" xmlns:x1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+      xmlns:local="clr-namespace:WpfWODCoach" 
+      xmlns:x1="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="1200"
       Title="AthleteMain">
@@ -77,8 +78,8 @@
                         <x1:DataGridTemplateColumn Header="Done" x:Name="cbDone">
                             <x1:DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox IsThreeState="False" 
-                                              IsChecked="{Binding Path=done, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <CheckBox  
+                                              IsChecked="{Binding done, UpdateSourceTrigger=Default}"/>
                                 </DataTemplate>
                             </x1:DataGridTemplateColumn.CellTemplate>
 

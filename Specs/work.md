@@ -13,5 +13,7 @@
 |     19 | 10.5.2020   |3  | 40 | Athlete sivun rating ominaisuutta |
 |  19 | 13.5.2020 | 3 | 43 | Athlete sivun rating vääntöä ym, lähes kunnossa |
 | 20 | 14.5.2020 | 3 | 46 | iso ongelma ratingin lisäämisessä korjattu | 
+|20| 14.5.2020 | 5 | 51 | Lisätty admin ja movement sivut. Ongelmia ratingin näyttämisessä ja Done checkboxin tallentamisessa |
+
 
 
