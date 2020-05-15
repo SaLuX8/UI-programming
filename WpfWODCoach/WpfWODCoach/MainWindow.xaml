@@ -21,41 +21,52 @@
 
 
     <Grid>
+        <StackPanel Orientation="Horizontal">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Height="40" Width="58" FontSize="16">
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Menu"/>
+                    </MenuItem.Icon>
+                    <MenuItem Header="_Home" Click="MenuItem_Click_3" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Home" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Coach Menu" Click="MenuItem_Click">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="ClipboardUser" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Athlete Menu" Click="MenuItem_Click_1">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="RunFast" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Movements" Click="MenuItem_Click_5">
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Run" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Admin" Click="MenuItem_Click_2" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Cogs" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="_Close" Click="MenuItem_Click_4" >
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Close" />
+                        </MenuItem.Icon>
+                    </MenuItem>
 
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Height="40" Width="58" FontSize="16">
-                <MenuItem.Icon>
-                    <materialDesign:PackIcon Kind="Menu"/>
-                </MenuItem.Icon>
-                <MenuItem Header="_Home" Click="MenuItem_Click_3" >
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Home" />
-                    </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Coach Menu" Click="MenuItem_Click">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ClipboardUser" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Athlete Menu" Click="MenuItem_Click_1">
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="RunFast" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Admin" Click="MenuItem_Click_2" >
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Cogs" />
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Header="_Close" Click="MenuItem_Click_4" >
-                    <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="Close" />
-                    </MenuItem.Icon>
-                </MenuItem>
+            </Menu>
+            <Label x:Name="PageHeader" HorizontalAlignment="Center" HorizontalContentAlignment="Center" 
+                   FontSize="23" FontWeight="Bold" Content="" 
+                   Margin="0,0,0,562" Width="1092" FontStyle="Italic" 
+                   ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                   Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
 
-            </MenuItem>
-        </Menu>
-
+        </StackPanel>
         <Frame x:Name="Main" Margin="0,40,0,0" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

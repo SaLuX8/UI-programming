@@ -71,8 +71,10 @@ namespace WpfWODCoach
             return ctx.Rate.ToList();
         }
 
+
+
         // Method adds WOD to athlete to certain date
-        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comments)
+        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comment, int level )
         {
             using (var ctx = new WODCoachEntities())
             {
@@ -85,33 +87,33 @@ namespace WpfWODCoach
                     wod.idAthlete = athleteId;
                     wod.repsCount = reps;
                     wod.roundCount = rounds;
-                    wod.comment = comments;
+                    wod.comment = comment;
+                    wod.level = level;
                     wod.done = false;
                     ctx.Wod.Add(wod);
                 }
                 else
                 {
                     Wod wod = ctx.Wod.First(i => i.idWod == WodId);
-                    //var wod = ctx.Wod.Where(x => x.idWod == WodId) as Wod;
-
                     wod.movementName = movement;
                     wod.date = dateTime;
                     wod.idAthlete = athleteId;
                     wod.repsCount = reps;
                     wod.roundCount = rounds;
-                    wod.comment = comments;
+                    wod.comment = comment;
+                    wod.level = level;
                 }
                 ctx.SaveChanges();
             }
         }
+
         // Saves the state of wod (movement), done (true) or not done (false).
-        public static void SaveDoneWod(int wodId, bool state)
+        public static void SaveDoneWod(Wod selectedWod)
         {
             using (var ctx = new WODCoachEntities())
             {
-                Wod wod = ctx.Wod.First(i => i.idWod == wodId);
-                if (state == false) wod.done = null;
-                else wod.done = state;
+                Wod wod = ctx.Wod.First(i => i.idWod == selectedWod.idWod);
+                wod.done = selectedWod.done;
                 ctx.SaveChanges();
             }
         }
@@ -138,12 +140,10 @@ namespace WpfWODCoach
                     rate.comment = comment;
                     ctx.SaveChanges();
                 }
-
             }
-            
-
         }
 
+        // Add or update athlete information 
         public static void SaveAthlete(int number, Athlete selectedAthlete)
         {
             using (var ctx = new WODCoachEntities())
@@ -166,9 +166,84 @@ namespace WpfWODCoach
                     ctx.SaveChanges();
 
                 }
-                    
+
             }
         }
+
+        // DELETE Athlete
+
+        public static void DeleteAthlete(Athlete selectedAthlete)
+        {
+            using (var ctx = new WODCoachEntities())
+            {
+
+                Athlete athlete1 = ctx.Athlete.First(i => i.idAthlete == selectedAthlete.idAthlete);
+                ctx.Athlete.Remove(athlete1);
+                ctx.SaveChanges();
+            }
+
+
+        }
+
+
+
+        // ------------------------- WOD CRUD -----------------------------
+        // Add or update Wods (movements)
+        public static void SaveWod(int number, Wod selectedWod)
+        {
+            using (var ctx = new WODCoachEntities())
+            {
+
+                if (number == 0)
+                {
+                    Wod wod = new Wod();
+                    wod.movementName = selectedWod.movementName;
+                    wod.level = selectedWod.level;
+                    wod.done = false;
+                    ctx.Wod.Add(wod);
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    Wod wod = ctx.Wod.First(i => i.idWod == number);
+                    wod.movementName = selectedWod.movementName;
+                    wod.level = selectedWod.level;
+                    wod.done = selectedWod.done;
+                    ctx.SaveChanges();
+
+                }
+
+            }
+        }
+        // Delete Wod (Movement) identified by wodId
+        public static void DeleteWod(int wodId)
+        {
+            using (var ctx = new WODCoachEntities())
+            {
+                Wod wod = ctx.Wod.First(i => i.idWod == wodId);
+                Rate rate = ctx.Rate.First(i => i.wod_id == wodId);
+                ctx.Rate.Remove(rate);
+                ctx.Wod.Remove(wod);
+                ctx.SaveChanges();
+
+            }
+        }
+        public static void RemoveWodFromAthlete(int wodId, int athlete_id)
+        {
+            using (var ctx = new WODCoachEntities())
+            {
+                Wod wod = ctx.Wod.First(i => i.idWod == wodId);
+                wod.idAthlete = null;
+                wod.repsCount = 0;
+                wod.roundCount = 0;
+
+
+                ctx.SaveChanges();
+
+            }
+        }
+
+
 
     }
 }

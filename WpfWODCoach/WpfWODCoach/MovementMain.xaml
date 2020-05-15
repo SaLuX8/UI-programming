@@ -18,7 +18,8 @@
       Title="MovementMain">
     <Grid>
         <DockPanel>
-            <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+            <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" 
+                       Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
                 <StatusBarItem>
                     <TextBlock x:Name="tbMessage" Text="..."/>
                 </StatusBarItem>
@@ -31,14 +32,14 @@
                 <StackPanel Orientation="Vertical" Height="120" Margin="0">
                     <TextBlock Text="Add a movement" Margin="20,8,0,8" FontSize="16" FontWeight="Bold"/>
                     <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
-                   
+
 
                 </StackPanel>
 
 
                 <StackPanel Orientation="Vertical"  Height="80">
                     <TextBlock Text="Difficulty" FontSize="16" FontWeight="Bold" Margin="20,8,0,8"/>
-                    <materialDesign:RatingBar Width="200" HorizontalAlignment="Left" Margin="20,0" x:Name="starsLevel"/>
+                    <materialDesign:RatingBar Value="0" Width="200" HorizontalAlignment="Left" Margin="20,0" x:Name="starsLevel"/>
                 </StackPanel>
 
                 <StackPanel Margin="20,0" Orientation="Horizontal">
@@ -47,15 +48,19 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel MinWidth="800" MinHeight="250" Margin="0" DockPanel.Dock="Left" Height="560">
-                <DataGrid x:Name="dgMovementGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" 
+            <StackPanel Width="800" Margin="0" DockPanel.Dock="Left">
+                <DataGrid x:Name="dgMovementGrid" Height="537" Margin="0" VerticalAlignment="Top" 
                           AutoGenerateColumns="False" 
                           CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
                           Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
-                          ItemsSource="{Binding}" SelectionChanged="dgAthleteGrid_SelectionChanged">
+                          ItemsSource="{Binding}" SelectionChanged="dgAthleteGrid_SelectionChanged"
+                          ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.IsDeferredScrollingEnabled="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Id" Binding="{Binding idWod}" MinWidth="40"/>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="350"/>
                         <DataGridTextColumn Header="Difficulty" Binding="{Binding level}" MinWidth="40"/>
                     </DataGrid.Columns>

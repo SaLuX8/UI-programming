@@ -16,10 +16,12 @@
       d:DesignHeight="560" d:DesignWidth="1200"
       Title="Admin">
 
-
-
     <Grid>
-        <DockPanel>
+        
+            
+            
+            
+            <DockPanel>
             <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
                 <StatusBarItem>
                     <TextBlock x:Name="tbMessage" Text="..."/>
@@ -54,8 +56,9 @@
                    
                      </StackPanel>
 
-                <StackPanel Orientation="Horizontal"  Height="80" Margin="0">
-                    <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
+                <StackPanel Orientation="Horizontal"  Height="60" Margin="0">
+                            <Button Content="Delete" Width="110" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" Margin="20,0"/>
+                            <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
                 </StackPanel>
             </StackPanel>
 
@@ -77,11 +80,11 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
+            
 
 
+            </DockPanel>
 
-        </DockPanel>
-
-
+        
     </Grid>
 </Page>

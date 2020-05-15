@@ -1,9 +1,10 @@
-﻿<Page x:Class="WpfWODCoach.CoachMain"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfWODCoach"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="WpfWODCoach.CoachMain"
       mc:Ignorable="d" 
       d:DesignHeight="560" d:DesignWidth="1200"
       Title="CoachMain">
@@ -25,15 +26,20 @@
                               DisplayMemberPath="fullName" 
                               SelectionChanged="cbAthleteName_SelectionChanged" 
                               Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
-                    
+
                     <Label Content="Date" Height="20" FontSize="12" FontWeight="Bold" Margin="20,0,0,0" Padding="0" />
                     <DatePicker x:Name="dpWod" Margin="7,12,10,12" VerticalAlignment="Center" Height="26" Width="112" 
                                 SelectedDateChanged="dpWod_SelectedDateChanged" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Height="40" Margin="0">
+                <StackPanel Orientation="Horizontal" Height="40" Margin="0,0,0,10">
                     <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,0,0,7" Padding="0" FontWeight="Bold"/>
-                    <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="300" Height="25" Margin="7,8,10,7"/>
+                    <ComboBox x:Name="cbMovementName" Height="25" Width="250" VerticalAlignment="Center" Margin="7,10,0,10"
+                              ItemsSource="{Binding SelectedItem}" 
+                              DisplayMemberPath="movementName" 
+                              Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
+                              IsEditable="True"/>
+                    
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Height="40" Margin="0">
@@ -43,21 +49,28 @@
                     <TextBox x:Name="tbRounds" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Width="40" Height="25" Margin="7,8,0,8"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical" Height="60" Margin="0">
+                <StackPanel Orientation="Vertical" Margin="0">
                     <Label Content="Info" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
                     <TextBox x:Name="tbComment" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
+                    <Label Content="Difficulty Level" VerticalAlignment="Bottom" Margin="20,20,0,0" Padding="0" FontWeight="Bold"/>
+                    <materialDesign:RatingBar x:Name="starsLevel" Margin="20,10,0,20" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal"  Height="80" Margin="0">
-                    <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
+                <StackPanel Orientation="Horizontal" Margin="20,0">
+                    <Button x:Name="btnDelete" Content="Delete" Width="110" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" />
+                    <Button x:Name="btnSaveWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold" Click="btnSaveWod_Click" Padding="0"/>
+
                 </StackPanel>
+                
             </StackPanel>
 
-            <StackPanel MinWidth="800" MinHeight="250" Margin="0" DockPanel.Dock="Left" Height="560">
-                <DataGrid x:Name="dgCoachGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" 
+            <StackPanel Width="800" DockPanel.Dock="Left" >
+                <DataGrid x:Name="dgCoachGrid" Height="538" Margin="0" VerticalAlignment="Top" AutoGenerateColumns="False" 
                           SelectionChanged="dgCoachGrid_SelectionChanged" CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
                           Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
+                          ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                           >
 
                     <DataGrid.Columns>
@@ -65,14 +78,13 @@
                         <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
                         <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
                         <DataGridTextColumn Header="Info" Binding="{Binding comment}" MinWidth="200"/>
+                        <DataGridTextColumn Header="Difficulty" Binding="{Binding level}" x:Name="levelColumn"/>
                         <DataGridTextColumn Header="Done" Binding="{Binding done}"/>
-                        <DataGridTextColumn Header="Rating" Binding="{Binding rating}" x:Name="ratingColumn"/>
-                        <DataGridTextColumn Header="Comment" Binding="{Binding Path=Rate.comment}" x:Name="ratingComment"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
 
-           
+
 
         </DockPanel>
 

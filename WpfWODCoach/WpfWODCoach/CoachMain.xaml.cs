@@ -25,6 +25,7 @@ namespace WpfWODCoach
     public partial class CoachMain : Page
     {
         private int selected = 0;
+      
         private Athlete selectedAthlete;
         private DateTime dateTime;
         private Wod selectedWod;
@@ -43,10 +44,6 @@ namespace WpfWODCoach
         {
             try
             {
-                // dgCoachGrid.ItemsSource = ViewModel.LoadWods();
-                
-                
-
                 var wods = ViewModel.LoadWods(); // ladataan datagridin datacontextiksi Wod olio
                 dgCoachGrid.DataContext = wods; 
 
@@ -54,36 +51,14 @@ namespace WpfWODCoach
                 cbAthleteName.ItemsSource = athletes;
                 cbAthleteName.DisplayMemberPath = "fullname";
 
+                var movements = ViewModel.LoadWods();
+                cbMovementName.ItemsSource = movements;
+                cbMovementName.DisplayMemberPath = "movementName";
+
                 dpWod.SelectedDate = DateTime.Today;
                 dpWod.DisplayDate = DateTime.Today;
 
                 var rates = ViewModel.LoadRating();
-               
-                float i;
-                Binding binding = new Binding();
-                binding.Source = rates;
-                ratingColumn.Binding = binding;
-
-                
-                foreach (var item in rates)
-                {
-                    i = (float)item.rating;
-                    
-                    
-                }
-                /*string c;
-                foreach (var item in rates)
-                {
-                    c = item.comment;
-                    binding.Source = c;
-                    ratingComment.Binding = binding;
-                }*/
-                
-
-                
-               
-                
-
             }
             catch (Exception ex)
             {
@@ -111,6 +86,11 @@ namespace WpfWODCoach
             dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
         }
 
+
+
+
+
+
         // if DATE value changes
         private void dpWod_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -118,32 +98,75 @@ namespace WpfWODCoach
         }
 
         // eventhandler for SAVE button
-        private void btnAddWod_Click(object sender, RoutedEventArgs e)
+        private void btnSaveWod_Click(object sender, RoutedEventArgs e)
         {
-            Athlete athlete = selectedAthlete;
-            int idAthlete = athlete.idAthlete;
-            int.TryParse(tbReps.Text, out int reps);
-            int.TryParse(tbRounds.Text, out int rounds);
 
-            if (selectedWod == null)        // if wod (movement) is not selected  => new wod
+            try
             {
-                ViewModel.AddWodToAthlete(0, idAthlete, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
+                int.TryParse(tbReps.Text, out int reps);
+                int.TryParse(tbRounds.Text, out int rounds);
+                Athlete athlete1 = (Athlete)cbAthleteName.SelectedItem;
+
+                if (dgCoachGrid.SelectedIndex < 0)        // if wod (movement) is not selected  => new wod
+                {
+                    ViewModel.AddWodToAthlete(0, athlete1.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
+                }
+                else                            // if not new then selected wod (movement) is modified
+                {
+                    ViewModel.AddWodToAthlete(selectedWod.idWod, athlete1.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
+                }
+
+                cbMovementName.Text = "";       // empty textboxes after create / modify
+                tbReps.Text = "";
+                tbRounds.Text = "";
+                tbComment.Text = "";
+                starsLevel.Value = 0;
+
+                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
+                tbMessage.Text = $"Movement saved to athlete {selectedAthlete.fullname} on date {dateTime}";
             }
-            else                            // if not new then selected wod (movement) is modified
+            catch (Exception ex)
             {
-                ViewModel.AddWodToAthlete(selectedWod.idWod, idAthlete, dateTime, tbMovement.Text, reps, rounds, tbComment.Text);
+                MessageBox.Show(ex.Message);
             }
-
-            tbMovement.Text = "";       // empty textboxes after create / modify
-            tbReps.Text = "";
-            tbRounds.Text = "";
-            tbComment.Text = "";
-            
-            dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
-            tbMessage.Text = $"Movement saved to athlete {athlete.fullname} on date {dateTime}";
-
-
         }
+
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModel.RemoveWodFromAthlete(selectedWod.idWod, (int)selectedWod.idAthlete);
+
+                if (selectedWod != null)
+                {
+                    selectedWod.idAthlete = 0;
+                    
+
+
+                    // ViewModel.DeleteWod(selectedWod.idWod);
+                    // tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today}";
+                }
+                cbMovementName.Text = "";       // empty textboxes after delete
+                tbReps.Text = "";
+                tbRounds.Text = "";
+                tbComment.Text = "";
+                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
+            }
+            catch (SystemException)
+            {
+                MessageBox.Show("No Movement selected or Movement is in use and can't be deleted");
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+
 
         // Updates values in textboxes when selection is changed
         private void dgCoachGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -154,11 +177,12 @@ namespace WpfWODCoach
                 {
                     selectedWod = dgCoachGrid.SelectedItem as Wod;                  // WOD selection
                     
-                    tbMovement.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
+                    cbMovementName.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
                     tbComment.Text = Convert.ToString(selectedWod.comment);
                     tbReps.Text = Convert.ToString(selectedWod.repsCount);
                     tbRounds.Text = Convert.ToString(selectedWod.roundCount);
-                    
+                    starsLevel.Value = Convert.ToInt32(selectedWod.level);
+
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
                     tbMessage.Text = message;                                       // Update bottom message row
                     selectedAthlete = selectedWod.Athlete;                          // update selected Athlete
@@ -173,8 +197,6 @@ namespace WpfWODCoach
 
 
         }
-
-       
 
         
     }

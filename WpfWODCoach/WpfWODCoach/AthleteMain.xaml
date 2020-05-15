@@ -38,52 +38,57 @@
                     <DatePicker x:Name="dpWod" Margin="7,12,10,12" VerticalAlignment="Center" Height="26" Width="112" 
                                 Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" SelectedDateChanged="dpWod_SelectedDateChanged"/>
                 </StackPanel>
+                <Grid Height="273" Margin="20,0" Background="{DynamicResource {x:Static SystemColors.GradientInactiveCaptionBrushKey}}">
+                    <StackPanel>
+                    <StackPanel Orientation="Vertical" Height="120" Margin="0">
+                        <TextBlock Text="Rate a movement" Margin="20,8,0,8" FontSize="16" FontWeight="Bold"/>
+                        <TextBlock x:Name="tbRatedMovement" Text="..." Margin="20,8,0,8" FontSize="14" FontWeight="Bold"/>
+                        <Label Content="Give Comments" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
+                        <TextBox x:Name="tbRatingComment" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
+                    </StackPanel>
 
-                <StackPanel Orientation="Vertical" Height="120" Margin="0">
-                    <TextBlock Text="Rate a movement" Margin="20,8,0,8" FontSize="16" FontWeight="Bold"/>
-                    <TextBlock x:Name="tbRatedMovement" Text="..." Margin="20,8,0,8" FontSize="14" FontWeight="Bold"/>
-                    <Label Content="Give Comments" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
-                    <TextBox x:Name="tbRatingComment" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
-                </StackPanel>
 
-
-                <StackPanel Orientation="Vertical"  Height="80">
-                    <TextBlock Text="Slide to give rating" FontWeight="Bold" Margin="20,8,0,8"/>
-                    <DockPanel VerticalAlignment="Center" Margin="20,0,10,20">
-                        <TextBlock x:Name="tbratingValue" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-                        <Slider HorizontalAlignment="Left" Height="26" Width="320" 
+                    <StackPanel Orientation="Vertical"  Height="80">
+                        <TextBlock Text="Slide to give rating" FontWeight="Bold" Margin="20,8,0,8"/>
+                        <DockPanel VerticalAlignment="Center" Margin="20,0,10,20">
+                            <TextBlock x:Name="tbratingValue" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
+                            <Slider HorizontalAlignment="Left" Height="26" Width="320" 
                             TickPlacement="BottomRight" TickFrequency="1" 
                             ValueChanged="Slider_ValueChanged" x:Name="slider" />
-                    </DockPanel>
-                </StackPanel>
+                        </DockPanel>
+                    </StackPanel>
 
-                <StackPanel>
-                    <Button x:Name="btnRating" Content="Rate" Width="110" Height="30" Margin="0,15,40,0" FontWeight="Bold" Padding="0" HorizontalAlignment="Right" Click="btnRating_Click"/>
-                </StackPanel>
+                    <StackPanel>
+                        <Button x:Name="btnRating" Content="Rate" Width="110" Height="30" Margin="0,15,40,0" FontWeight="Bold" Padding="0" HorizontalAlignment="Right" Click="btnRating_Click"/>
+                    </StackPanel>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
 
-            <StackPanel MinWidth="800" MinHeight="250" Margin="0" DockPanel.Dock="Left" Height="560">
-                <DataGrid x:Name="dgAthleteGrid" MinHeight="560" Margin="0" VerticalAlignment="Top" 
+            <StackPanel Width="800" DockPanel.Dock="Left" >
+                <DataGrid x:Name="dgAthleteGrid" Margin="0" VerticalAlignment="Top" 
                           AutoGenerateColumns="False" 
                           CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
                           Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
-                          ItemsSource="{Binding}" SelectionChanged="dgAthleteGrid_SelectionChanged">
+                          ItemsSource="{Binding}" SelectionChanged="dgAthleteGrid_SelectionChanged" Height="538"
+                          ScrollViewer.CanContentScroll="True"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.IsDeferredScrollingEnabled="True">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="250"/>
                         <DataGridTextColumn Header="Reps" Binding="{Binding repsCount}" MinWidth="10"/>
                         <DataGridTextColumn Header="Rounds" Binding="{Binding roundCount}" MinWidth="50"/>
                         <DataGridTextColumn Header="Info" Binding="{Binding comment}" MinWidth="300"/>
-                        <x1:DataGridTemplateColumn Header="Done" x:Name="cbDone">
-                            <x1:DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn Header="Done" x:Name="cbDone" >
+                            <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox  
-                                              IsChecked="{Binding done, UpdateSourceTrigger=Default}"/>
+                                    <CheckBox Unchecked="CheckBox_Unchecked" Checked="CheckBox_Checked" IsChecked="{Binding done}"/>
                                 </DataTemplate>
-                            </x1:DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
 
-                        </x1:DataGridTemplateColumn>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

@@ -29,6 +29,8 @@ namespace WpfWODCoach
         private Wod selectedWod;
         private Rate rating;
 
+       
+
         public AthleteMain()
         {
             InitializeComponent();
@@ -147,6 +149,26 @@ namespace WpfWODCoach
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+  
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (dgAthleteGrid.SelectedIndex > -1)
+            {
+                selectedWod.done = false;
+                ViewModel.SaveDoneWod(selectedWod);
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (dgAthleteGrid.SelectedIndex > -1)
+            {
+                selectedWod.done = true;
+                ViewModel.SaveDoneWod(selectedWod);
             }
         }
     }

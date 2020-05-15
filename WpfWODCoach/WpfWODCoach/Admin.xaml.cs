@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialDesignThemes.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace WpfWODCoach
 {
@@ -122,29 +124,33 @@ namespace WpfWODCoach
                     selectedCoachId = selectedItem.idCoach;
                     tbCoachId.Text = selectedItem.idCoach.ToString();
                 }
-
                 selectedCoachId = 99;
-                
-                // DateTime dateTime = DateTime.Today;
-                dgAdminGrid.ItemsSource = ViewModel.LoadAthletes();
-
-                //dgAdminGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selectedAthlete.Coach_idCoach, dateTime);
+                dgAdminGrid.DataContext = ViewModel.LoadAthletes();
             }
-
-            /*
-            Athlete selectedItem = (Athlete)cbCoachName.SelectedItem;
-            if (selectedItem != null)
-            {
-                selected = selectedItem.idAthlete;
-            }
-
-            selectedAthlete = selectedItem;
-
-            // selectedItem.Coach.fullName
-
 
             
-            */
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dgAdminGrid.SelectedIndex > -1)
+                {
+                    MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+
+                    if (messageBoxResult == MessageBoxResult.Yes)
+                    {
+                        ViewModel.DeleteAthlete(selectedAthlete);
+                        dgAdminGrid.DataContext = ViewModel.LoadAthletes();
+                        tbMessage.Text = $"Athlete {selectedAthlete.fullname} deleted";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
     
