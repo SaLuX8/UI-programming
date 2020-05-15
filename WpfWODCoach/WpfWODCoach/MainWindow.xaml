@@ -13,36 +13,49 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfWODCoach"
         mc:Ignorable="d"
-        Title="WODCoach" Height="600" Width="1200">
+        Title="WODCoach" Height="600" Width="1200" Visibility="Visible" ResizeMode="CanMinimize"
+        BorderBrush="DarkGray" 
+        BorderThickness="2" 
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen">
+
+
     <Grid>
+
         <Menu DockPanel.Dock="Top">
-            <MenuItem>
+            <MenuItem Height="40" Width="58" FontSize="16">
                 <MenuItem.Icon>
                     <materialDesign:PackIcon Kind="Menu"/>
                 </MenuItem.Icon>
+                <MenuItem Header="_Home" Click="MenuItem_Click_3" >
+                    <MenuItem.Icon>
+                        <materialDesign:PackIcon Kind="Home" />
+                    </MenuItem.Icon>
+                </MenuItem>
                 <MenuItem Header="_Coach Menu" Click="MenuItem_Click">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ClipboardList" />
+                        <materialDesign:PackIcon Kind="ClipboardUser" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="_Athlete Menu" Click="MenuItem_Click_1">
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ClipboardList" />
+                        <materialDesign:PackIcon Kind="RunFast" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Copy" Command="Copy">
+                <MenuItem Header="_Admin" Click="MenuItem_Click_2" >
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ContentCopy" />
+                        <materialDesign:PackIcon Kind="Cogs" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="_Paste" Command="Paste">
+                <MenuItem Header="_Close" Click="MenuItem_Click_4" >
                     <MenuItem.Icon>
-                        <materialDesign:PackIcon Kind="ContentPaste" />
+                        <materialDesign:PackIcon Kind="Close" />
                     </MenuItem.Icon>
                 </MenuItem>
+
             </MenuItem>
         </Menu>
-        
+
         <Frame x:Name="Main" Margin="0,40,0,0" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

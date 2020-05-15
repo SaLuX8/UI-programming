@@ -11,9 +11,6 @@ using System.Runtime.InteropServices.ComTypes;
 namespace WpfWODCoach
 {
     public class ViewModel
-
-
-
     {
 
         // public static DataGrid dataGrid; // tsekkaa tämä 8:53 "www.youtube.com/watch?v=VGRvi4-1VhA"
@@ -145,6 +142,32 @@ namespace WpfWODCoach
             }
             
 
+        }
+
+        public static void SaveAthlete(int number, Athlete selectedAthlete)
+        {
+            using (var ctx = new WODCoachEntities())
+            {
+                if (number == 0)
+                {
+                    Athlete athlete1 = new Athlete();
+                    athlete1.fullname = selectedAthlete.fullname;
+                    athlete1.telNumber = selectedAthlete.telNumber;
+                    athlete1.Coach_idCoach = selectedAthlete.Coach_idCoach;
+                    ctx.Athlete.Add(athlete1);
+                    ctx.SaveChanges();
+                }
+                else
+                {
+                    Athlete athlete1 = ctx.Athlete.First(i => i.idAthlete == number);
+                    athlete1.fullname = selectedAthlete.fullname;
+                    athlete1.telNumber = selectedAthlete.telNumber;
+                    athlete1.Coach_idCoach = selectedAthlete.Coach_idCoach;
+                    ctx.SaveChanges();
+
+                }
+                    
+            }
         }
 
     }

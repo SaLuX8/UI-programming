@@ -208,6 +208,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\bgImage.png" />
+    <Resource Include="Images\bgImage2.png" />
+    <Resource Include="Images\bgImage3.png" />
     <Content Include="WodCoachModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WodCoachModel.edmx</DependentUpon>

@@ -22,14 +22,10 @@ namespace WpfWODCoach
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-
-
         public MainWindow()
         {
             InitializeComponent();
             Main.Content = new StartPage();
-
         }
 
         public void OpenCoach()
@@ -46,5 +42,26 @@ namespace WpfWODCoach
         {
             Main.Content = new AthleteMain();
         }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new Admin();
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new StartPage();
+        }
+
+        private void MenuItem_Click_4(object sender, RoutedEventArgs e)
+        {
+
+
+            base.OnClosed(e);
+
+            Application.Current.Shutdown();
+
+        }
     }
 }
+

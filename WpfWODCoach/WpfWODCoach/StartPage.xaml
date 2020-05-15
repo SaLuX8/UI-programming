@@ -16,16 +16,18 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StartPage">
 
-    <Grid>
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/bgImage3.png" Stretch="UniformToFill" Opacity="0.7"/>
+        </Grid.Background>
         <Label Content="WODCoach" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="90" 
-               FontFamily="Magneto" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+               FontFamily="Magneto" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Margin="140,145,113,188">
             <Label.Foreground>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFACABFF" Offset="1"/>
-                    <GradientStop Color="#FF0A00EA"/>
+                    <GradientStop Color="#FF4846FF" Offset="1"/>
+                    <GradientStop Color="White"/>
                 </LinearGradientBrush>
             </Label.Foreground>
         </Label>
-        
     </Grid>
 </Page>

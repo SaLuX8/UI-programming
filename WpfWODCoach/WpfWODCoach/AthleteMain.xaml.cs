@@ -29,23 +29,10 @@ namespace WpfWODCoach
         private Wod selectedWod;
         private Rate rating;
 
-
         public AthleteMain()
         {
             InitializeComponent();
             InitAthleteGrid();
-        }
-
-        private void InitGrid()
-        {
-            try
-            {
-                dgAthleteGrid.DataContext = ViewModel.LoadAthletes();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
         }
 
         private void InitAthleteGrid()
@@ -54,7 +41,6 @@ namespace WpfWODCoach
             {
                 var wods = ViewModel.LoadWods();    // ladataan wodit muuttujaan
                 dgAthleteGrid.DataContext = wods;   // asetetaan datagridin datacontextiksi Wod olio
-
 
                 var athletes = ViewModel.LoadAthletes();
                 cbAthleteName.ItemsSource = athletes;
@@ -94,28 +80,6 @@ namespace WpfWODCoach
             cbAthleteName_SelectionChanged(sender, e);
         }
 
-        /*
-        // if Done checkbox is unchecked  
-        private void cbDone_Unchecked(object sender, RoutedEventArgs e)
-        {
-            int id = selectedWod.idWod;
-            ViewModel.SaveDoneWod(id, false);
-            
-            string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} marked UNDONE";
-            tbMessage.Text = message;                           // Update bottom message row
-        }
-
-        // if DONE checkbox is checked
-        private void cbDone_Checked(object sender, RoutedEventArgs e)
-        {
-            int id = selectedWod.idWod;
-            ViewModel.SaveDoneWod(id, true);
-            
-            string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} marked as DONE";
-            tbMessage.Text = message;                           // Update bottom message row
-        }
-        */
-
         // Athlete Datagrid  
         private void dgAthleteGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -132,7 +96,7 @@ namespace WpfWODCoach
                     //bool done = selectedWod.done.Value;
                     //ViewModel.SaveDoneWod(selectedWod.idWod, done);
 
-                    //  tästäkö se tulee???!"! 
+                   
                     if (selectedWod.Rate.FirstOrDefault() == null)
                     {
                         tbRatingComment.Text = "";

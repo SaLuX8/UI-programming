@@ -29,22 +29,30 @@
             <StackPanel Orientation="Vertical" Background="LightSteelBlue" DockPanel.Dock="Left" Margin="0" Width="400">
 
                 <StackPanel Orientation="Horizontal" Height="40" Margin="0,10">
-                    <Label Content="Athlete" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
+                    <Label Content="Athlete Fullname" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="tbAthlete" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" 
-                             TextAlignment="Left" Width="280" Height="25" Margin="20,8"/>
+                             TextAlignment="Left" Width="238" Height="25" Margin="20,8" HorizontalAlignment="Right" />
                 </StackPanel>
+
 
                 <StackPanel Orientation="Horizontal" Height="40" Margin="0">
-                    <Label Content="Movement" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
-                    <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" 
-                             TextAlignment="Left" Width="280" Height="25" Margin="20,8"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" Height="40" Margin="0,10">
                     <Label Content="Telephone" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
                     <TextBox x:Name="tbTel" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" 
-                             TextAlignment="Left" Height="25" Margin="20,0" Width="285"/>
+                             TextAlignment="Left" Height="25" Margin="20,8" Width="279" HorizontalAlignment="Right"/>
                 </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal" Height="40" Margin="0,10">
+                    <Label Content="Coach" VerticalAlignment="Bottom" Margin="20,8,0,8" Padding="0" FontWeight="Bold"/>
+                    <ComboBox x:Name="cbCoachName" Text="Athlete" Height="25" Width="150" VerticalAlignment="Center" Margin="7,10,0,10"
+                              ItemsSource="{Binding SelectedItem}" 
+                              DisplayMemberPath="fullName" 
+                              Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" SelectionChanged="cbCoachName_SelectionChanged"/>
+                    <TextBlock x:Name="tbCoachId" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" 
+                             TextAlignment="Center" Padding="5" Width="40" Height="25" Margin="20,8,0,7" HorizontalAlignment="Right" Text="99" Foreground="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"/>
+
+                   
+                     </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Height="80" Margin="0">
                     <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
@@ -56,15 +64,16 @@
                           SelectionChanged="dgAdminGrid_SelectionChanged" CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
                           Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
-                          >
+                          ItemsSource="{Binding}">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Id" Binding="{Binding}" MinWidth="250"/>
-                        <DataGridTextColumn Header="Fullname" Binding="{Binding repsCount}" MinWidth="10"/>
-                        <DataGridTextColumn Header="tel" Binding="{Binding roundCount}" MinWidth="50"/>
-                        <DataGridTextColumn Header="Created" Binding="{Binding comment}" MinWidth="200"/>
-                        <DataGridTextColumn Header="Modified" Binding="{Binding done}"/>
+                        <DataGridTextColumn Header="Id" Binding="{Binding idAthlete}" MinWidth="40"/>
+                        <DataGridTextColumn Header="Fullname" Binding="{Binding fullname}" MinWidth="170"/>
+                        <DataGridTextColumn Header="tel" Binding="{Binding telNumber}" MinWidth="130"/>
 
+                        <DataGridTextColumn Header="Coach" Binding="{Binding Coach_idCoach, StringFormat=\{0:D\}}" MinWidth="40"/>
+                        <DataGridTextColumn Header="Created" Binding="{Binding created, StringFormat=\{0:D\}}" MinWidth="140"/>
+                        <DataGridTextColumn Header="Modified" Binding="{Binding updated, StringFormat=\{0:D\}}" MinWidth="140"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
