@@ -52,7 +52,7 @@
                         <TextBlock Text="Slide to give rating" FontWeight="Bold" Margin="20,8,0,8"/>
                         <DockPanel VerticalAlignment="Center" Margin="20,0,10,20">
                             <TextBlock x:Name="tbratingValue" DockPanel.Dock="Right" TextAlignment="Right" Width="40"/>
-                            <Slider HorizontalAlignment="Left" Height="26" Width="320" 
+                            <Slider HorizontalAlignment="Left" Height="26" Width="283" 
                             TickPlacement="BottomRight" TickFrequency="1" 
                             ValueChanged="Slider_ValueChanged" x:Name="slider" />
                         </DockPanel>

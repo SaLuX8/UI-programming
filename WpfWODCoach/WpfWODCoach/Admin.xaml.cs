@@ -49,20 +49,21 @@ namespace WpfWODCoach
             }
         }
 
+        // Save button Eventhandler
         private void btnAddWod_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 Athlete athlete = new Athlete();
                 int.TryParse(tbCoachId.Text, out int coachId);
-                if (selectedAthlete == null)        // if Athlete is not selected  => new Athlete
+                if (selectedAthlete == null)                    // if Athlete is selected from datagrid  => new Athlete
                 {
                     athlete.fullname = tbAthlete.Text;
                     athlete.telNumber = tbTel.Text;
                     athlete.Coach_idCoach = coachId;
                     ViewModel.SaveAthlete(0, athlete);
                 }
-                else                            // if not new then selected Athlete is modified
+                else                                    // if not new then selected Athlete is modified -> requires Save button
                 {
                     athlete = selectedAthlete;
                     athlete.fullname = tbAthlete.Text;
@@ -71,13 +72,13 @@ namespace WpfWODCoach
                     ViewModel.SaveAthlete(athlete.idAthlete, athlete);
                 }
 
-                tbAthlete.Text = "";       // empty textboxes after create / modify
+                tbAthlete.Text = "";                    // empty textboxes after create / modify
                 cbCoachName.Text = "";
                 tbCoachId.Text = "";
                 tbTel.Text = "";
 
-                dgAdminGrid.ItemsSource = ViewModel.LoadAthletes();
-                tbMessage.Text = $"Athlete {athlete.fullname} saved on date {DateTime.Today}";
+                dgAdminGrid.ItemsSource = ViewModel.LoadAthletes();     // update of datagrid
+                tbMessage.Text = $"Athlete {athlete.fullname} saved on date {DateTime.Today.ToString("dd.MM.yyyy")}";   // message to bottom inforow
             }
             catch (Exception ex)
             {
@@ -87,28 +88,25 @@ namespace WpfWODCoach
 
         }
 
+        // If selection changes in admin datagrid
         private void dgAdminGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-
                 if (dgAdminGrid.SelectedIndex > -1)
                 {
                     selectedAthlete = dgAdminGrid.SelectedItem as Athlete;                  // WOD selection
-
-                   
-                    tbAthlete.Text = Convert.ToString(selectedAthlete.fullname);   // update selectedWod properties to textboxea
+                    tbAthlete.Text = Convert.ToString(selectedAthlete.fullname);            // update selectedWod properties to textboxea
                     tbTel.Text = Convert.ToString(selectedAthlete.telNumber);
                     cbCoachName.Text = Convert.ToString(selectedAthlete.Coach.fullName);
                     tbCoachId.Text = Convert.ToString(selectedAthlete.Coach.idCoach);
 
                     string message = $"Athlete {selectedAthlete.idAthlete} {selectedAthlete.fullname} selected";
-                    tbMessage.Text = message;                                       // Update bottom message row
+                    tbMessage.Text = message;                                               // Update bottom message row
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
         }

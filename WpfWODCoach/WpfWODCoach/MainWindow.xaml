@@ -13,10 +13,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfWODCoach"
         mc:Ignorable="d"
-        Title="WODCoach" Height="600" Width="1200" Visibility="Visible" ResizeMode="CanMinimize"
-        BorderBrush="DarkGray" 
-        BorderThickness="2" 
+        Title="WODCoach" Height="600" Width="1200" 
+        Visibility="Visible" ResizeMode="CanMinimize" 
+        BorderBrush="DarkBlue" 
+        BorderThickness="3" 
         WindowStyle="None"
+        
         WindowStartupLocation="CenterScreen">
 
 

@@ -228,6 +228,8 @@ namespace WpfWODCoach
 
             }
         }
+
+        // Removes connection from between a wod (movement) and athlete. Nothing is deleted. Used in CoachMain.
         public static void RemoveWodFromAthlete(int wodId, int athlete_id)
         {
             using (var ctx = new WODCoachEntities())
@@ -236,10 +238,7 @@ namespace WpfWODCoach
                 wod.idAthlete = null;
                 wod.repsCount = 0;
                 wod.roundCount = 0;
-
-
                 ctx.SaveChanges();
-
             }
         }
 

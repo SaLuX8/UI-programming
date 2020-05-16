@@ -16,7 +16,7 @@
 |20| 14.5.2020 | 5 | 51 | Lisätty admin ja movement sivut. Ongelmia ratingin näyttämisessä ja Done checkboxin tallentamisessa |
 |20|15.5.2020| 4 | 55 | Lisätty admin sivulle athlete lisäys ja muokattu ulkoasua |
 |20|15.5.2020| 7 | 62 | Viimeistelty ulkoasu ja toiminnot sekä korjattu pari ongelmaa. (Ja kyllä samana päivänä klo 9-22.30 välillä)|
-
+|20|16.5.2020| 2 | 64 | Poikkeustenkäsittelyä, rating toiminnon näyttö yritystä, kommentointia |
 
 
 
