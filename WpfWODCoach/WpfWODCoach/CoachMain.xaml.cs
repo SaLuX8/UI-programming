@@ -36,6 +36,9 @@ namespace WpfWODCoach
             InitCoach();
         }
 
+        // ---------------------------------------------------------
+        // Initialize datagrid 
+        // ---------------------------------------------------------
         private void InitCoach()
         {
             try
@@ -59,7 +62,9 @@ namespace WpfWODCoach
             }
         }
 
+        // ---------------------------------------------------------
         // Combobox Printing to datagrid wods by athlete and date
+        // ---------------------------------------------------------
         private void cbAthleteName_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -69,15 +74,17 @@ namespace WpfWODCoach
                 {
                     selected = selectedItem.idAthlete;
                 }
-
                 selectedAthlete = selectedItem;
+                dateTime = (DateTime)dpWod.SelectedDate;                        // Set Datepicker date to datetime variable
 
-                dateTime = (DateTime)dpWod.SelectedDate;
                 if (dateTime == null)
                 {
-                    dateTime = DateTime.Today;
+                    dateTime = DateTime.Today;                                  // If Datepicker value is not selected set current date
                 }
-                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
+                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);      // Update datagrid
+                
+                if(selectedAthlete!=null) tbMessage.Text = $"Athlete {selectedAthlete.fullname} selected";                // Update bottom infomessage row
+
             }
             catch (Exception)
             {
@@ -85,12 +92,14 @@ namespace WpfWODCoach
             }
         }
 
+        // ---------------------------------------------------------
         // if DATE value changes
+        // ---------------------------------------------------------
         private void dpWod_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                cbAthleteName_SelectionChanged(sender, e);
+                cbAthleteName_SelectionChanged(sender, e);          // when Datepicker value is changed, Combobox selectionChanged is called
             }
             catch (Exception)
             {
@@ -98,14 +107,16 @@ namespace WpfWODCoach
             }
         }
 
+        // ---------------------------------------------------------
         // eventhandler for SAVE button
+        // ---------------------------------------------------------
         private void btnSaveWod_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int.TryParse(tbReps.Text, out int reps);
+                int.TryParse(tbReps.Text, out int reps);            // set values from textboxes to variables
                 int.TryParse(tbRounds.Text, out int rounds);
-                Athlete athlete1 = (Athlete)cbAthleteName.SelectedItem;
+                // Athlete athlete1 = (Athlete)cbAthleteName.SelectedItem;
 
                 if (dgCoachGrid.SelectedIndex < 0)        // if wod (movement) is not selected  => new wod
                 {
@@ -122,8 +133,8 @@ namespace WpfWODCoach
                 tbComment.Text = "";
                 starsLevel.Value = 0;
 
-                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
-                tbMessage.Text = $"Movement saved to athlete {selectedAthlete.fullname} on date {dateTime.ToString("dd.MM.yyyy")}";
+                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);  // update datagrid
+                tbMessage.Text = $"Movement saved to athlete {selectedAthlete.fullname} on date {dateTime.ToString("dd.MM.yyyy")}";  // Update bottom infomessage row
             }
             catch (Exception)
             {
@@ -131,23 +142,30 @@ namespace WpfWODCoach
             }
         }
 
-
+        // ---------------------------------------------------------
+        // Eventhandler for Delete button
+        // ---------------------------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ViewModel.RemoveWodFromAthlete(selectedWod.idWod, (int)selectedWod.idAthlete);
+                ViewModel.RemoveWodFromAthlete(selectedWod.idWod, (int)selectedWod.idAthlete);  // Method is called to remove relation between movement and athlete
 
                 if (selectedWod != null)
                 {
-                    selectedWod.idAthlete = 0;
-                    tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today.ToString("dd.MM.yyyy")}";
+                    selectedWod.idAthlete = 0;                                                  // if wod is not selected, set wods idAthlete to 0
+                    tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today.ToString("dd.MM.yyyy")}"; // Update bottom infomessage row
+                    cbMovementName.Text = "";                                                       // empty textboxes after delete
+                    tbReps.Text = "";
+                    tbRounds.Text = "";
+                    tbComment.Text = "";
                 }
-                cbMovementName.Text = "";       // empty textboxes after delete
+                cbMovementName.Text = "";                                                       // empty textboxes after delete
                 tbReps.Text = "";
                 tbRounds.Text = "";
                 tbComment.Text = "";
-                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
+                dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);      // update datagrid
+                tbMessage.Text = $"Select a movement to delete";                                // Update bottom infomessage row
             }
             catch (SystemException)
             {
@@ -160,14 +178,16 @@ namespace WpfWODCoach
             }
         }
 
+        // ---------------------------------------------------------
         // Updates values in textboxes when selection is changed
+        // ---------------------------------------------------------
         private void dgCoachGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                if (dgCoachGrid.SelectedIndex > -1)
+                if (dgCoachGrid.SelectedIndex > -1)                                     // if item is selected from datagrid
                 {
-                    selectedWod = dgCoachGrid.SelectedItem as Wod;                  // WOD selection
+                    selectedWod = dgCoachGrid.SelectedItem as Wod;                      // WOD selection
 
                     cbMovementName.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
                     tbComment.Text = Convert.ToString(selectedWod.comment);
@@ -176,8 +196,8 @@ namespace WpfWODCoach
                     starsLevel.Value = Convert.ToInt32(selectedWod.level);
 
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
-                    tbMessage.Text = message;                                       // Update bottom message row
-                    selectedAthlete = selectedWod.Athlete;                          // update selected Athlete
+                    tbMessage.Text = message;                                           // Update bottom infomessage row
+                    selectedAthlete = selectedWod.Athlete;                              // update selected Athlete
                 }
             }
             catch (Exception)

@@ -24,8 +24,8 @@ namespace WpfWODCoach
     {
 
         private Athlete selectedAthlete;
-        private Coach selectedCoach;
-        private int selectedCoachId = 0;
+        // private Coach selectedCoach;
+        // private int selectedCoachId = 0;
 
         public Admin()
         {
@@ -33,23 +33,71 @@ namespace WpfWODCoach
             InitAdminGrid();
         }
 
+        // ---------------------------------------------------------
+        // Initialize datagrid 
+        // ---------------------------------------------------------
         private void InitAdminGrid()
         {
             try
             {
                 var athletes = ViewModel.LoadAthletes();    // load athletes to variable
-                dgAdminGrid.DataContext = athletes ;   // set datagrid datacontext as athlete object
-
+                dgAdminGrid.DataContext = athletes;   // set datagrid datacontext as athlete object
                 cbCoachName.ItemsSource = ViewModel.LoadCoaches();
                 cbCoachName.DisplayMemberPath = "fullName";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
-        // Save button Eventhandler
+        // ---------------------------------------------------------
+        // If selection changes in admin datagrid
+        // ---------------------------------------------------------
+        private void dgAdminGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (dgAdminGrid.SelectedIndex > -1)
+                {
+                    selectedAthlete = dgAdminGrid.SelectedItem as Athlete;                  // Athlete selection
+                    tbAthlete.Text = Convert.ToString(selectedAthlete.fullname);            // update selectedAthlete properties to textboxea
+                    tbTel.Text = Convert.ToString(selectedAthlete.telNumber);
+                    cbCoachName.Text = Convert.ToString(selectedAthlete.Coach.fullName);
+                    tbCoachId.Text = Convert.ToString(selectedAthlete.Coach.idCoach);
+
+                    string message = $"Athlete {selectedAthlete.idAthlete} {selectedAthlete.fullname} selected";
+                    tbMessage.Text = message;                                               // Update bottom message row
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        // ---------------------------------------------------------
+        // Combobox Coach selection changed eventhandler
+        // ---------------------------------------------------------
+        private void cbCoachName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                Coach selectedItem = (Coach)cbCoachName.SelectedItem;
+                if (selectedItem != null)
+                {
+                    tbCoachId.Text = selectedItem.idCoach.ToString();       // change the coachId number in the textbox right side
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+        // ---------------------------------------------------------
+        // SAVE button Eventhandler
+        // ---------------------------------------------------------
         private void btnAddWod_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -74,82 +122,47 @@ namespace WpfWODCoach
 
                 tbAthlete.Text = "";                    // empty textboxes after create / modify
                 cbCoachName.Text = "";
-                tbCoachId.Text = "";
+                tbCoachId.Text = "99";
                 tbTel.Text = "";
 
-                dgAdminGrid.ItemsSource = ViewModel.LoadAthletes();     // update of datagrid
-                tbMessage.Text = $"Athlete {athlete.fullname} saved on date {DateTime.Today.ToString("dd.MM.yyyy")}";   // message to bottom inforow
+                dgAdminGrid.ItemsSource = ViewModel.LoadAthletes();                                                     // update of datagrid
+                tbMessage.Text = $"Athlete {athlete.fullname} saved on date {DateTime.Today.ToString("dd.MM.yyyy")}";   // update message to bottom inforow
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
         }
 
-        // If selection changes in admin datagrid
-        private void dgAdminGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                if (dgAdminGrid.SelectedIndex > -1)
-                {
-                    selectedAthlete = dgAdminGrid.SelectedItem as Athlete;                  // WOD selection
-                    tbAthlete.Text = Convert.ToString(selectedAthlete.fullname);            // update selectedWod properties to textboxea
-                    tbTel.Text = Convert.ToString(selectedAthlete.telNumber);
-                    cbCoachName.Text = Convert.ToString(selectedAthlete.Coach.fullName);
-                    tbCoachId.Text = Convert.ToString(selectedAthlete.Coach.idCoach);
-
-                    string message = $"Athlete {selectedAthlete.idAthlete} {selectedAthlete.fullname} selected";
-                    tbMessage.Text = message;                                               // Update bottom message row
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void cbCoachName_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            {
-                Coach selectedItem = (Coach)cbCoachName.SelectedItem;
-                
-                if (selectedItem != null)
-                {
-                    selectedCoachId = selectedItem.idCoach;
-                    tbCoachId.Text = selectedItem.idCoach.ToString();
-                }
-                selectedCoachId = 99;
-                dgAdminGrid.DataContext = ViewModel.LoadAthletes();
-            }
-
-            
-        }
-
+        // ---------------------------------------------------------
+        // DELETE button Eventhandler
+        // ---------------------------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (dgAdminGrid.SelectedIndex > -1)
                 {
-                    MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);
+                    MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure?", "Delete Confirmation", MessageBoxButton.YesNo);    // Create Confirmation box "Are you sure?"
 
-                    if (messageBoxResult == MessageBoxResult.Yes)
+                    if (messageBoxResult == MessageBoxResult.Yes)                                       // if answer is yes
                     {
                         ViewModel.DeleteAthlete(selectedAthlete);
-                        dgAdminGrid.DataContext = ViewModel.LoadAthletes();
-                        tbMessage.Text = $"Athlete {selectedAthlete.fullname} deleted";
+                        tbAthlete.Text = "";                                                            // empty textboxes after create / modify
+                        cbCoachName.Text = "";
+                        tbCoachId.Text = "99";
+                        tbTel.Text = "";
+                        tbMessage.Text = $"Athlete {selectedAthlete.fullname} deleted";                 // update message to bottom inforow
                     }
                 }
+                dgAdminGrid.ItemsSource = ViewModel.LoadAthletes();                                     // update of datagrid
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }
-    
+
 }

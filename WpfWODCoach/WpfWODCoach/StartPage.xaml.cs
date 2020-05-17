@@ -19,7 +19,9 @@ namespace WpfWODCoach
 {
     /// <summary>
     /// Interaction logic for StartPage.xaml
+    /// Start page only holds a picture
     /// </summary>
+   
     public partial class StartPage : Page
     {
         public StartPage()
