@@ -50,10 +50,8 @@ namespace WpfWODCoach
         {
             try
             {
-
                 if (selectedWod != null)
                 {
-                    selectedWod.level = 0;
                     ViewModel.DeleteWod(selectedWod.idWod);
                     tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today}";
                 }

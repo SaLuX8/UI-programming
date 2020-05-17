@@ -63,6 +63,7 @@
                         <DataGridTextColumn Header="Id" Binding="{Binding idWod}" MinWidth="40"/>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="350"/>
                         <DataGridTextColumn Header="Difficulty" Binding="{Binding level}" MinWidth="40"/>
+                        <DataGridTextColumn Header="Athlete using" Binding="{Binding idAthlete}" MinWidth="40"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

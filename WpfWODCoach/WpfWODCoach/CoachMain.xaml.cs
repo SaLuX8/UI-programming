@@ -26,12 +26,9 @@ namespace WpfWODCoach
     public partial class CoachMain : Page
     {
         private int selected = 0;
-
         private Athlete selectedAthlete;
         private DateTime dateTime;
         private Wod selectedWod;
-
-
 
         public CoachMain()
         {
@@ -39,25 +36,22 @@ namespace WpfWODCoach
             InitCoach();
         }
 
-
         private void InitCoach()
         {
             try
             {
-                var wods = ViewModel.LoadWods(); // ladataan datagridin datacontextiksi Wod olio
+                var wods = ViewModel.LoadWods();            // Load Wod objects as datagrid datacontext
                 dgCoachGrid.DataContext = wods;
 
-                var athletes = ViewModel.LoadAthletes();
+                var athletes = ViewModel.LoadAthletes();    // Load Athlete objects as ComboBox itemssource
                 cbAthleteName.ItemsSource = athletes;
-                cbAthleteName.DisplayMemberPath = "fullname";
+                cbAthleteName.DisplayMemberPath = "fullname";   // Show athlete fullname in combobox
 
-                var movements = ViewModel.LoadWods();
-                cbMovementName.ItemsSource = movements;
+                cbMovementName.ItemsSource = wods;          // set Movements ComboBox items from Wods object
                 cbMovementName.DisplayMemberPath = "movementName";
 
-                dpWod.SelectedDate = DateTime.Today;
+                dpWod.SelectedDate = DateTime.Today;        // Set DatePicker selected and displayed date as current date
                 dpWod.DisplayDate = DateTime.Today;
-
             }
             catch (Exception)
             {
@@ -70,7 +64,7 @@ namespace WpfWODCoach
         {
             try
             {
-                Athlete selectedItem = (Athlete)cbAthleteName.SelectedItem;
+                Athlete selectedItem = (Athlete)cbAthleteName.SelectedItem;     // Load Combobox selecteditem to Athlete object selectedItem
                 if (selectedItem != null)
                 {
                     selected = selectedItem.idAthlete;
@@ -94,13 +88,19 @@ namespace WpfWODCoach
         // if DATE value changes
         private void dpWod_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            cbAthleteName_SelectionChanged(sender, e);
+            try
+            {
+                cbAthleteName_SelectionChanged(sender, e);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         // eventhandler for SAVE button
         private void btnSaveWod_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 int.TryParse(tbReps.Text, out int reps);
@@ -109,11 +109,11 @@ namespace WpfWODCoach
 
                 if (dgCoachGrid.SelectedIndex < 0)        // if wod (movement) is not selected  => new wod
                 {
-                    ViewModel.AddWodToAthlete(0, athlete1.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
+                    ViewModel.AddWodToAthlete(0, selectedAthlete.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
                 }
                 else                            // if not new then selected wod (movement) is modified
                 {
-                    ViewModel.AddWodToAthlete(selectedWod.idWod, athlete1.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
+                    ViewModel.AddWodToAthlete(selectedWod.idWod, selectedAthlete.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
                 }
 
                 cbMovementName.Text = "";       // empty textboxes after create / modify
@@ -125,7 +125,7 @@ namespace WpfWODCoach
                 dgCoachGrid.ItemsSource = ViewModel.LoadWodsByAthlete(selected, dateTime);
                 tbMessage.Text = $"Movement saved to athlete {selectedAthlete.fullname} on date {dateTime.ToString("dd.MM.yyyy")}";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -141,7 +141,7 @@ namespace WpfWODCoach
                 if (selectedWod != null)
                 {
                     selectedWod.idAthlete = 0;
-                    // tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today}";
+                    tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today.ToString("dd.MM.yyyy")}";
                 }
                 cbMovementName.Text = "";       // empty textboxes after delete
                 tbReps.Text = "";
@@ -154,7 +154,7 @@ namespace WpfWODCoach
                 MessageBox.Show("No Movement selected or Movement is in use and can't be deleted","Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
@@ -180,7 +180,7 @@ namespace WpfWODCoach
                     selectedAthlete = selectedWod.Athlete;                          // update selected Athlete
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }

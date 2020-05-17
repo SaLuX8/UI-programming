@@ -78,7 +78,7 @@ namespace WpfWODCoach
         {
             using (var ctx = new WODCoachEntities())
             {
-                // if value sent to property wodId is 0 it means its new WOD
+                // if value sent in property wodId is 0 it means its new WOD
                 if (WodId == 0) // insert
                 {
                     var wod = new Wod();
@@ -92,7 +92,7 @@ namespace WpfWODCoach
                     wod.done = false;
                     ctx.Wod.Add(wod);
                 }
-                else
+                else                // if value sent with wodId is not 0 then search for Wod with Id
                 {
                     Wod wod = ctx.Wod.First(i => i.idWod == WodId);
                     wod.movementName = movement;
@@ -164,27 +164,20 @@ namespace WpfWODCoach
                     athlete1.telNumber = selectedAthlete.telNumber;
                     athlete1.Coach_idCoach = selectedAthlete.Coach_idCoach;
                     ctx.SaveChanges();
-
                 }
-
             }
         }
 
         // DELETE Athlete
-
         public static void DeleteAthlete(Athlete selectedAthlete)
         {
             using (var ctx = new WODCoachEntities())
             {
-
                 Athlete athlete1 = ctx.Athlete.First(i => i.idAthlete == selectedAthlete.idAthlete);
                 ctx.Athlete.Remove(athlete1);
                 ctx.SaveChanges();
             }
-
-
         }
-
 
 
         // ------------------------- WOD CRUD -----------------------------
@@ -210,9 +203,7 @@ namespace WpfWODCoach
                     wod.level = selectedWod.level;
                     wod.done = selectedWod.done;
                     ctx.SaveChanges();
-
                 }
-
             }
         }
         // Delete Wod (Movement) identified by wodId
@@ -221,11 +212,13 @@ namespace WpfWODCoach
             using (var ctx = new WODCoachEntities())
             {
                 Wod wod = ctx.Wod.First(i => i.idWod == wodId);
-                Rate rate = ctx.Rate.First(i => i.wod_id == wodId);
-                ctx.Rate.Remove(rate);
+                if(wod.Rate.Count>0)
+                {
+                    Rate rate = ctx.Rate.First(i => i.wod_id == wodId);
+                    ctx.Rate.Remove(rate);
+                }
                 ctx.Wod.Remove(wod);
                 ctx.SaveChanges();
-
             }
         }
 
