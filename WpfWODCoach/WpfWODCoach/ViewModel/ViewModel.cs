@@ -7,8 +7,10 @@ using System.Data.Entity;
 using System.Windows.Controls;
 using System.Windows;
 using System.Runtime.InteropServices.ComTypes;
+using WpfWODCoach.Model;
 
-namespace WpfWODCoach
+
+namespace WpfWODCoach.Viewmodel
 {
     public class ViewModel
     {
@@ -111,7 +113,7 @@ namespace WpfWODCoach
             }
             return wod;
         }
-   
+
         // ---------------------------------------------------------
         // ATHLETEMAIN / COACHMAIN / MOVEMENTMAIN : Loads list of movements (Wods)
         // ---------------------------------------------------------
@@ -180,28 +182,44 @@ namespace WpfWODCoach
         // ---------------------------------------------------------
         // COACHMAIN: Method adds WOD to athlete to certain date
         // ---------------------------------------------------------
-        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comment, int level )
+        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, Wod movement, int reps, int rounds, string comment, int level)
         {
             using (var ctx = new WODCoachEntities())
             {
-                // if value sent in property wodId is 0 it means its new WOD
+                // if value sent in property wodId is 0 it means nothing was selected from datagrid
                 if (WodId == 0) // insert
                 {
-                    var wod = new Wod();
-                    wod.movementName = movement;
-                    wod.date = dateTime;
-                    wod.idAthlete = athleteId;
-                    wod.repsCount = reps;
-                    wod.roundCount = rounds;
-                    wod.comment = comment;
-                    wod.level = level;
-                    wod.done = false;
-                    ctx.Wod.Add(wod);
+                    Wod wod;
+                    if(ctx.Wod.First(i => i.idWod == movement.idWod)!=null)     // Check if movement (wod) was selected from combobox
+                    {
+                        wod = ctx.Wod.First(i => i.idWod == movement.idWod);    // if yes, it is NOT new movement (wod)
+                        wod.movementName = movement.movementName;
+                        wod.date = dateTime;
+                        wod.idAthlete = athleteId;
+                        wod.repsCount = reps;
+                        wod.roundCount = rounds;
+                        wod.comment = comment;
+                        wod.level = level;
+                        wod.done = false;
+                    }
+                    else                                                        // if wod from combobox was not selected, it is a NEW movement (wod)
+                    {
+                        wod = new Wod();
+                        wod.movementName = movement.movementName;
+                        wod.date = dateTime;
+                        wod.idAthlete = athleteId;
+                        wod.repsCount = reps;
+                        wod.roundCount = rounds;
+                        wod.comment = comment;
+                        wod.level = level;
+                        wod.done = false;
+                        ctx.Wod.Add(wod);
+                    }
                 }
                 else                // if value sent with wodId is not 0 then search for Wod with Id
                 {
                     Wod wod = ctx.Wod.First(i => i.idWod == WodId);
-                    wod.movementName = movement;
+                    wod.movementName = movement.movementName;
                     wod.date = dateTime;
                     wod.idAthlete = athleteId;
                     wod.repsCount = reps;
@@ -248,7 +266,7 @@ namespace WpfWODCoach
             using (var ctx = new WODCoachEntities())
             {
                 Wod wod = ctx.Wod.First(i => i.idWod == wodId);
-                if(wod.Rate.Count>0)
+                if (wod.Rate.Count > 0)
                 {
                     Rate rate = ctx.Rate.First(i => i.wod_id == wodId);
                     ctx.Rate.Remove(rate);

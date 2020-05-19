@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity; // for load();
+using WpfWODCoach.Model;
+using WpfWODCoach.Viewmodel;
 
 
 namespace WpfWODCoach

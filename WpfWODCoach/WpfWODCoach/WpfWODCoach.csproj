@@ -97,62 +97,62 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Admin.xaml.cs">
+    <Compile Include="View\Admin.xaml.cs">
       <DependentUpon>Admin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Athlete.cs">
+    <Compile Include="Model\Athlete.cs">
       <DependentUpon>WodCoachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AthleteMain.xaml.cs">
+    <Compile Include="View\AthleteMain.xaml.cs">
       <DependentUpon>AthleteMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Coach.cs">
+    <Compile Include="Model\Coach.cs">
       <DependentUpon>WodCoachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CoachMain.xaml.cs">
+    <Compile Include="View\CoachMain.xaml.cs">
       <DependentUpon>CoachMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MovementMain.xaml.cs">
+    <Compile Include="View\MovementMain.xaml.cs">
       <DependentUpon>MovementMain.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StartPage.xaml.cs">
+    <Compile Include="View\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel.cs" />
-    <Compile Include="Rate.cs">
+    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="Model\Rate.cs">
       <DependentUpon>WodCoachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Wod.cs">
+    <Compile Include="Model\Wod.cs">
       <DependentUpon>WodCoachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="WodCoachModel.Context.cs">
+    <Compile Include="Model\WodCoachModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WodCoachModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="WodCoachModel.cs">
+    <Compile Include="Model\WodCoachModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WodCoachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="WodCoachModel.Designer.cs">
+    <Compile Include="Model\WodCoachModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WodCoachModel.edmx</DependentUpon>
     </Compile>
-    <Page Include="Admin.xaml">
+    <Page Include="View\Admin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AthleteMain.xaml">
+    <Page Include="View\AthleteMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="CoachMain.xaml">
+    <Page Include="View\CoachMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -160,15 +160,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MovementMain.xaml">
+    <Page Include="View\MovementMain.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartPage.xaml">
+    <Page Include="View\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -196,11 +196,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <EntityDeploy Include="WodCoachModel.edmx">
+    <EntityDeploy Include="Model\WodCoachModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WodCoachModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="WodCoachModel.edmx.diagram">
+    <None Include="Model\WodCoachModel.edmx.diagram">
       <DependentUpon>WodCoachModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
@@ -209,12 +209,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\bgImage3.png" />
-    <Content Include="WodCoachModel.Context.tt">
+    <Content Include="Model\WodCoachModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WodCoachModel.edmx</DependentUpon>
       <LastGenOutput>WodCoachModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="WodCoachModel.tt">
+    <Content Include="Model\WodCoachModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WodCoachModel.edmx</DependentUpon>
       <LastGenOutput>WodCoachModel.cs</LastGenOutput>
@@ -223,10 +223,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.1.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

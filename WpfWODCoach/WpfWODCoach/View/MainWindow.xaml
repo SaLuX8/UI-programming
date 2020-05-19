@@ -15,10 +15,9 @@
         mc:Ignorable="d"
         Title="WODCoach" Height="600" Width="1200" 
         Visibility="Visible" ResizeMode="CanMinimize" 
-        BorderBrush="DarkBlue" 
-        BorderThickness="3" 
-        WindowStyle="None"
-        
+        BorderBrush="Blue" 
+        BorderThickness="2" 
+        WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterScreen">
 
 

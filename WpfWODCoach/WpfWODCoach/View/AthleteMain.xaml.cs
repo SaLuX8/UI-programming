@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using System.Data;
 using System.Runtime.Remoting.Contexts;
+using WpfWODCoach.Model;
+using WpfWODCoach.Viewmodel;
 
 namespace WpfWODCoach
 {

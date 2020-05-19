@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfWODCoach
+namespace WpfWODCoach.Model
 {
     using System;
     using System.Data.Entity;

@@ -18,7 +18,7 @@
 
     <Grid >
         <Grid.Background>
-            <ImageBrush ImageSource="Images/bgImage3.png" Stretch="UniformToFill" Opacity="0.7"/>
+            <ImageBrush ImageSource="../Images/bgImage3.png" Stretch="UniformToFill" Opacity="0.7"/>
         </Grid.Background>
         <Label Content="WODCoach" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="90" 
                FontFamily="Magneto" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Margin="140,145,113,188">

@@ -7,33 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfWODCoach
+namespace WpfWODCoach.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Wod
+    public partial class Coach
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Wod()
+        public Coach()
         {
-            this.Rate = new HashSet<Rate>();
+            this.Athlete = new HashSet<Athlete>();
         }
     
-        public int idWod { get; set; }
-        public string movementName { get; set; }
-        public Nullable<int> repsCount { get; set; }
-        public Nullable<int> roundCount { get; set; }
-        public Nullable<float> level { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
-        public Nullable<bool> done { get; set; }
-        public string comment { get; set; }
+        public int idCoach { get; set; }
+        public string fullName { get; set; }
+        public string telNumber { get; set; }
         public System.DateTime created { get; set; }
         public System.DateTime updated { get; set; }
-        public Nullable<int> idAthlete { get; set; }
     
-        public virtual Athlete Athlete { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rate> Rate { get; set; }
+        public virtual ICollection<Athlete> Athlete { get; set; }
     }
 }

@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfWODCoach.Model;
+using WpfWODCoach.Viewmodel;
 
 namespace WpfWODCoach
 {
@@ -117,14 +119,15 @@ namespace WpfWODCoach
                 int.TryParse(tbReps.Text, out int reps);            // set values from textboxes to variables
                 int.TryParse(tbRounds.Text, out int rounds);
                 // Athlete athlete1 = (Athlete)cbAthleteName.SelectedItem;
+                
 
                 if (dgCoachGrid.SelectedIndex < 0)        // if wod (movement) is not selected  => new wod
                 {
-                    ViewModel.AddWodToAthlete(0, selectedAthlete.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
+                    ViewModel.AddWodToAthlete(0, selectedAthlete.idAthlete, dateTime, (Wod)cbMovementName.SelectedItem, reps, rounds, tbComment.Text, starsLevel.Value);
                 }
                 else                            // if not new then selected wod (movement) is modified
                 {
-                    ViewModel.AddWodToAthlete(selectedWod.idWod, selectedAthlete.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
+                    ViewModel.AddWodToAthlete(selectedWod.idWod, selectedAthlete.idAthlete, dateTime, (Wod)cbMovementName.SelectedItem, reps, rounds, tbComment.Text, starsLevel.Value);
                 }
 
                 cbMovementName.Text = "";       // empty textboxes after create / modify

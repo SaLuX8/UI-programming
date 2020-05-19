@@ -14,6 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignColors;
 using MaterialDesignThemes;
+using WpfWODCoach.Model;
+using WpfWODCoach.Viewmodel;
+
+
 
 namespace WpfWODCoach
 {
