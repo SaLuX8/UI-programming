@@ -30,94 +30,96 @@ namespace WpfWODCoach
 
         private void InitMovementGrid()
         {
-            var wods = ViewModel.LoadWods();    // ladataan wodit muuttujaan
-            dgMovementGrid.DataContext = wods;   // asetetaan datagridin datacontextiksi Wod olio
-           
-
-           
-            
-
-
-            /*var athletes = ViewModel.LoadAthletes();
-            cbAthleteName.ItemsSource = athletes;
-            cbAthleteName.DisplayMemberPath = "fullname";
-
-            dpWod.SelectedDate = DateTime.Today;
-            dpWod.DisplayDate = DateTime.Today;*/
+            try
+            {
+                var wods = ViewModel.LoadWods();                    // ladataan wodit muuttujaan
+                dgMovementGrid.DataContext = wods;                  // asetetaan datagridin datacontextiksi Wod olio
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No Movement selected or Movement is in use and can't be deleted");
+            }
         }
-
+        // ---------------------------------------------------------
+        // DELETE button Eventhandler
+        // ---------------------------------------------------------
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (selectedWod != null)
+                if (selectedWod != null)                                // if movement is selected
                 {
-                    ViewModel.DeleteWod(selectedWod.idWod);
-                    tbMessage.Text = $"Movement {selectedWod.movementName} Deleted on date {DateTime.Today}";
+                    ViewModel.DeleteWod(selectedWod.idWod);             // call method to delete movement (wod) from entity model and database
+                    tbMessage.Text = $"Movement {selectedWod.idWod} - {selectedWod.movementName} Deleted on date {DateTime.Today.ToString("dd.MM.yyyy")}"; // update message to bottom inforow
                 }
-                tbMovement.Text = "";       // empty textboxes after create / modify
+                tbMovement.Text = "";                                   // empty textboxes after create / modify
                 starsLevel.Value = 0;
-                dgMovementGrid.ItemsSource = ViewModel.LoadWods();
+                dgMovementGrid.ItemsSource = ViewModel.LoadWods();      // update datagrid
             }
             catch (SystemException) 
             {
                 MessageBox.Show("No Movement selected or Movement is in use and can't be deleted");
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
-
-
         }
 
+        // ---------------------------------------------------------
+        // SAVE button Eventhandler
+        // ---------------------------------------------------------
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (selectedWod == null)        // if wod (movement) is not selected  => new wod
+                if (selectedWod == null)                                        // if wod (movement) is not selected  => new wod
+                {
+                    selectedWod = new Wod();                                    // create new movement (wod)
+                    selectedWod.movementName = tbMovement.Text;
+                    selectedWod.level = starsLevel.Value;
+                    ViewModel.SaveWod(0, selectedWod);                          // call method to save movement to entity model and database
+                }
+                else                                                            // if not new then selected wod (movement) is modified
                 {
                     selectedWod.movementName = tbMovement.Text;
                     selectedWod.level = starsLevel.Value;
-                    ViewModel.SaveWod(0, selectedWod);
+                    ViewModel.SaveWod(selectedWod.idWod, selectedWod);          // call method to save movement to entity model and database
                 }
-                else                            // if not new then selected wod (movement) is modified
-                {
-                    selectedWod.movementName = tbMovement.Text;
-                    selectedWod.level = starsLevel.Value;
-                    ViewModel.SaveWod(selectedWod.idWod, selectedWod);
-                }
-
-                tbMovement.Text = "";       // empty textboxes after create / modify
+                tbMovement.Text = "";                                           // empty textboxes after create / modify
                 starsLevel.Value = 0;
 
-                dgMovementGrid.ItemsSource = ViewModel.LoadWods();
-                tbMessage.Text = $"Movement {selectedWod.movementName} saved on date {DateTime.Today}";
+                dgMovementGrid.ItemsSource = ViewModel.LoadWods();              // update datagrid
+                tbMessage.Text = $"Movement {selectedWod.movementName} saved on date {DateTime.Today.ToString("dd.MM.yyyy")}";  // update message to bottom inforow
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
+        // ---------------------------------------------------------
+        // Datagrid selection changed Eventhandler
+        // ---------------------------------------------------------
         private void dgAthleteGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                if (dgMovementGrid.SelectedIndex > -1 )
+                if (dgMovementGrid.SelectedIndex > -1 )                         // if something is seleceted from datagrid
                 {
-                    selectedWod = dgMovementGrid.SelectedItem as Wod;
-                    tbMovement.Text = selectedWod.movementName;
-                    tbMessage.Text = $"Movement {selectedWod.idWod} selected";
-                    starsLevel.Value = Convert.ToInt32(selectedWod.level);
+                    selectedWod = dgMovementGrid.SelectedItem as Wod;           // set datagrid selected item to selectedWod -object
+                    tbMovement.Text = selectedWod.movementName;                 // Movement textbox text update 
+                    tbMessage.Text = $"Movement {selectedWod.idWod} selected";  // update message to bottom inforow
+                    starsLevel.Value = Convert.ToInt32(selectedWod.level);      // update stars value update
                 }
-                dgMovementGrid.DataContext = ViewModel.LoadWods();
+                dgMovementGrid.DataContext = ViewModel.LoadWods();               // update datagrid
+
+                tbMessage.Text = $"Movement {selectedWod.idWod} - {selectedWod.movementName} selected";     // update message to bottom inforow
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
            
         }
