@@ -32,10 +32,7 @@
                 <StackPanel Orientation="Vertical" Height="120" Margin="0">
                     <TextBlock Text="Add a movement" Margin="20,8,0,8" FontSize="16" FontWeight="Bold"/>
                     <TextBox x:Name="tbMovement" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" TextAlignment="Left" Height="25" Margin="20,0,10,0"/>
-
-
                 </StackPanel>
-
 
                 <StackPanel Orientation="Vertical"  Height="80">
                     <TextBlock Text="Difficulty" FontSize="16" FontWeight="Bold" Margin="20,8,0,8"/>
@@ -67,12 +64,6 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-
-
-
         </DockPanel>
-
-
-
     </Grid>
 </Page>

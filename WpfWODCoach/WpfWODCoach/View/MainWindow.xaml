@@ -17,11 +17,12 @@
         Visibility="Visible" ResizeMode="CanMinimize" 
         BorderBrush="Blue" 
         BorderThickness="2" 
-        WindowStyle="SingleBorderWindow"
+        WindowStyle="None"
         WindowStartupLocation="CenterScreen">
 
 
     <Grid>
+        
         <StackPanel Orientation="Horizontal">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Height="40" Width="58" FontSize="16" x:Name="menu">
@@ -62,8 +63,8 @@
                 </MenuItem>
             </Menu>
             <Label x:Name="PageHeader" HorizontalAlignment="Center" HorizontalContentAlignment="Center" 
-                   FontSize="21" FontWeight="Bold" Content="" 
-                   Margin="0,0,0,562" Width="1092" FontStyle="Italic" 
+                   FontSize="22" FontWeight="Bold" Content="sfdsdfsdf" 
+                   Margin="0,0,0,527" Width="1092" FontStyle="Italic" 
                    ScrollViewer.VerticalScrollBarVisibility="Disabled" 
                    Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"/>
 
