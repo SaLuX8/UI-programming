@@ -58,7 +58,7 @@ namespace WpfWODCoach
                 starsLevel.Value = 0;
                 dgMovementGrid.ItemsSource = ViewModel.LoadWods();      // update datagrid
             }
-            catch (SystemException) 
+            catch (SystemException)
             {
                 MessageBox.Show("No Movement selected or Movement is in use and can't be deleted");
             }
@@ -108,13 +108,17 @@ namespace WpfWODCoach
         {
             try
             {
-                if (dgMovementGrid.SelectedIndex > -1 )                         // if something is seleceted from datagrid
+                if (dgMovementGrid.SelectedIndex > -1)                         // if something is seleceted from datagrid
                 {
                     selectedWod = dgMovementGrid.SelectedItem as Wod;           // set datagrid selected item to selectedWod -object
                     tbMovement.Text = selectedWod.movementName;                 // Movement textbox text update 
                     tbMessage.Text = $"Movement {selectedWod.idWod} selected";  // update message to bottom inforow
                     starsLevel.Value = Convert.ToInt32(selectedWod.level);      // update stars value update
+                    dgMovementGrid.UnselectAll();
                 }
+
+
+
                 dgMovementGrid.DataContext = ViewModel.LoadWods();               // update datagrid
 
                 tbMessage.Text = $"Movement {selectedWod.idWod} - {selectedWod.movementName} selected";     // update message to bottom inforow
@@ -123,7 +127,7 @@ namespace WpfWODCoach
             {
                 MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-           
+
         }
     }
 }

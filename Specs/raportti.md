@@ -22,12 +22,12 @@ Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Ve
 ### Toiminnalliset vaatimukset
 |Vaatimus| Kuvaus  | Toteutettu| 
 |:---|:----------|:---:|
-|Valmennettavien CRUD | Valmentaja voi lisätä, poistaa, listata ja päivittää valmennettavia| Kyllä |  
-|Treenien CRUD| Valmentaja voi lisätä, poistaa, listata ja päivittää treenejä valmennettaville | Kyllä|
+|Urheilijoiden CRUD | Valmentaja voi lisätä, poistaa, listata ja päivittää urheilijoita| Kyllä |  
+|Treenien CRUD| Valmentaja voi lisätä, poistaa, listata ja päivittää treenejä urheilijoille | Kyllä|
 |Kommenttien listaus treeneittäin| Valmentaja voi lukea valmennettavan kommentit treenistä | Ei |
 |Treenin tilan näyttäminen| Valmentaja voi nähdä onko treeni suoritettu | Kyllä |
-|Treenien listaus päivittäin ja henkilöittäin| Valmennettava voi listata eri päivien treenejä, merkitä tehdyksi ja kommentoida | Kyllä |
-|Treenin arvostelu| Valmennettava voi arvostella päivän treenin | Kyllä |
+|Treenien listaus päivittäin ja henkilöittäin| Urheilija voi listata eri päivien treenejä, merkitä tehdyksi ja kommentoida | Kyllä |
+|Treenin arvostelu| Urheilija voi arvostella päivän treenin | Kyllä |
 
 ### Toiminnalliset vaatimukset / ylitetty
 |Vaatimus| Kuvaus  | Toteutettu| 
@@ -56,9 +56,19 @@ Ohjelma tarvitsee toimiakseen ulkopuolista tietokantaa. WodCoach -ohjelma käytt
 Tietokannassa on valmiiksi harjoitustyön palautushetkellä dataa, eikä sitä tarvitse lisätä. Tietokannan [luontiskripti](../Scripts/WODCoach_Creation_Script.sql) ja [tietokantakaavio](../Scripts/WODCoach_DBModel.png)
 
 ## Tiedossa olevat ongelmat
-Olion "Rate" ominaisuuksien yhdistäminen samaan datagridiin yhdessä olion "Wod" ominaisuuksien kanssa ei onnistunut huolimatta pitkästä yrittämisestä. On todennäköistä, että toiminto tulisi tehdä jollain muulla tapaa. 
+Coach -sivulla ei voi nähdä urheilijan antamaa kommenttia tai arvosanaa treenille.
+* Olion "Rate" ominaisuuksien yhdistäminen samaan datagridiin yhdessä olion "Wod" ominaisuuksien kanssa ei onnistunut huolimatta pitkästä yrittämisestä. On todennäköistä, että toiminto tulisi tehdä jollain muulla tapaa. Tämän vuoksi toiminnallisuus, jossa valmentaja voi lukea urheilijoiden kommentit treenien yhteydestä ei toteutunut.  
+
+Sivun vaihtumisessa on viivettä. 
+* Tuntemattomasta syystä sivujen latautumisessa on viivettä. Todennäköisesti viive liittyy tietokantahakuun. 
+
+Datagridin valinnan poistaminen
+* Kun datagridiltä on valinnut objektin, valintaa ei saa pois muutoin kuin esimerkiksi tallentamalla saman objektin uudelleen. Tämä hoituisi uudella napilla. 
 
 ## Jatkokehitys
+Käyttäjäkohtainen näkymä puuttuu tällä hetkellä kokonaan. Alkuun tulisi luoda sisäänkirjautuminen, jonka jälkeen valmennettava voisi nähdä ainoastaan omat treeninsä, sama voisi päteä myös valmentajaan.  
+
+
 
 ## Opittua
 Oppimista tuli paljon. Entity Frameworkin käyttö on sinänsä helppoa tietokannan suuntaan kunhan sen vain ensin opettelee. Lähes kaikki, mikä liittyi entity framework:iin ja tiedon hakemiseen tietokannasta, täytyi selvittää erikseen. 

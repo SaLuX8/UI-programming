@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="00fab18feecf4a0296e3ef7473960cf2" Name="Diagram1">
-        <EntityTypeShape EntityType="WODCoachModel.Athlete" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WODCoachModel.Coach" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WODCoachModel.Rate" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="WODCoachModel.Wod" Width="1.5" PointX="5.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WODCoachModel.Athlete" Width="1.5" PointX="4.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WODCoachModel.Coach" Width="1.5" PointX="2" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WODCoachModel.Rate" Width="1.5" PointX="6.875" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WODCoachModel.Wod" Width="1.5" PointX="3.375" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="WODCoachModel.fk_Athlete" ManuallyRouted="false" />
         <AssociationConnector Association="WODCoachModel.fk_athlete_id" ManuallyRouted="false" />
         <AssociationConnector Association="WODCoachModel.fk_Coach" ManuallyRouted="false" />

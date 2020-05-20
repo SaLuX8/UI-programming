@@ -103,7 +103,7 @@ namespace WpfWODCoach
         }
 
         // ---------------------------------------------------------
-        // Athlete Datagrid  
+        // Athlete Datagrid selection changed
         // ---------------------------------------------------------
         private void dgAthleteGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -127,6 +127,7 @@ namespace WpfWODCoach
                         tbRatingComment.Text = rating.comment;                          // update textbox and slider with selected wod rating values
                         slider.Value = (float)rating.rating;
                     }
+                    dgAthleteGrid.UnselectAll();
                 }
             }
             catch (Exception)
