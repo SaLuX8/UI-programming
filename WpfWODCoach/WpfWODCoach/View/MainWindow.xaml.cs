@@ -28,7 +28,12 @@ namespace WpfWODCoach
         {
             InitializeComponent();
             Main.Content = new StartPage();
+            menuCoach.IsEnabled = UserSelection.show;
+            menuAdmin.IsEnabled = UserSelection.show;
+            menuMovements.IsEnabled = UserSelection.show;
         }
+        bool menuShow = false;
+        
       
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {

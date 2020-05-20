@@ -13,7 +13,14 @@
 
 ## Asennus
 
+Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Version 8.0.19), MySqlClient versiota 8.0.19 (Install-Package MySql.Data -Version 8.0.19 sekä MaterialDesignThemes -teemakirjastoa (Install-Package MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn. 
+
+WodCoach -ohjelma käyttää ulkopuolista, omalle palvelimelle luotua tietokantaa (ip: 134.122.91.6), jonka käyttäjätunnus sekä salasana on salattuna ohjelman sisällä app.config -tiedostossa.
+
 ## Tietoja ohjelmasta
+
+
+
 
 ## Kuvaruutukaappaukset
 
