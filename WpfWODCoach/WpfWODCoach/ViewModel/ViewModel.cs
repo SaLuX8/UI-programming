@@ -189,33 +189,17 @@ namespace WpfWODCoach.Viewmodel
                 // if value sent in property wodId is 0 it means nothing was selected from datagrid
                 if (WodId == 0) // insert
                 {
-                    Wod wod;
-                    if(ctx.Wod.First(i => i.idWod == movement.idWod)!=null)     // Check if movement (wod) was selected from combobox
-                    {
-                        //wod = new Wod();
-                        wod = ctx.Wod.First(i => i.idWod == movement.idWod);    // if yes, it is NOT new movement (wod)
-                        wod.movementName = movement.movementName;
-                        wod.date = dateTime;
-                        wod.idAthlete = athleteId;
-                        wod.repsCount = reps;
-                        wod.roundCount = rounds;
-                        wod.comment = comment;
-                        wod.level = level;
-                        wod.done = false;
-                    }
-                    else                                                        // if wod from combobox was not selected, it is a NEW movement (wod)
-                    {
-                        wod = new Wod();
-                        wod.movementName = movement.movementName;
-                        wod.date = dateTime;
-                        wod.idAthlete = athleteId;
-                        wod.repsCount = reps;
-                        wod.roundCount = rounds;
-                        wod.comment = comment;
-                        wod.level = level;
-                        wod.done = false;
-                        ctx.Wod.Add(wod);
-                    }
+                    Wod wod = new Wod();
+                    wod.movementName = movement.movementName;
+                    wod.date = dateTime;
+                    wod.idAthlete = athleteId;
+                    wod.repsCount = reps;
+                    wod.roundCount = rounds;
+                    wod.comment = comment;
+                    wod.level = level;
+                    wod.done = false;
+                    ctx.Wod.Add(wod);
+
                 }
                 else                // if value sent with wodId is not 0 then search for Wod with Id
                 {
