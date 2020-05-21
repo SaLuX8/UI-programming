@@ -13,11 +13,15 @@
 
 ## Asennus
 
-Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Version 8.0.19), MySqlClient versiota 8.0.19 (Install-Package MySql.Data -Version 8.0.19 sekä MaterialDesignThemes -teemakirjastoa (Install-Package MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn. 
+Ohjelma käyttää Entity Framework versiota 8.0.19 (MySql.Data.EntityFramework -Version 8.0.19), MySqlClient versiota 8.0.19 (MySql.Data -Version 8.0.19) sekä MaterialDesignThemes -teemakirjastoa (MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn, jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
 
 
 
 ## Tietoja ohjelmasta
+
+WodCoach -ohjelma on tarkoitettu käytettäväksi valmentajien ja urheilijoiden välisessä valmennussuhteessa. Ohjelmassa valmentaja voi luoda valmennettavalle päivittäisiä treenejä ja urheilija voi katsoa niitä tahollaan. 
+
+Treenin tehtyään urheilija voi merkitä liikkeet tehdyiksi sekä arvostella ja kommentoida niitä. Valmentaja näkee urheilijan tekemät treenit. Urheilijoita ja liikkeitä voidaan ylläpitää ohjelmassa. 
 
 ### Toiminnalliset vaatimukset
 |Vaatimus| Kuvaus  | Toteutettu| 
@@ -43,10 +47,6 @@ Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Ve
 |Lähdekoodin kommentointi | Lähdekoodin tulee olla kommentoitu| Kyllä |  
 
 
-
-
-
-
 ## Kuvaruutukaappaukset
 ![](../Images/Landing_page.PNG)  
 Coach valittuna ![](../Images/Menu.PNG)  
@@ -57,6 +57,8 @@ Athlete valittuna ![](../Images/Menu_athlete.PNG)
 ![](../Images/Admin.PNG)
 
 ## Käyttöohjeet
+
+
 
 ## Ohjelma tarvitsemat ja mukana tulevat resurssit
 Ohjelma tarvitsee toimiakseen ulkopuolista tietokantaa. WodCoach -ohjelma käyttää omalle palvelimelle luotua tietokantaa (ip: 134.122.91.6), jonka käyttäjätunnus sekä salasana on salattuna ohjelman sisällä app.config -tiedostossa. 
@@ -89,6 +91,23 @@ Oppimista tuli paljon **erityisesti Entity Frameworkin käytön osalta**. EF:ll�
 
 Harjoitustyössä oli tarkoitus harjoitella myös **Material Design -teemakirjaston käyttöä**. Tässä onnistuttiinkin ja teemakirjastoa käytettiin joissain ohjelman komponenteissa. Laajempi käyttö vaatii kuitenkin vielä harjoittelua ja ennen kaikkea teemakirjaston tuntemusta.  
 
+**Sidonnan** käyttö tuli tutuksi ja opin muun muassa kuinka sidonta tehdään useammastakin luokasta.
+
+### Haasteita
+
+Suurin yksittäinen haaste oli yrittää saada **kahden tietokantataulun tietoja yhteen datagridiin**, eikä siinä onnistuttukaan.
+
+Toinen haaste oli kokonaisuuden kannalta **Entity Framework, sen soveltaminen ja sovittaminen MVVM-malliin**. Lopulta soveltaminen onnistui melko hyvin ja sovittaminen MVVM-malliinkin mielestäni pääosin.
+
 
 ## Ehdotus arvosanaksi
+
+Oman käsitykseni mukaan harjoitustyössä käytettiin laajasti kurssilla käsiteltyjä aiheita. Käyttöliittymä on toimiva, joskin kyseinen ohjelma olisi parempi web-pohjaisessa käyttöliittymässä. Valinta oli kuitenkin tietoinen, koska tarkoitus oli jalostaa ideaa ja tehdä myöhemmin vastaaava web-ympäristössä. 
+
+Ohjelmiston tueksi luotiin oma tietokantapalvelin ja erityisesti entity framwork:iä tutkittiin laajasti. Samalla tutustuttiin myös ulkoiseen MaterialDesign -teemakirjastoon. 
+
+Ulkoasun suunnitteluakin tehtiin, tosin myöhemmin suunnitelmaa jouduttiin korjaamaan ja samalla tietenkin tuli oppia. Ulkoasun lopputulos on siedettävä, mutta parantamisen varaa on. 
+
+Kurssin aihealueen ja opittujen asioiden laajuuden sekä harjoitustyöhön käytetyn ajan huomioiden ehdotan arvosanaksi 4,5.
+
 
