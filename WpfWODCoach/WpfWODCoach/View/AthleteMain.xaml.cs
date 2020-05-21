@@ -127,7 +127,7 @@ namespace WpfWODCoach
                         tbRatingComment.Text = rating.comment;                          // update textbox and slider with selected wod rating values
                         slider.Value = (float)rating.rating;
                     }
-                    dgAthleteGrid.UnselectAll();
+                    
                 }
             }
             catch (Exception)

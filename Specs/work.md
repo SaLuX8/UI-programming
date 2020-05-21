@@ -19,6 +19,8 @@
 |20|16.5.2020| 2 | 64 | Poikkeustenkäsittelyä, rating toiminnon näyttö yritystä, kommentointia |
 |20|17.5.2020| 3 | 67 | Poikkeustenkäsittelyä, kommentointia ja yksi bugin korjaus|
 |21|19.5.2020| 4 |71 | MVVM-mallin viimeistely, app.config salaus, Coach bugi korjaus. Raportin alkua |
+|21|20.5.2020|4|75|Raporttia, uuden aloitussivun luonti roolin valintaa varten ja valikon muokkaus valinnan perusteella.|
+|21|21.5.2020| | |Raporttia,   |
 
 
 

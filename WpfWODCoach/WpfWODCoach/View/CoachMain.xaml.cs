@@ -201,7 +201,6 @@ namespace WpfWODCoach
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
                     tbMessage.Text = message;                                           // Update bottom infomessage row
                     selectedAthlete = selectedWod.Athlete;                              // update selected Athlete
-                    dgCoachGrid.UnselectAll();
                 }
             }
             catch (Exception)

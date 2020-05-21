@@ -70,7 +70,6 @@ namespace WpfWODCoach
 
                     string message = $"Athlete {selectedAthlete.idAthlete} {selectedAthlete.fullname} selected";
                     tbMessage.Text = message;                                               // Update bottom message row
-                    dgAdminGrid.UnselectAll();
                 }
             }
             catch (Exception)

@@ -114,10 +114,7 @@ namespace WpfWODCoach
                     tbMovement.Text = selectedWod.movementName;                 // Movement textbox text update 
                     tbMessage.Text = $"Movement {selectedWod.idWod} selected";  // update message to bottom inforow
                     starsLevel.Value = Convert.ToInt32(selectedWod.level);      // update stars value update
-                    dgMovementGrid.UnselectAll();
                 }
-
-
 
                 dgMovementGrid.DataContext = ViewModel.LoadWods();               // update datagrid
 

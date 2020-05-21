@@ -53,29 +53,35 @@ Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Ve
 
 ## Ohjelma tarvitsemat ja mukana tulevat resurssit
 Ohjelma tarvitsee toimiakseen ulkopuolista tietokantaa. WodCoach -ohjelma käyttää omalle palvelimelle luotua tietokantaa (ip: 134.122.91.6), jonka käyttäjätunnus sekä salasana on salattuna ohjelman sisällä app.config -tiedostossa. 
-Tietokannassa on valmiiksi harjoitustyön palautushetkellä dataa, eikä sitä tarvitse lisätä. Tietokannan [luontiskripti](../Scripts/WODCoach_Creation_Script.sql) ja [tietokantakaavio](../Scripts/WODCoach_DBModel.png)
+Tietokannassa on valmiiksi harjoitustyön palautushetkellä dataa, eikä sitä tarvitse lisätä. Tietokannan [luontiskripti](../Scripts/WODCoach_Creation_Script.sql). 
+
+### Tietokantakaavio
+![tietokantakaavio](../Scripts/WODCoach_DBModel.png)
 
 ## Tiedossa olevat ongelmat
-Coach -sivulla ei voi nähdä urheilijan antamaa kommenttia tai arvosanaa treenille.
+**Coach -sivulla ei voi nähdä urheilijan antamaa kommenttia tai arvosanaa treenille.**
 * Olion "Rate" ominaisuuksien yhdistäminen samaan datagridiin yhdessä olion "Wod" ominaisuuksien kanssa ei onnistunut huolimatta pitkästä yrittämisestä. On todennäköistä, että toiminto tulisi tehdä jollain muulla tapaa. Tämän vuoksi toiminnallisuus, jossa valmentaja voi lukea urheilijoiden kommentit treenien yhteydestä ei toteutunut.  
 
-Sivun vaihtumisessa on viivettä. 
+**Sivun vaihtumisessa on viivettä.** 
 * Tuntemattomasta syystä sivujen latautumisessa on viivettä. Todennäköisesti viive liittyy tietokantahakuun. 
 
-Datagridin valinnan poistaminen
+**Datagridin valinnan poistaminen**
 * Kun datagridiltä on valinnut objektin, valintaa ei saa pois muutoin kuin esimerkiksi tallentamalla saman objektin uudelleen. Tämä hoituisi uudella napilla. 
 
 ## Jatkokehitys
-Käyttäjäkohtainen näkymä puuttuu tällä hetkellä kokonaan. Alkuun tulisi luoda sisäänkirjautuminen, jonka jälkeen valmennettava voisi nähdä ainoastaan omat treeninsä, sama voisi päteä myös valmentajaan.  
+**Käyttäjäkohtainen näkymä** puuttuu tällä hetkellä. Alkuun tulisi luoda sisäänkirjautuminen, jonka jälkeen valmennettava voisi nähdä ainoastaan omat treeninsä, sama voisi päteä myös valmentajaan.  
 
 
 
-## Opittua
-Oppimista tuli paljon. Entity Frameworkin käyttö on sinänsä helppoa tietokannan suuntaan kunhan sen vain ensin opettelee. Lähes kaikki, mikä liittyi entity framework:iin ja tiedon hakemiseen tietokannasta, täytyi selvittää erikseen. 
 
-App.configin "connectionStrings" osion salaaminen onnistui lopulta helposti suoraan Visual Stuodion kehittäjän komentokehotteesta, kunhan vain ohje löytyi. Samalla opin, kuinka app.config toimii sovellusta buildatessa. 
+## Haasteet ja opittua
+Oppimista tuli paljon erityisesti Entity Frameworkin käytön osalta. EF:llä on sinänsä helppoa toimia tietokannan suuntaan kunhan sen vain ensin opettelee. Harjoitustyössä kuitenkin lähes kaikki, mikä liittyi entity framework:iin ja tiedon hakemiseen tietokannasta, täytyi selvittää erikseen.  
 
-MVVM -mallin käyttökin selvisi pääpiirteittäin lopulta. Aluksi EF tuotti tässäkin päänvaivaa, mutta lopulta luulen ymmärtäneeni kuinka tiedostot kansioihin tulee sijoittaa ja minkä tulee tehdä mitäkin. 
+App.configin "connectionStrings" osion salaaminen onnistui lopulta helposti suoraan Visual Stuodion kehittäjän komentokehotteesta, vaikka jälleen ohjeen etsimisessä kuluikin aikaa. Samalla opin, kuinka app.config toimii sovellusta buildatessa.  
+
+MVVM -mallin käyttökin selvisi pääpiirteittäin lopulta. Aluksi EF tuotti tässäkin päänvaivaa, mutta lopulta luulen ymmärtäneeni kuinka tiedostot kansioihin tulee sijoittaa ja minkä tulee tehdä mitäkin.  
+
+Harjoitustyössä oli tarkoitus harjoitella myös Material Design -teemakirjaston käyttöä. Tässä onnistuttiinkin ja teemakirjastoa käytettiin joissain ohjelman komponenteissa. Laajempi käyttö vaatii kuitenkin vielä harjoittelua ja ennen kaikkea teemakirjaston tuntemusta.  
 
 
 ## Tekijät
