@@ -48,8 +48,13 @@ Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Ve
 
 
 ## Kuvaruutukaappaukset
-
-
+![](../Images/Landing_page.PNG)  
+Coach valittuna ![](../Images/Menu.PNG)  
+Athlete valittuna ![](../Images/Menu_athlete.PNG)  
+![](../Images/Coach2.PNG)
+![](../Images/Athlete1.PNG)
+![](../Images/Movements.PNG)  
+![](../Images/Admin.PNG)
 
 ## Käyttöohjeet
 
