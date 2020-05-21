@@ -48,12 +48,50 @@ Treenin tehtyään urheilija voi merkitä liikkeet tehdyiksi sekä arvostella ja
 
 
 ## Kuvaruutukaappaukset
-![](../Images/Landing_page_e.PNG)  
+![](../Images/Landing_page_e.PNG) 
+    1. Urheilija valitsee tämän
+    2. Valmentajan valitsee tämän  
+  
+
 ![](../Images/Menu_e.PNG)  
-![](../Images/Coach_e.PNG)  
+    1. Valinnat, jotka ovat valittavissa, jos valitaan alussa Athlete
+    2. Valinnat, jotka ovat näkyvissä, mutta valittavissa ainoastaan, jos valitaan Coach.  
+
+
+![](../Images/Coach_e.PNG) 
+    1. ComboBox urheilijan valitsemiseksi
+    2. DatePicker päivämäärän valitsemiseksi
+    3. Combobox valmiin liikkeen valitsemiseksi, tähän voi kirjoittaa myös oman
+    4. Toisto- ja kierroslukumäärät
+    5. Valmentajan lisäinfo liikkettä varten
+    6. Valmentajan arvio liikkeen vaikeudesta. Tämä päivittyy, mikäli valitaan aiempi liike comboboxista.
+    7. Liikeen poistaminen ja tallennus
+    8. Datagrid, jossa tallennetut liikkeet näkyvät. Klikkauksella datagridissä textboxien tiedot päivittyvät ja liikkeitä voi päivittää. 
+
+  
 ![](../Images/Athlete_e.PNG)  
+    1. Urheilijan ja päivämäärän valinnat samoin kuin Coach -sivulla.
+    2. Label -teksti, joka päivittyy, jos datagridiltä valitaan jokin liike.
+    3. Urheilija voi kommentoida yksittäistä liikettä ja 
+    4. antaa arvosanan liikkeelle. 
+    5. Rate -napilla arvostelu tallentuu
+    6. Datagridille tulostuu urheilijan kyseisen päivän treenit, jotka valmentaja on hänelle luonut.
+    7. Urheilija voi merkitä liikkeen suoritetuksi checkboxilla
+
+
 ![](../Images/Movements_e.PNG)  
+    1. Textbox -teksti, joka päivittyy, jos datagridiltä valitaan jokin liike., jonka jälkeen liikettä voi muokata. Tähän voi kirjoittaa myös uuden liikkeen ja tallentaa.
+    2. Liikeelle voi antaa vaikeustason
+    3. Poisto ja tallennusnapit
+    4. Datagridille tulostuvat kaikki liikkeet. Mikäli kahdella urheilijalla on saman niminen liike, tulostuu liike kahdesti. 
+
+
 ![](../Images/Admin_e.PNG)  
+    1. Textboxit, joihin voi syöttää uuden urheilijan tiedot. Kentät päivittyvät datagridistä klikatun urheilijan tiedoilla, jonka jälkeen niitä voi muokata. 
+    2. Urheilijalle valitaan valmentaja, jolloin valmentajanumero päivittyy kentä oikealla puolella olevaan textboxiin. 
+    3. Datagridiin tulostuu urheilijoiden tiedot
+
+
 
 ## Käyttöohjeet
 
