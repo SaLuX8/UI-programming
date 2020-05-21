@@ -182,7 +182,7 @@ namespace WpfWODCoach.Viewmodel
         // ---------------------------------------------------------
         // COACHMAIN: Method adds WOD to athlete to certain date
         // ---------------------------------------------------------
-        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, Wod movement, int reps, int rounds, string comment, int level)
+        public static void AddWodToAthlete(int WodId, int athleteId, DateTime dateTime, string movement, int reps, int rounds, string comment, int level)
         {
             using (var ctx = new WODCoachEntities())
             {
@@ -190,7 +190,7 @@ namespace WpfWODCoach.Viewmodel
                 if (WodId == 0) // insert
                 {
                     Wod wod = new Wod();
-                    wod.movementName = movement.movementName;
+                    wod.movementName = movement;
                     wod.date = dateTime;
                     wod.idAthlete = athleteId;
                     wod.repsCount = reps;
@@ -204,7 +204,7 @@ namespace WpfWODCoach.Viewmodel
                 else                // if value sent with wodId is not 0 then search for Wod with Id
                 {
                     Wod wod = ctx.Wod.First(i => i.idWod == WodId);
-                    wod.movementName = movement.movementName;
+                    wod.movementName = movement;
                     wod.date = dateTime;
                     wod.idAthlete = athleteId;
                     wod.repsCount = reps;

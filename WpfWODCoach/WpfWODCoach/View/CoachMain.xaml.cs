@@ -75,9 +75,12 @@ namespace WpfWODCoach
                 if (selectedItem != null)
                 {
                     selected = selectedItem.idAthlete;
+                   
                 }
                 selectedAthlete = selectedItem;
                 dateTime = (DateTime)dpWod.SelectedDate;                        // Set Datepicker date to datetime variable
+
+                
 
                 if (dateTime == null)
                 {
@@ -123,11 +126,11 @@ namespace WpfWODCoach
 
                 if (dgCoachGrid.SelectedIndex < 0)        // if wod (movement) is not selected  => new wod
                 {
-                    ViewModel.AddWodToAthlete(0, selectedAthlete.idAthlete, dateTime, (Wod)cbMovementName.SelectedItem, reps, rounds, tbComment.Text, starsLevel.Value);
+                    ViewModel.AddWodToAthlete(0, selectedAthlete.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
                 }
                 else                            // if not new then selected wod (movement) is modified
                 {
-                    ViewModel.AddWodToAthlete(selectedWod.idWod, selectedAthlete.idAthlete, dateTime, (Wod)cbMovementName.SelectedItem, reps, rounds, tbComment.Text, starsLevel.Value);
+                    ViewModel.AddWodToAthlete(selectedWod.idWod, selectedAthlete.idAthlete, dateTime, cbMovementName.Text, reps, rounds, tbComment.Text, starsLevel.Value);
                 }
 
                 cbMovementName.Text = "";       // empty textboxes after create / modify
@@ -191,7 +194,6 @@ namespace WpfWODCoach
                 if (dgCoachGrid.SelectedIndex > -1)                                     // if item is selected from datagrid
                 {
                     selectedWod = dgCoachGrid.SelectedItem as Wod;                      // WOD selection
-
                     cbMovementName.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
                     tbComment.Text = Convert.ToString(selectedWod.comment);
                     tbReps.Text = Convert.ToString(selectedWod.repsCount);
@@ -207,6 +209,23 @@ namespace WpfWODCoach
             {
                 MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        // ---------------------------------------------------------
+        // Updates difficulty star value when Movement selection is changed
+        // ---------------------------------------------------------
+        private void cbMovementName_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                selectedWod = (Wod)cbMovementName.SelectedItem;
+                starsLevel.Value = (int)selectedWod.level;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            
         }
     }
 }

@@ -37,7 +37,7 @@
                               ItemsSource="{Binding SelectedItem}" 
                               DisplayMemberPath="movementName" 
                               Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
-                              IsEditable="True"/>
+                              IsEditable="True" SelectionChanged="cbMovementName_SelectionChanged"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Height="40" Margin="0">
