@@ -48,13 +48,12 @@ Treenin tehtyään urheilija voi merkitä liikkeet tehdyiksi sekä arvostella ja
 
 
 ## Kuvaruutukaappaukset
-![](../Images/Landing_page.PNG)  
-Coach valittuna ![](../Images/Menu.PNG)  
-Athlete valittuna ![](../Images/Menu_athlete.PNG)  
-![](../Images/Coach2.PNG)
-![](../Images/Athlete1.PNG)
-![](../Images/Movements.PNG)  
-![](../Images/Admin.PNG)
+![](../Images/Landing_page_e.PNG)  
+![](../Images/Menu_e.PNG)  
+![](../Images/Coach_e.PNG)  
+![](../Images/Athlete_e.PNG)  
+![](../Images/Movements_e.PNG)  
+![](../Images/Admin_e.PNG)  
 
 ## Käyttöohjeet
 
