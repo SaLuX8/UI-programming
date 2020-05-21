@@ -49,6 +49,8 @@ Entity Framework versiota 8.0.19 (Install-Package MySql.Data.EntityFramework -Ve
 
 ## Kuvaruutukaappaukset
 
+
+
 ## Käyttöohjeet
 
 ## Ohjelma tarvitsemat ja mukana tulevat resurssit
@@ -73,17 +75,15 @@ Tietokannassa on valmiiksi harjoitustyön palautushetkellä dataa, eikä sitä t
 
 
 
-
 ## Haasteet ja opittua
-Oppimista tuli paljon erityisesti Entity Frameworkin käytön osalta. EF:llä on sinänsä helppoa toimia tietokannan suuntaan kunhan sen vain ensin opettelee. Harjoitustyössä kuitenkin lähes kaikki, mikä liittyi entity framework:iin ja tiedon hakemiseen tietokannasta, täytyi selvittää erikseen.  
+Oppimista tuli paljon **erityisesti Entity Frameworkin käytön osalta**. EF:llä on sinänsä helppoa toimia tietokannan suuntaan kunhan sen vain ensin opettelee. Harjoitustyössä kuitenkin lähes kaikki, mikä liittyi entity framework:iin ja tiedon hakemiseen tietokannasta, täytyi selvittää erikseen.  
 
-App.configin "connectionStrings" osion salaaminen onnistui lopulta helposti suoraan Visual Stuodion kehittäjän komentokehotteesta, vaikka jälleen ohjeen etsimisessä kuluikin aikaa. Samalla opin, kuinka app.config toimii sovellusta buildatessa.  
+**App.configin "connectionStrings" osion salaaminen** onnistui lopulta helposti suoraan Visual Stuodion kehittäjän komentokehotteesta, vaikka jälleen ohjeen etsimisessä kuluikin aikaa. Samalla opin, kuinka app.config toimii sovellusta buildatessa.  
 
-MVVM -mallin käyttökin selvisi pääpiirteittäin lopulta. Aluksi EF tuotti tässäkin päänvaivaa, mutta lopulta luulen ymmärtäneeni kuinka tiedostot kansioihin tulee sijoittaa ja minkä tulee tehdä mitäkin.  
+**MVVM -mallin käyttökin** selvisi pääpiirteittäin lopulta. Aluksi EF tuotti tässäkin päänvaivaa, mutta lopulta luulen ymmärtäneeni kuinka tiedostot kansioihin tulee sijoittaa ja minkä tulee tehdä mitäkin.  
 
-Harjoitustyössä oli tarkoitus harjoitella myös Material Design -teemakirjaston käyttöä. Tässä onnistuttiinkin ja teemakirjastoa käytettiin joissain ohjelman komponenteissa. Laajempi käyttö vaatii kuitenkin vielä harjoittelua ja ennen kaikkea teemakirjaston tuntemusta.  
+Harjoitustyössä oli tarkoitus harjoitella myös **Material Design -teemakirjaston käyttöä**. Tässä onnistuttiinkin ja teemakirjastoa käytettiin joissain ohjelman komponenteissa. Laajempi käyttö vaatii kuitenkin vielä harjoittelua ja ennen kaikkea teemakirjaston tuntemusta.  
 
-
-## Tekijät
 
 ## Ehdotus arvosanaksi
+

@@ -112,7 +112,7 @@ namespace WpfWODCoach
                 if (dgAthleteGrid.SelectedIndex > -1)                                   // selected index is in datagrid
                 {
                     selectedWod = dgAthleteGrid.SelectedItem as Wod;                    // casting selected item from datagrid as Wod
-                    string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
+                    string message = $"Movement {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
                     tbMessage.Text = message;                                           // Update bottom message row
                     tbRatedMovement.Text = selectedWod.movementName;
 
@@ -123,7 +123,7 @@ namespace WpfWODCoach
                     }
                     else
                     {
-                        rating = selectedWod.Rate.FirstOrDefault();                     // Rating that is made for selected Wod
+                        rating = selectedWod.Rate.FirstOrDefault(i=>i.athlete_id==selectedWod.idAthlete);                     // Rating that is made for selected Wod
                         tbRatingComment.Text = rating.comment;                          // update textbox and slider with selected wod rating values
                         slider.Value = (float)rating.rating;
                     }

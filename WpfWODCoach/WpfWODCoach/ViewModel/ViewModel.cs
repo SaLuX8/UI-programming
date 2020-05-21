@@ -192,6 +192,7 @@ namespace WpfWODCoach.Viewmodel
                     Wod wod;
                     if(ctx.Wod.First(i => i.idWod == movement.idWod)!=null)     // Check if movement (wod) was selected from combobox
                     {
+                        //wod = new Wod();
                         wod = ctx.Wod.First(i => i.idWod == movement.idWod);    // if yes, it is NOT new movement (wod)
                         wod.movementName = movement.movementName;
                         wod.date = dateTime;
