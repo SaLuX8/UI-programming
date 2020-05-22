@@ -1,31 +1,28 @@
 # Harjoitustyön raportti
 
+[Harjoitustyön raportti](#harjoitustyönraportti)
 [Asennus](#asennus)
-[Tietoja ohjelmasta](#tietoja-ohjelmasta)
-[Kuvaruutukaappaukset](#kuvaruutukaappaukset)
-[Käyttöohjeet](#käyttöohjeet)
-[Ohjelma tarvitsemat ja mukana tulevat resurssit](#ohjelma-tarvitsemat-ja-mukana-tulevat-resurssit)
-[Tiedossa olevat ongelmat](#tiedossa-olevat-ongelmat)
-[Jatkokehitys](#jatkokehitys)
-[Opittua](#opittua)
-[Tekijät](#tekijät)
-[Ehdotus arvosanaksi](#ehdotus-arvosanaksi)
+[Kuvaruutukaappaukset ja toimintaperiaate](#kuvaruutukaappauksetjatoimintaperiaate)  
+[Ohjelma tarvitsemat ja mukana tulevat resurssit](#ohjelmatarvitsematjamukanatulevatresurssit)  
+[Tiedossa olevat ongelmat](#tiedossaolevatongelmat)
+[Jatkokehitys](#jatkokehitys)  
+[Haasteet ja opittua](#haasteetjaopittua) 
+[Ehdotus arvosanaksi](#ehdotusarvosanaksi)
 
 ## Asennus
 
-Ohjelma käyttää Entity Framework versiota 8.0.19 (MySql.Data.EntityFramework -Version 8.0.19), MySqlClient versiota 8.0.19 (MySql.Data -Version 8.0.19) sekä MaterialDesignThemes -teemakirjastoa (MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn, jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
-
+Ohjelma käyttää Entity Framework versiota 8.0.19 (MySql.Data.EntityFramework Version 8.0.19), MySqlClient versiota 8.0.19 (MySql.Data Version 8.0.19) sekä MaterialDesignThemes teemakirjastoa (MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn, jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
 
 
 ## Tietoja ohjelmasta
 
-WodCoach -ohjelma on tarkoitettu käytettäväksi valmentajien ja urheilijoiden välisessä valmennussuhteessa. Ohjelmassa valmentaja voi luoda valmennettavalle päivittäisiä treenejä ja urheilija voi katsoa niitä tahollaan. 
+WodCoach ohjelma on tarkoitettu käytettäväksi valmentajien ja urheilijoiden välisessä valmennussuhteessa. Ohjelmassa valmentaja voi luoda valmennettavalle päivittäisiä treenejä ja urheilija voi katsoa niitä tahollaan. 
 
 Treenin tehtyään urheilija voi merkitä liikkeet tehdyiksi sekä arvostella ja kommentoida niitä. Valmentaja näkee urheilijan tekemät treenit. Urheilijoita ja liikkeitä voidaan ylläpitää ohjelmassa. 
 
 ### Toiminnalliset vaatimukset
 |Vaatimus| Kuvaus  | Toteutettu| 
-|:---|:----------|:---:|
+|:--|:--|:----:|
 |Urheilijoiden CRUD | Valmentaja voi lisätä, poistaa, listata ja päivittää urheilijoita| Kyllä |  
 |Treenien CRUD| Valmentaja voi lisätä, poistaa, listata ja päivittää treenejä urheilijoille | Kyllä|
 |Kommenttien listaus treeneittäin| Valmentaja voi lukea valmennettavan kommentit treenistä | Ei |
@@ -35,14 +32,14 @@ Treenin tehtyään urheilija voi merkitä liikkeet tehdyiksi sekä arvostella ja
 
 ### Toiminnalliset vaatimukset / ylitetty
 |Vaatimus| Kuvaus  | Toteutettu| 
-|:---|:----------|:---:|
+|:--|:--|:--:|
 |Treenin lisäys | Valmentaja voi määrittää yksittäiselle liikkeelle vaikeustason| Kyllä |
 
-### Ei-toiminnalliset vaatimukset
+### Eitoiminnalliset vaatimukset
 |Vaatimus| Kuvaus  | Toteutettu| 
-|:---|:----------|:---:|
+|:--|:--|:--:|
 |Poikkeusten käsittely | Poikkeukset ja virheet tulee olla käsitelty, jotta ohjelma ei kaadu| Kyllä |  
-|SQL-injektio estetty | SQL-injektio täytyy olla estetty| Kyllä, Entity Framework | 
+|SQLinjektio estetty | SQLinjektio täytyy olla estetty| Kyllä, Entity Framework | 
 |Salasanojen kryptaus | Salasanojen tulee olla kryptattu| Kyllä |
 |Lähdekoodin kommentointi | Lähdekoodin tulee olla kommentoitu| Kyllä |  
 
@@ -63,38 +60,40 @@ Treenin tehtyään urheilija voi merkitä liikkeet tehdyiksi sekä arvostella ja
     1. ComboBox urheilijan valitsemiseksi
     2. DatePicker päivämäärän valitsemiseksi
     3. Combobox valmiin liikkeen valitsemiseksi, tähän voi kirjoittaa myös oman
-    4. Toisto- ja kierroslukumäärät
+    4. Toisto ja kierroslukumäärät
     5. Valmentajan lisäinfo liikkettä varten
     6. Valmentajan arvio liikkeen vaikeudesta. Tämä päivittyy, mikäli valitaan aiempi liike comboboxista.
     7. Liikeen poistaminen ja tallennus
     8. Datagrid, jossa tallennetut liikkeet näkyvät. Klikkauksella datagridissä textboxien tiedot päivittyvät ja liikkeitä voi päivittää. 
+    9. Jokaisen sivun alalaidassa on inforuutu, jossa näytetään olennaista tietoa tapahtumista.
 
 ### Urheilijan sivu
 ![](../Images/Athlete_e.PNG)  
-    1. Urheilijan ja päivämäärän valinnat samoin kuin Coach -sivulla.
-    2. Label -teksti, joka päivittyy, jos datagridiltä valitaan jokin liike.
+    1. Urheilijan ja päivämäärän valinnat samoin kuin Coach sivulla.
+    2. Label teksti, joka päivittyy, jos datagridiltä valitaan jokin liike.
     3. Urheilija voi kommentoida yksittäistä liikettä ja 
     4. antaa arvosanan liikkeelle. 
-    5. Rate -napilla arvostelu tallentuu
+    5. Rate napilla arvostelu tallentuu
     6. Datagridille tulostuu urheilijan kyseisen päivän treenit, jotka valmentaja on hänelle luonut.
     7. Urheilija voi merkitä liikkeen suoritetuksi checkboxilla
 
-### Liikkeiden hallinta -sivu
+### Liikkeiden hallinta sivu
 ![](../Images/Movements_e.PNG)  
-    1. Textbox -teksti, joka päivittyy, jos datagridiltä valitaan jokin liike., jonka jälkeen liikettä voi muokata. Tähän voi kirjoittaa myös uuden liikkeen ja tallentaa.
+    1. Textbox teksti, joka päivittyy, jos datagridiltä valitaan jokin liike., jonka jälkeen liikettä voi muokata. Tähän voi kirjoittaa myös uuden liikkeen ja tallentaa.
     2. Liikeelle voi antaa vaikeustason
     3. Poisto ja tallennusnapit
     4. Datagridille tulostuvat kaikki liikkeet. Mikäli kahdella urheilijalla on saman niminen liike, tulostuu liike kahdesti. 
 
-### Urheilijoiden hallinta -sivu
+### Urheilijoiden hallinta sivu
 ![](../Images/Admin_e.PNG)  
     1. Textboxit, joihin voi syöttää uuden urheilijan tiedot. Kentät päivittyvät datagridistä klikatun urheilijan tiedoilla, jonka jälkeen niitä voi muokata. 
     2. Urheilijalle valitaan valmentaja, jolloin valmentajanumero päivittyy kentä oikealla puolella olevaan textboxiin. 
     3. Datagridiin tulostuu urheilijoiden tiedot
+    4. Urheilijan poistaminen vaatii vahvistuksen erillisessä ikkunassa (ei kuvassa)
 
 
 ## Ohjelma tarvitsemat ja mukana tulevat resurssit
-Ohjelma tarvitsee toimiakseen ulkopuolista tietokantaa. WodCoach -ohjelma käyttää omalle palvelimelle luotua tietokantaa (ip: 134.122.91.6), jonka käyttäjätunnus sekä salasana on salattuna ohjelman sisällä app.config -tiedostossa. 
+Ohjelma tarvitsee toimiakseen ulkopuolista tietokantaa. WodCoach ohjelma käyttää omalle palvelimelle luotua tietokantaa (ip: 134.122.91.6), jonka käyttäjätunnus sekä salasana on salattuna ohjelman sisällä app.config tiedostossa. 
 Tietokannassa on valmiiksi harjoitustyön palautushetkellä dataa, eikä sitä tarvitse lisätä. Tietokannan [luontiskripti](../Scripts/WODCoach_Creation_Script.sql). 
 Alussa käytetty taustakuva kulkee ohjelman mukana. 
 
@@ -102,7 +101,7 @@ Alussa käytetty taustakuva kulkee ohjelman mukana.
 ![tietokantakaavio](../Scripts/WODCoach_DBModel.png)
 
 ## Tiedossa olevat ongelmat
-**Coach -sivulla ei voi nähdä urheilijan antamaa kommenttia tai arvosanaa treenille.**
+**Coach sivulla ei voi nähdä urheilijan antamaa kommenttia tai arvosanaa treenille.**
 * Olion "Rate" ominaisuuksien yhdistäminen samaan datagridiin yhdessä olion "Wod" ominaisuuksien kanssa ei onnistunut huolimatta pitkästä yrittämisestä. On todennäköistä, että toiminto tulisi tehdä jollain muulla tapaa. Tämän vuoksi toiminnallisuus, jossa valmentaja voi lukea urheilijoiden kommentit treenien yhteydestä ei toteutunut.  
 
 **Sivun vaihtumisessa on viivettä.** 
@@ -124,9 +123,9 @@ Oppimista tuli paljon **erityisesti Entity Frameworkin käytön osalta**. EF:ll�
 
 **App.configin "connectionStrings" osion salaaminen** onnistui lopulta helposti suoraan Visual Stuodion kehittäjän komentokehotteesta, vaikka jälleen ohjeen etsimisessä kuluikin aikaa. Samalla opin, kuinka app.config toimii sovellusta buildatessa.  
 
-**MVVM -mallin käyttökin** selvisi pääpiirteittäin lopulta. Aluksi EF tuotti tässäkin päänvaivaa, mutta lopulta luulen ymmärtäneeni kuinka tiedostot kansioihin tulee sijoittaa ja minkä tulee tehdä mitäkin.  
+**MVVM mallin käyttökin** selvisi pääpiirteittäin lopulta. Aluksi EF tuotti tässäkin päänvaivaa, mutta lopulta luulen ymmärtäneeni kuinka tiedostot kansioihin tulee sijoittaa ja minkä tulee tehdä mitäkin.  
 
-Harjoitustyössä oli tarkoitus harjoitella myös **Material Design -teemakirjaston käyttöä**. Tässä onnistuttiinkin ja teemakirjastoa käytettiin joissain ohjelman komponenteissa. Laajempi käyttö vaatii kuitenkin vielä harjoittelua ja ennen kaikkea teemakirjaston tuntemusta.  
+Harjoitustyössä oli tarkoitus harjoitella myös **Material Design teemakirjaston käyttöä**. Tässä onnistuttiinkin ja teemakirjastoa käytettiin joissain ohjelman komponenteissa. Laajempi käyttö vaatii kuitenkin vielä harjoittelua ja ennen kaikkea teemakirjaston tuntemusta.  
 
 **Sidonnan** käyttö tuli tutuksi ja opin muun muassa kuinka sidonta tehdään useammastakin luokasta.
 
@@ -134,14 +133,14 @@ Harjoitustyössä oli tarkoitus harjoitella myös **Material Design -teemakirjas
 
 Suurin yksittäinen haaste oli yrittää saada **kahden tietokantataulun tietoja yhteen datagridiin**, eikä siinä onnistuttukaan.
 
-Toinen haaste oli kokonaisuuden kannalta **Entity Framework, sen soveltaminen ja sovittaminen MVVM-malliin**. Lopulta soveltaminen onnistui melko hyvin ja sovittaminen MVVM-malliinkin mielestäni pääosin.
+Toinen haaste oli kokonaisuuden kannalta **Entity Framework, sen soveltaminen ja sovittaminen MVVMmalliin**. Lopulta soveltaminen onnistui melko hyvin ja sovittaminen MVVMmalliinkin mielestäni pääosin.
 
 
 ## Ehdotus arvosanaksi
 
-Oman käsitykseni mukaan harjoitustyössä käytettiin laajasti kurssilla käsiteltyjä aiheita. Käyttöliittymä on toimiva, joskin kyseinen ohjelma olisi parempi web-pohjaisessa käyttöliittymässä. Valinta oli kuitenkin tietoinen, koska tarkoitus oli jalostaa ideaa ja tehdä myöhemmin vastaaava web-ympäristössä. 
+Oman käsitykseni mukaan harjoitustyössä käytettiin laajasti kurssilla käsiteltyjä aiheita. Käyttöliittymä on toimiva, joskin kyseinen ohjelma olisi parempi webpohjaisessa käyttöliittymässä. Valinta oli kuitenkin tietoinen, koska tarkoitus oli jalostaa ideaa ja tehdä myöhemmin vastaaava webympäristössä. 
 
-Ohjelmiston tueksi luotiin oma tietokantapalvelin ja erityisesti entity framwork:iä tutkittiin laajasti. Samalla tutustuttiin myös ulkoiseen MaterialDesign -teemakirjastoon. 
+Ohjelmiston tueksi luotiin oma tietokantapalvelin ja erityisesti entity framwork:iä tutkittiin laajasti. Samalla tutustuttiin myös ulkoiseen MaterialDesign teemakirjastoon. 
 
 Ulkoasun suunnitteluakin tehtiin, tosin myöhemmin suunnitelmaa jouduttiin korjaamaan ja samalla tietenkin tuli oppia. Ulkoasun lopputulos on siedettävä, mutta parantamisen varaa on. 
 
