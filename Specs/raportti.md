@@ -1,14 +1,14 @@
 # Harjoitustyön raportti
 
-[Harjoitustyön raportti](#harjoitustyönraportti)
-[Asennus](#asennus)
+[Harjoitustyön raportti](#harjoitustyönraportti)  
+[Asennus](#asennus)  
 [Kuvaruutukaappaukset ja toimintaperiaate](#kuvaruutukaappauksetjatoimintaperiaate)  
 [Ohjelma tarvitsemat ja mukana tulevat resurssit](#ohjelmatarvitsematjamukanatulevatresurssit)  
-[Tiedossa olevat ongelmat](#tiedossaolevatongelmat)
+[Tiedossa olevat ongelmat](#tiedossaolevatongelmat)  
 [Jatkokehitys](#jatkokehitys)  
-[Haasteet ja opittua](#haasteetjaopittua) 
-[Ehdotus arvosanaksi](#ehdotusarvosanaksi)
-
+[Haasteet ja opittua](#haasteetjaopittua)  
+[Ehdotus arvosanaksi](#ehdotusarvosanaksi)  
+  
 ## Asennus
 
 Ohjelma käyttää Entity Framework versiota 8.0.19 (MySql.Data.EntityFramework Version 8.0.19), MySqlClient versiota 8.0.19 (MySql.Data Version 8.0.19) sekä MaterialDesignThemes teemakirjastoa (MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn, jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
