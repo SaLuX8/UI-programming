@@ -11,7 +11,11 @@
   
 ## Asennus
 
-Ohjelma käyttää Entity Framework versiota 8.0.19 (MySql.Data.EntityFramework Version 8.0.19), MySqlClient versiota 8.0.19 (MySql.Data Version 8.0.19) sekä MaterialDesignThemes teemakirjastoa (MaterialDesignThemes). Ohjelmasta on luotu asennusversio repositoryyn, jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
+Ohjelma käyttää 
+- Entity Framework versiota 8.0.19 (MySql.Data.EntityFramework Version 8.0.19),  
+- MySqlClient versiota 8.0.19 (MySql.Data Version 8.0.19) sekä  
+- MaterialDesignThemes teemakirjastoa (MaterialDesignThemes).  
+Ohjelmasta on luotu asennusversio repositoryyn (WodCoach_Install_version), jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
 
 
 ## Tietoja ohjelmasta
