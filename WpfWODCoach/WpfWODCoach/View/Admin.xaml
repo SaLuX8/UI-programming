@@ -17,11 +17,11 @@
       Title="Admin">
 
     <Grid>
-        
-            
-            
-            
-            <DockPanel>
+
+
+
+
+        <DockPanel>
             <StatusBar DockPanel.Dock="Bottom" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
                 <StatusBarItem>
                     <TextBlock x:Name="tbMessage" Text="..."/>
@@ -52,13 +52,14 @@
                               Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" SelectionChanged="cbCoachName_SelectionChanged"/>
                     <TextBlock x:Name="tbCoachId" Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" 
                              TextAlignment="Center" Padding="5" Width="40" Height="25" Margin="20,8,0,7" HorizontalAlignment="Right" Text="99" Foreground="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"/>
-
-                   
-                     </StackPanel>
+                </StackPanel>
 
                 <StackPanel Orientation="Horizontal"  Height="60" Margin="0">
-                            <Button Content="Delete" Width="110" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" Margin="20,0"/>
-                            <Button x:Name="btnAddWod" Content="Save" Width="110" Height="30" FontWeight="Bold" Click="btnAddWod_Click" Padding="0"/>
+                    <Button x:Name="btnClear" Content="Clear Selection" Width="100" Height="30" FontWeight="Bold" FontSize="13" 
+                            Padding="0" Margin="20,0" HorizontalAlignment="Left" Background="Gray" Click="btnClear_Click"/>
+                    <Button Content="Delete" Width="100" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" />
+                    <Button x:Name="btnAddWod" Content="Save" Width="100" Height="30" FontWeight="Bold" Click="btnAddWod_Click" Padding="0" Margin="20,0"/>
+
                 </StackPanel>
             </StackPanel>
 
@@ -80,11 +81,11 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
-            
 
 
-            </DockPanel>
 
-        
+        </DockPanel>
+
+
     </Grid>
 </Page>

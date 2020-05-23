@@ -54,9 +54,12 @@
                     <materialDesign:RatingBar x:Name="starsLevel" Margin="20,10,0,20" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Margin="20,0">
-                    <Button x:Name="btnDelete" Content="Delete" Width="110" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" />
-                    <Button x:Name="btnSaveWod" Content="Save" Width="110" Height="30" Margin="20" FontWeight="Bold" Click="btnSaveWod_Click" Padding="0"/>
+                <StackPanel Orientation="Horizontal"  Height="60" Margin="0">
+                    <Button x:Name="btnClear" Content="Clear Selection" Width="100" Height="30" FontWeight="Bold" FontSize="13" 
+                            Padding="0" Margin="20,0" HorizontalAlignment="Left" Background="Gray" Click="btnClear_Click"/>
+                    <Button  Content="Delete" Width="100" Height="30" FontWeight="Bold" Padding="0" Click="btnDeleteWod_Click" Background="#FFB53F3F" />
+                    <Button x:Name="btnSaveWod" Content="Save" Width="100" Height="30" FontWeight="Bold" Click="btnSaveWod_Click" Padding="0" Margin="20,0"/>
+
                 </StackPanel>
                 
             </StackPanel>

@@ -22,3 +22,5 @@
 - Jatkokehitys  
 - Haasteet ja opittua  
 - Ehdotus arvosanaksi  
+
+[Harjoitustyön esittelyvideo](https://youtu.be/BBPaIWhUOA8)

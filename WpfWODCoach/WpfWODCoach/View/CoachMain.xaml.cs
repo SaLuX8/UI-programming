@@ -148,7 +148,7 @@ namespace WpfWODCoach
         // ---------------------------------------------------------
         // Eventhandler for Delete button
         // ---------------------------------------------------------
-        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        private void btnDeleteWod_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -221,6 +221,7 @@ namespace WpfWODCoach
         {
             try
             {
+
                 if (cbMovementName.SelectedIndex > -1)
                 {
                     if (dgCoachGrid.SelectedIndex < 0)
@@ -242,5 +243,32 @@ namespace WpfWODCoach
             }
             
         }
+
+        // ---------------------------------------------------------
+        // CLEAR SELECTION button Eventhandler
+        // ---------------------------------------------------------
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                selectedWod = null;
+                dgCoachGrid.UnselectAll();          // unselect datagrid
+                tbComment.Text = "";
+                tbReps.Text = "";
+                tbRounds.Text = "";
+                starsLevel.Value = 0;
+                cbMovementName.Text = "";
+                cbMovementName.SelectedItem = null;
+                
+                
+                tbMessage.Text = "Selection cleared";   // update message to bottom inforow
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
+  
     }
 }

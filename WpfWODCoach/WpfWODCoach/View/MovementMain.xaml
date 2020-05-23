@@ -39,9 +39,12 @@
                     <materialDesign:RatingBar Value="0" Width="200" HorizontalAlignment="Left" Margin="20,0" x:Name="starsLevel"/>
                 </StackPanel>
 
-                <StackPanel Margin="20,0" Orientation="Horizontal">
-                    <Button x:Name="btnDelete" DockPanel.Dock="Left" Content="Delete" Width="110" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" />
-                    <Button x:Name="btnSave" DockPanel.Dock="Left" Content="Save" Width="110" Height="30" Margin="20,0" FontWeight="Bold" Padding="0" Click="btnSave_Click"/>
+                <StackPanel Orientation="Horizontal"  Height="60" Margin="0">
+                    <Button x:Name="btnClear" Content="Clear Selection" Width="100" Height="30" FontWeight="Bold" FontSize="13" 
+                            Padding="0" Margin="20,0" HorizontalAlignment="Left" Background="Gray" Click="btnClear_Click"/>
+                    <Button x:Name="btnDelete" Content="Delete" Width="100" Height="30" FontWeight="Bold" Padding="0" Click="btnDelete_Click" Background="#FFB53F3F" />
+                    <Button x:Name="btnSave" Content="Save" Width="100" Height="30" FontWeight="Bold" Click="btnSave_Click" Padding="0" Margin="20,0"/>
+
                 </StackPanel>
             </StackPanel>
 

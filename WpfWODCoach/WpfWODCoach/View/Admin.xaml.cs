@@ -165,6 +165,27 @@ namespace WpfWODCoach
                 MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
+
+        // ---------------------------------------------------------
+        // CLEAR SELECTION button Eventhandler
+        // ---------------------------------------------------------
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                selectedAthlete = null;             // set Athlete selection to null
+                dgAdminGrid.UnselectAll();          // unselect datagrid
+                tbAthlete.Text = "";
+                tbCoachId.Text = "99";
+                tbTel.Text = "";
+                cbCoachName.Text = "";
+                tbMessage.Text = "Selection cleared";   // update message to bottom inforow
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
     }
 
 }

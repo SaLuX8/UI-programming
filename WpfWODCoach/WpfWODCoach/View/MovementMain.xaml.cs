@@ -126,5 +126,25 @@ namespace WpfWODCoach
             }
 
         }
+
+        // ---------------------------------------------------------
+        // CLEAR SELECTION button Eventhandler
+        // ---------------------------------------------------------
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                dgMovementGrid.UnselectAll();          // unselect datagrid
+                selectedWod = null;             // set Athlete selection to null
+                tbMovement.Text = "";
+                starsLevel.Value = 0;
+                tbMessage.Text = "Selection cleared";   // update message to bottom inforow
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Something isn't right...", "Oops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
+
     }
 }
