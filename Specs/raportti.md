@@ -110,9 +110,6 @@ Alussa käytetty taustakuva kulkee ohjelman mukana.
 **Sivun vaihtumisessa on viivettä.** 
 * Tuntemattomasta syystä sivujen latautumisessa on viivettä. Todennäköisesti viive liittyy tietokantahakuun. 
 
-**Datagridin valinnan poistaminen**
-* Kun datagridiltä on valinnut objektin, valintaa ei saa pois muutoin kuin esimerkiksi tallentamalla saman objektin uudelleen. Tämä hoituisi uudella napilla. 
-
 ## Jatkokehitys
 **Käyttäjäkohtainen näkymä** puuttuu tällä hetkellä. Alkuun tulisi luoda sisäänkirjautuminen, jonka jälkeen urheilija voisi nähdä ainoastaan omat treeninsä, sama voisi päteä myös valmentajaan.  
 
@@ -141,7 +138,7 @@ Toinen haaste oli kokonaisuuden kannalta **Entity Framework, sen soveltaminen ja
 
 ## Ehdotus arvosanaksi
 
-Oman käsitykseni mukaan harjoitustyössä käytettiin laajasti kurssilla käsiteltyjä aiheita. Käyttöliittymä on toimiva, joskin kyseinen ohjelma olisi parempi webpohjaisessa käyttöliittymässä. Valinta oli kuitenkin tietoinen, koska tarkoitus oli jalostaa ideaa ja tehdä myöhemmin vastaaava webympäristössä. 
+Oman käsitykseni mukaan harjoitustyössä käytettiin laajasti kurssilla käsiteltyjä aiheita. Käyttöliittymä on toimiva, joskin kyseinen ohjelma olisi parempi web-pohjaisessa käyttöliittymässä. Valinta oli kuitenkin tietoinen, koska tarkoitus on jalostaa ideaa ja tehdä myöhemmin vastaaava webympäristössä. 
 
 Ohjelmiston tueksi luotiin oma tietokantapalvelin ja erityisesti entity framwork:iä tutkittiin laajasti. Samalla tutustuttiin myös ulkoiseen MaterialDesign teemakirjastoon. 
 
