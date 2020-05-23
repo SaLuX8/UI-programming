@@ -17,10 +17,6 @@ Ohjelma käyttää
 - MaterialDesignThemes teemakirjastoa (MaterialDesignThemes).  
 - Ulkoista MySql tietokantaa (ip:134.122.91.6)
 
-
-Ohjelmasta on luotu asennusversio repositoryyn (WodCoach_Install_version), jonka asentamalla erillisiä pakettien asennuksia ei vaadita.
-
-
 ## Tietoja ohjelmasta
 
 WodCoach ohjelma on tarkoitettu käytettäväksi valmentajien ja urheilijoiden välisessä valmennussuhteessa. Ohjelmassa valmentaja voi luoda valmennettavalle päivittäisiä treenejä ja urheilija voi katsoa niitä tahollaan. 

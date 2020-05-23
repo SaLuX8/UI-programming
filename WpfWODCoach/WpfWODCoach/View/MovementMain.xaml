@@ -45,8 +45,8 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Width="800" Margin="0" DockPanel.Dock="Left">
-                <DataGrid x:Name="dgMovementGrid" Height="537" Margin="0" VerticalAlignment="Top" 
+            <Grid Width="800" Margin="0" DockPanel.Dock="Left" Height="535">
+                <DataGrid x:Name="dgMovementGrid" Height="535" Margin="0" VerticalAlignment="Top" 
                           AutoGenerateColumns="False" 
                           CanUserAddRows="false"
                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" 
@@ -54,17 +54,18 @@
                           ItemsSource="{Binding}" SelectionChanged="dgAthleteGrid_SelectionChanged"
                           ScrollViewer.CanContentScroll="True"
                           ScrollViewer.IsDeferredScrollingEnabled="True"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Visible">
 
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Id" Binding="{Binding idWod}" MinWidth="40"/>
                         <DataGridTextColumn Header="Movement" Binding="{Binding movementName}" MinWidth="300"/>
                         <DataGridTextColumn Header="Difficulty" Binding="{Binding level}" MinWidth="40"/>
                         <DataGridTextColumn Header="Athlete using" Binding="{Binding idAthlete}" MinWidth="40"/>
-                        <DataGridTextColumn Header="Coach info" Binding="{Binding comment}" MinWidth="150"/>
+                        <DataGridTextColumn Header="Coach info" Binding="{Binding comment}" MinWidth="100"/>
                     </DataGrid.Columns>
                 </DataGrid>
-            </StackPanel>
+            </Grid>
         </DockPanel>
     </Grid>
 </Page>

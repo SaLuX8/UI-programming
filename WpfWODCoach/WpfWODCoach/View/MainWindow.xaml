@@ -17,7 +17,7 @@
         Visibility="Visible" ResizeMode="CanMinimize" 
         BorderBrush="Blue" 
         BorderThickness="2" 
-        WindowStyle="None"
+        
         WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Orientation="Horizontal">

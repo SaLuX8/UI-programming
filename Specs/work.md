@@ -22,6 +22,7 @@
 |21|20.5.2020|4|75|Raporttia, uuden aloitussivun luonti roolin valintaa varten ja valikon muokkaus valinnan perusteella.|
 |21|21.5.2020|4 |79 |Raporttia, Coach: urheilijan liikkeen tallennustavan muuttaminen, hienosäätöä |
 |21|22.5.2020| 2 | 81 | Yritettiin luoda toimiva asennusversio ohjelmasta (toimii vain omalla koneella)| 
+|21|23.5.2020| 2 | 83 | Bug fix ja videota| 
 
 
 

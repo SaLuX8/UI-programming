@@ -75,12 +75,9 @@ namespace WpfWODCoach
                 if (selectedItem != null)
                 {
                     selected = selectedItem.idAthlete;
-                   
                 }
                 selectedAthlete = selectedItem;
                 dateTime = (DateTime)dpWod.SelectedDate;                        // Set Datepicker date to datetime variable
-
-                
 
                 if (dateTime == null)
                 {
@@ -155,6 +152,7 @@ namespace WpfWODCoach
         {
             try
             {
+                selectedWod = dgCoachGrid.SelectedItem as Wod;
                 ViewModel.RemoveWodFromAthlete(selectedWod.idWod, (int)selectedWod.idAthlete);  // Method is called to remove relation between movement and athlete
 
                 if (selectedWod != null)
@@ -194,13 +192,18 @@ namespace WpfWODCoach
                 if (dgCoachGrid.SelectedIndex > -1)                                     // if item is selected from datagrid
                 {
                     selectedWod = dgCoachGrid.SelectedItem as Wod;                      // WOD selection
-                    cbMovementName.Text = Convert.ToString(selectedWod.movementName);   // update selectedWod properties to textboxea
-                    tbComment.Text = Convert.ToString(selectedWod.comment);
+                    
+                    cbMovementName.SelectedItem = selectedWod;
+                    cbMovementName.Text = selectedWod.movementName;   // update selectedWod properties to textboxea
+                    tbComment.Text = selectedWod.comment;
                     tbReps.Text = Convert.ToString(selectedWod.repsCount);
                     tbRounds.Text = Convert.ToString(selectedWod.roundCount);
-                    starsLevel.Value = Convert.ToInt32(selectedWod.level);
+                    starsLevel.Value = (int)selectedWod.level;
+                    selectedWod.Athlete = (Athlete)cbAthleteName.SelectedItem;
+                   
 
                     string message = $"Movement no. {selectedWod.idWod} of athlete {selectedWod.Athlete.fullname} chosen";
+                    
                     tbMessage.Text = message;                                           // Update bottom infomessage row
                     selectedAthlete = selectedWod.Athlete;                              // update selected Athlete
                 }
@@ -218,8 +221,20 @@ namespace WpfWODCoach
         {
             try
             {
-                selectedWod = (Wod)cbMovementName.SelectedItem;
-                starsLevel.Value = (int)selectedWod.level;
+                if (cbMovementName.SelectedIndex > -1)
+                {
+                    if (dgCoachGrid.SelectedIndex < 0)
+                    {
+                        selectedWod = (Wod)cbMovementName.SelectedItem;
+                    }
+                    tbComment.Text = selectedWod.comment;
+                    starsLevel.Value = (int)selectedWod.level;
+                    tbReps.Text = "";
+                    tbRounds.Text = "";
+                    tbComment.Text = "";
+                }
+                
+               
             }
             catch (Exception)
             {
